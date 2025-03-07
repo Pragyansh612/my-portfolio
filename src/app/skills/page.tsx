@@ -108,7 +108,7 @@ export default function SkillsPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Technical Skills</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             My expertise spans across various technologies and tools, allowing me to build comprehensive solutions for
-            diverse projects. Here's a detailed breakdown of my skills:
+            diverse projects. Here&apos;s a detailed breakdown of my skills:
           </p>
         </motion.div>
 

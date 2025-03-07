@@ -110,7 +110,7 @@ export default function ExperiencePage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Work Experience</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             My professional journey has equipped me with valuable skills and experience in developing modern web
-            applications. Here's a detailed look at my work history:
+            applications. Here&apos;s a detailed look at my work history:
           </p>
         </motion.div>
 

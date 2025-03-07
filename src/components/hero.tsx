@@ -77,17 +77,17 @@ export default function Hero() {
             <div className="glassmorphism-card">
               <h3 className="text-2xl font-semibold mb-4 text-gradient">About Me</h3>
               <p className="text-muted-foreground mb-4">
-                I'm a passionate Full Stack Developer currently pursuing my B.Tech at
+                I&apos;m a passionate Full Stack Developer currently pursuing my B.Tech at
                 the Indian Institute of Technology, Mandi. With a strong foundation in both front-end and back-end
                 technologies, I specialize in creating efficient, scalable, and user-friendly web applications.
               </p>
               <p className="text-muted-foreground mb-4">
                 My journey in tech has been marked by a continuous desire to learn and innovate. From leading web
-                development teams for major events to contributing to open-source projects, I've honed my skills in a
+                development teams for major events to contributing to open-source projects, I&apos;ve honed my skills in a
                 variety of real-world scenarios.
               </p>
               <p className="text-muted-foreground">
-                When I'm not coding, you can find me exploring new technologies, contributing to the developer
+                When I&apos;m not coding, you can find me exploring new technologies, contributing to the developer
                 community, or working on personal projects that challenge my skills and creativity.
               </p>
             </div>

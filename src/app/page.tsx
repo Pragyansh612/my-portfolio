@@ -3,7 +3,6 @@ import Skills from "@/components/skills"
 import Experience from "@/components/experience"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
-import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 

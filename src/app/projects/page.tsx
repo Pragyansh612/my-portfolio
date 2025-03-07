@@ -121,7 +121,7 @@ export default function ProjectsPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Featured Projects</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A selection of my recent work showcasing my skills and experience in web development. Each project
-            represents unique challenges and solutions I've implemented.
+            represents unique challenges and solutions I&apos;ve implemented.
           </p>
         </motion.div>
 

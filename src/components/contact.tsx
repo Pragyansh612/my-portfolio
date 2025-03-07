@@ -53,6 +53,7 @@ export default function Contact() {
         throw new Error(data.message || 'Something went wrong');
       }
     } catch (error) {
+      console.log(error)
       toast({
         title: "Error",
         description: "Failed to send your message. Please try again later.",
@@ -95,7 +96,7 @@ export default function Contact() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I'll get back
+            Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I&apos;ll get back
             to you as soon as possible.
           </p>
         </motion.div>
@@ -175,7 +176,7 @@ export default function Contact() {
               <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  Feel free to reach out to me through any of the following channels. I'm always open to discussing new
+                  Feel free to reach out to me through any of the following channels. I&apos;m always open to discussing new
                   projects, opportunities, or partnerships.
                 </p>
                 <div className="space-y-4 mt-6">
@@ -196,9 +197,9 @@ export default function Contact() {
             </div>
 
             <div className="backdrop-blur-lg bg-background/30 border border-primary/10 rounded-xl p-8 shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4">Let's Connect</h3>
+              <h3 className="text-2xl font-semibold mb-4">Let&apos;s Connect</h3>
               <p className="text-muted-foreground">
-                Currently available for freelance projects and full-time opportunities. Let's create something amazing
+                Currently available for freelance projects and full-time opportunities. Let&apos;s create something amazing
                 together!
               </p>
             </div>

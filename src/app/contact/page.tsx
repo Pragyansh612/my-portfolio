@@ -19,7 +19,6 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    // subject: "",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -55,6 +54,7 @@ export default function ContactPage() {
         throw new Error(data.message || 'Something went wrong');
       }
     } catch (error) {
+      console.log(error)
       toast({
         title: "Error",
         description: "Failed to send your message. Please try again later.",
@@ -103,7 +103,7 @@ export default function ContactPage() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I'll get back
+            Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I&apos;ll get back
             to you as soon as possible.
           </p>
         </motion.div>
@@ -198,7 +198,7 @@ export default function ContactPage() {
               <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  Feel free to reach out to me through any of the following channels. I'm always open to discussing new
+                  Feel free to reach out to me through any of the following channels. I&apos;m always open to discussing new
                   projects, opportunities, or partnerships.
                 </p>
                 <div className="space-y-4 mt-6">
@@ -219,9 +219,9 @@ export default function ContactPage() {
             </div>
 
             <div className="glassmorphism dark:glassmorphism-dark p-8 rounded-xl">
-              <h3 className="text-2xl font-semibold mb-4">Let's Connect</h3>
+              <h3 className="text-2xl font-semibold mb-4">Let&apos;s Connect</h3>
               <p className="text-muted-foreground mb-6">
-                Currently available for freelance projects and full-time opportunities. Let's create something amazing
+                Currently available for freelance projects and full-time opportunities. Let&apos;s create something amazing
                 together!
               </p>
               <Button asChild size="lg" className="glassmorphism-button group w-full">
