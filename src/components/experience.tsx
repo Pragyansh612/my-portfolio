@@ -12,7 +12,7 @@ const experiences = [
     period: "Dec 2024 - Feb 2025",
     location: "Remote",
     description: "Developed and optimized financial web applications with a focus on performance and security.",
-    techStack: ["React.js", "Node.js", "PostgreSQL", "Bootstrap"],
+    techStack: ["React.js", "Tailwind CSS", "Next.js", "Django", "Python" , "PostgreSQL", "Typescript"],
   },
   {
     title: "Full Stack Developer",
@@ -21,7 +21,7 @@ const experiences = [
     location: "Remote",
     description:
       "Built optimized web applications with a focus on UI/UX and security. Implemented responsive designs and integrated backend APIs.",
-    techStack: ["React.js", "Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
+    techStack: ["React.js", "Next.js", "Node.js", "Python", "FastAPI", "Django", "MongoDB", "Tailwind CSS"],
   },
   {
     title: "Full Stack Developer Intern",

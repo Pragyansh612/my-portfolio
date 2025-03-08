@@ -11,37 +11,60 @@ import { ArrowLeft } from "lucide-react"
 
 const projects = [
   {
-    title: "IIT Mandi Cultural Council Website",
+    title: "GenWeb",
     description:
-      "Developed an interactive platform to showcase cultural events, clubs, and announcements. The site serves as a central hub for all cultural activities at IIT Mandi.",
+      "AI-powered website builder built with Next.js, designed to streamline web development using modern tools like Clerk for authentication and Supabase for data storage.",
     image: "/placeholder.svg?height=400&width=600",
-    tags: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Clerk"],
-    liveLink: "https://example.com/cultural-council",
-    githubLink: "https://github.com/Pragyansh612/cultural-council",
+    tags: ["Next.js", "React.js", "Tailwind CSS", "Clerk", "Supabase", "AI Agents", "Python", "Django"],
+    liveLink: "https://genwebai.vercel.app/",
+    githubLink: "https://github.com/Pragyansh612/GenWeb",
     features: [
-      "Event registration system with email notifications",
-      "Interactive gallery with lightbox feature",
-      "Team member profiles with social links",
-      "Admin dashboard for content management",
+      "AI-powered content generation and website building",
+      "User authentication with Clerk",
+      "Database integration with Supabase",
+      "Modern, responsive design templates",
     ],
     challenges: [
-      "Implementing a scalable database structure to handle diverse event types",
-      "Designing an intuitive UI that caters to both students and faculty",
-      "Integrating a secure authentication system for admin access",
+      "Implementing effective AI integration for website generation",
+      "Creating an intuitive user interface for non-technical users",
+      "Ensuring proper data storage and retrieval with Supabase",
     ],
     impact:
-      "The website has significantly improved engagement in cultural activities, with a 40% increase in event participation.",
+      "Simplified the web development process for users without technical expertise, enabling faster website creation.",
     role: "Lead Developer",
+    date: "2024",
+  },
+  {
+    title: "WanderWay",
+    description:
+      "Online booking platform for hotels, trains, flights, and more. Integrates with real-time APIs to provide up-to-date information and seamless booking experiences.",
+    image: "/placeholder.svg?height=400&width=600",
+    tags: ["Next.js", "React.js", "API Integration", "Payment Gateway", "Real-time Data"],
+    // liveLink: "https://example.com/wanderway",
+    githubLink: "https://github.com/Pragyansh612/WanderWay",
+    features: [
+      "Real-time availability and pricing from multiple APIs",
+      "Secure booking and payment system",
+      "User profiles and booking history",
+      "Search and filter functionality for accommodations and transportation",
+    ],
+    challenges: [
+      "Integrating multiple third-party APIs for real-time data",
+      "Building a secure payment processing system",
+      "Ensuring consistent user experience across different service types",
+    ],
+    impact: "Created a centralized platform for travel booking needs, streamlining the process for users.",
+    role: "Full-stack Developer",
     date: "2024",
   },
   {
     title: "Exodia Website",
     description:
-      "Led the web development team to build an event management and registration platform for Exodia fest. The platform handles thousands of registrations for IIT Mandi's annual technical festival.",
+      "Event management and registration platform for Exodia fest. The platform handles thousands of registrations for IIT Mandi's annual technical festival.",
     image: "/placeholder.svg?height=400&width=600",
     tags: ["Next.js", "React.js", "Tailwind CSS", "Node.js", "MongoDB"],
-    liveLink: "https://example.com/exodia",
-    githubLink: "https://github.com/Pragyansh612/exodia",
+    liveLink: "https://exodia-iit-mandiii.vercel.app/",
+    // githubLink: "https://github.com/Pragyansh612/exodia",
     features: [
       "Secure user authentication and profile management",
       "Event registration with payment gateway integration",
@@ -58,25 +81,26 @@ const projects = [
     date: "2024",
   },
   {
-    title: "Programming Club Website",
+    title: "IIT Mandi Cultural Council Website",
     description:
-      "Developed and maintained the club website with project showcase, member profiles, and event calendar features. The site serves as a platform for showcasing student projects and announcing upcoming workshops.",
+      "Developed an interactive platform to showcase cultural events, clubs, and announcements. The site serves as a central hub for all cultural activities at IIT Mandi.",
     image: "/placeholder.svg?height=400&width=600",
-    tags: ["React.js", "Firebase", "Tailwind CSS"],
-    liveLink: "https://example.com/programming-club",
-    githubLink: "https://github.com/Pragyansh612/programming-club",
+    tags: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Clerk"],
+    liveLink: "https://cc.iitmandi.co.in/",
+    githubLink: "",
     features: [
-      "Project showcase with filtering and sorting options",
-      "Member profiles with skills and contributions",
-      "Event calendar with registration functionality",
-      "Resource library for learning materials",
+      "Event registration system with email notifications",
+      "Interactive gallery with lightbox feature",
+      "Team member profiles with social links",
+      "Admin dashboard for content management",
     ],
     challenges: [
-      "Designing an intuitive project submission and approval system",
-      "Implementing real-time updates for event registrations and project submissions",
-      "Optimizing performance for smooth browsing of large project galleries",
+      "Implementing a scalable database structure to handle diverse event types",
+      "Designing an intuitive UI that caters to both students and faculty",
+      "Integrating a secure authentication system for admin access",
     ],
-    impact: "The website has become a central hub for tech enthusiasts, increasing club membership by 30%.",
+    impact:
+      "The website has significantly improved engagement in cultural activities, with a 40% increase in event participation.",
     role: "Lead Developer",
     date: "2024",
   },
@@ -177,28 +201,32 @@ export default function ProjectsPage() {
                     <p className="text-sm text-muted-foreground">{project.impact}</p>
                   </div>
                   <div className="mt-6 flex gap-3">
-                    <Button asChild variant="outline" size="sm" className="glassmorphism-button-outline">
-                      <Link
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
-                        <Github className="mr-2 h-4 w-4" />
-                        Code
-                      </Link>
-                    </Button>
-                    <Button asChild size="sm" className="glassmorphism-button">
-                      <Link
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
-                      </Link>
-                    </Button>
+                    {project.githubLink && (
+                      <Button asChild variant="outline" size="sm" className="glassmorphism-button-outline">
+                        <Link
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center"
+                        >
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
+                        </Link>
+                      </Button>
+                    )}
+                    {project.liveLink && (
+                      <Button asChild size="sm" className="glassmorphism-button">
+                        <Link
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live Demo
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -209,4 +237,3 @@ export default function ProjectsPage() {
     </div>
   )
 }
-

@@ -27,7 +27,7 @@ const experiences = [
       "Implemented a secure authentication system using JWT, enhancing overall application security",
       "Developed reusable UI components, increasing development efficiency by 30%",
     ],
-    techStack: ["React.js", "Node.js", "PostgreSQL", "Bootstrap"],
+    techStack: ["React.js", "Tailwind CSS", "Next.js", "Django", "Python" , "PostgreSQL", "Typescript"],
   },
   {
     title: "Full Stack Developer",
@@ -47,7 +47,7 @@ const experiences = [
       "Created a custom dashboard with interactive data visualizations, enhancing data interpretation for clients",
       "Implemented a CI/CD pipeline using GitHub Actions, reducing deployment time by 50%",
     ],
-    techStack: ["React.js", "Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
+    techStack: ["React.js", "Next.js", "Node.js", "Python", "FastAPI", "Django", "MongoDB", "Tailwind CSS"],
   },
   {
     title: "Full Stack Developer Intern",
