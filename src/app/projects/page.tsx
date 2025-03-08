@@ -35,6 +35,30 @@ const projects = [
     date: "2024",
   },
   {
+    title: "IIT Mandi Cultural Council Website",
+    description:
+      "Developed an interactive platform to showcase cultural events, clubs, and announcements. The site serves as a central hub for all cultural activities at IIT Mandi.",
+    image: "/placeholder.svg?height=400&width=600",
+    tags: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Clerk"],
+    liveLink: "https://cc.iitmandi.co.in/",
+    githubLink: "",
+    features: [
+      "Event registration system with email notifications",
+      "Interactive gallery with lightbox feature",
+      "Team member profiles with social links",
+      "Admin dashboard for content management",
+    ],
+    challenges: [
+      "Implementing a scalable database structure to handle diverse event types",
+      "Designing an intuitive UI that caters to both students and faculty",
+      "Integrating a secure authentication system for admin access",
+    ],
+    impact:
+      "The website has significantly improved engagement in cultural activities, with a 40% increase in event participation.",
+    role: "Lead Developer",
+    date: "2024",
+  },
+  {
     title: "WanderWay",
     description:
       "Online booking platform for hotels, trains, flights, and more. Integrates with real-time APIs to provide up-to-date information and seamless booking experiences.",
@@ -78,30 +102,6 @@ const projects = [
     ],
     impact: "The platform successfully managed over 10,000 registrations, a 50% increase from the previous year.",
     role: "Head of Web Development",
-    date: "2024",
-  },
-  {
-    title: "IIT Mandi Cultural Council Website",
-    description:
-      "Developed an interactive platform to showcase cultural events, clubs, and announcements. The site serves as a central hub for all cultural activities at IIT Mandi.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Clerk"],
-    liveLink: "https://cc.iitmandi.co.in/",
-    githubLink: "",
-    features: [
-      "Event registration system with email notifications",
-      "Interactive gallery with lightbox feature",
-      "Team member profiles with social links",
-      "Admin dashboard for content management",
-    ],
-    challenges: [
-      "Implementing a scalable database structure to handle diverse event types",
-      "Designing an intuitive UI that caters to both students and faculty",
-      "Integrating a secure authentication system for admin access",
-    ],
-    impact:
-      "The website has significantly improved engagement in cultural activities, with a 40% increase in event participation.",
-    role: "Lead Developer",
     date: "2024",
   },
 ]

@@ -19,6 +19,15 @@ const projects = [
     githubLink: "https://github.com/Pragyansh612/GenWeb",
   },
   {
+    title: "IIT Mandi Cultural Council Website",
+    description:
+      "Developed an interactive platform for cultural events with event registration, gallery, and team information features.",
+    image: "/placeholder.svg?height=400&width=600",
+    tags: ["Next.js", "Tailwind CSS", "MongoDB", "Framer Motion"],
+    liveLink: "https://cc.iitmandi.co.in/",
+    githubLink: "",
+  },
+  {
     title: "WanderWay",
     description:
       "Online booking platform for hotels, trains, flights, and more. Integrates with real-time APIs to provide up-to-date information and seamless booking experiences.",
@@ -35,15 +44,6 @@ const projects = [
     tags: ["React.js", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
     liveLink: "https://exodia-iit-mandiii.vercel.app/",
     // githubLink: "https://github.com/Pragyansh612/exodia",
-  },
-  {
-    title: "IIT Mandi Cultural Council Website",
-    description:
-      "Developed an interactive platform for cultural events with event registration, gallery, and team information features.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Next.js", "Tailwind CSS", "MongoDB", "Framer Motion"],
-    liveLink: "https://cc.iitmandi.co.in/",
-    githubLink: "",
   },
 ]
 
