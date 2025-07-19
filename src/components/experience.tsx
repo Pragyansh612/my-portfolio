@@ -3,34 +3,46 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Calendar, MapPin } from "lucide-react"
+import { Calendar, MapPin, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const experiences = [
   {
-    title: "Software Development Engineering Intern",
-    company: "Finuance",
-    period: "Dec 2024 - Feb 2025",
+    title: "Full Stack Developer Intern",
+    company: "Dynish",
+    period: "Mar 2025 – Jun 2025",
     location: "Remote",
-    description: "Developed and optimized financial web applications with a focus on performance and security.",
-    techStack: ["React.js", "Tailwind CSS", "Next.js", "Django", "Python" , "PostgreSQL", "Typescript"],
+    description: "Built full-stack features and integrated NLP models for enhanced user experiences. Developed scalable web applications using modern frameworks and cloud technologies.",
+    techStack: ["React.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "AWS", "Firebase", "Python", "FastAPI"],
+    website: "https://dynish.app/"
+  },
+  {
+    title: "SDE Intern",
+    company: "Finuance",
+    period: "Dec 2024 – Feb 2025",
+    location: "Remote",
+    description: "Optimized and developed financial web applications with focus on performance, security, and user experience. Implemented RAG systems and integrated OpenAI APIs for intelligent features.",
+    techStack: ["React.js", "Next.js", "Django", "PostgreSQL", "Docker", "OpenAI APIs", "RAG"],
+    website: null
   },
   {
     title: "Full Stack Developer",
     company: "Asynq",
-    period: "Dec 2024 - Jan 2025",
+    period: "Dec 2024 – Jan 2025",
     location: "Remote",
-    description:
-      "Built optimized web applications with a focus on UI/UX and security. Implemented responsive designs and integrated backend APIs.",
-    techStack: ["React.js", "Next.js", "Node.js", "Python", "FastAPI", "Django", "MongoDB", "Tailwind CSS"],
+    description: "Built secure, performant UI/UX applications with emphasis on scalability and modern design patterns. Worked with LangChain for AI integrations and cloud deployment.",
+    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "Tailwind CSS", "AWS", "LangChain"],
+    website: "https://www.asynq.ai/"
   },
   {
-    title: "Full Stack Developer Intern",
+    title: "Developer Intern",
     company: "Artly",
-    period: "Sep 2024 - Nov 2024",
+    period: "Sep 2024 – Nov 2024",
     location: "Remote",
-    description:
-      "Developed interactive web pages and improved UI performance. Collaborated with design team to implement pixel-perfect interfaces.",
+    description: "Created interactive UI components and optimized application performance. Collaborated with design team to implement responsive, pixel-perfect interfaces using modern web technologies.",
     techStack: ["Next.js", "MongoDB", "Tailwind CSS"],
+    website: "https://www.artly.co.in/"
   },
 ]
 
@@ -45,29 +57,31 @@ const container = {
 }
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 }
 
 export default function Experience() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section id="experience" className="py-16 md:py-24 relative">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
+    <section id="experience" className="py-16 md:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]"></div>
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My professional journey has equipped me with valuable skills and experience in developing modern web
-            applications.
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+            Professional Experience
+          </h2>
+          <p className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed">
+            My journey through various tech companies has equipped me with diverse skills in full-stack development, 
+            AI integration, and modern web technologies across multiple industries.
           </p>
         </motion.div>
 
@@ -75,53 +89,99 @@ export default function Experience() {
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="relative max-w-4xl mx-auto"
+          className="relative max-w-5xl mx-auto"
         >
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent transform md:translate-x-[-0.5px] hidden md:block"></div>
+          {/* Timeline line for desktop */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-primary/30 to-transparent transform md:-translate-x-[1px]"></div>
 
           {experiences.map((exp, index) => (
-            <motion.div key={index} variants={item} className="mb-12 md:mb-0 relative">
+            <motion.div key={index} variants={item} className="relative mb-12 last:mb-0">
               <div
-                className={`flex flex-col md:flex-row items-center ${
-                  index % 2 === 0 ? "md:flex-row-reverse text-left md:text-right" : "text-left"
+                className={`flex flex-col md:flex-row items-start md:items-center ${
+                  index % 2 === 0 ? "md:flex-row-reverse md:text-right" : ""
                 }`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 top-0 w-6 h-6 rounded-full bg-primary/20 backdrop-blur-sm border border-primary transform md:translate-x-[-12px] hidden md:block"></div>
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-primary to-purple-600 shadow-lg shadow-primary/30 transform -translate-x-2 md:-translate-x-2 z-10 border-2 border-background">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-purple-600 animate-pulse opacity-40"></div>
+                </div>
 
                 {/* Content */}
-                <div className={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
-                  <div className="backdrop-blur-lg bg-background/30 border border-primary/10 rounded-xl p-6 shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                    <h3 className="text-xl font-semibold text-primary">{exp.title}</h3>
-                    <h4 className="text-lg font-medium mb-2">{exp.company}</h4>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                      <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {exp.period}
+                <div className={`md:w-1/2 ml-12 md:ml-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
+                  <div className="backdrop-blur-lg bg-background/40 border border-primary/20 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                      <h3 className="text-xl font-bold text-primary group-hover:text-purple-600 transition-colors duration-300">
+                        {exp.title}
+                      </h3>
+                      {exp.website && (
+                        <Button asChild variant="ghost" size="sm" className="w-fit mt-2 sm:mt-0 opacity-70 hover:opacity-100">
+                          <Link href={exp.website} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4" />
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-3 text-foreground/90">{exp.company}</h4>
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4 text-primary" />
+                        <span className="font-medium">{exp.period}</span>
                       </div>
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        {exp.location}
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-4 w-4 text-primary" />
+                        <span>{exp.location}</span>
                       </div>
                     </div>
-                    <p className="mb-4 text-foreground/80">{exp.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.techStack.map((tech) => (
-                        <span key={tech} className="px-3 py-1 text-xs rounded-full bg-primary/10 text-primary">
-                          {tech}
-                        </span>
-                      ))}
+                    
+                    <p className="mb-5 text-foreground/80 leading-relaxed">{exp.description}</p>
+                    
+                    <div className="space-y-3">
+                      <h5 className="text-sm font-semibold text-primary">Technologies Used:</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.techStack.map((tech) => (
+                          <span 
+                            key={tech} 
+                            className="px-3 py-1.5 text-xs font-medium rounded-full bg-gradient-to-r from-primary/10 to-purple-600/10 text-primary border border-primary/20 hover:border-primary/40 transition-colors duration-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+                
+                {/* Spacer for opposite side */}
                 <div className="md:w-1/2"></div>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Additional highlights */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-16 text-center"
+        >
+          <div className="backdrop-blur-lg bg-background/30 border border-primary/20 rounded-2xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-xl font-semibold mb-4 text-primary">Leadership & Achievements</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground">Programming Club Website Lead</h4>
+                <p className="text-muted-foreground">Developed and maintained the club's official website, enhancing online presence and community engagement.</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground">Event Web Development Lead</h4>
+                <p className="text-muted-foreground">Led web development teams for major college festivals including Ranneti and Exodia, managing end-to-end project delivery.</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
 }
-

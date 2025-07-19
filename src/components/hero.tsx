@@ -1,35 +1,36 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, MapPin, Phone, Mail, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-16">
-      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.08),transparent_70%)]"></div>
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <div className="space-y-2">
+            <div className="space-y-3">
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-primary font-medium"
+                className="text-primary font-medium text-base md:text-lg"
               >
-                Hello, I&apos;m
+                Hello, I'm
               </motion.p>
               <motion.h1
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient leading-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-primary via-purple-400 to-purple-500 bg-clip-text text-transparent leading-tight"
               >
                 Pragyansh Saxena
               </motion.h1>
@@ -37,59 +38,105 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-2xl md:text-3xl text-foreground/80 leading-tight"
+                className="text-xl sm:text-2xl lg:text-3xl text-foreground/80 leading-tight font-semibold"
               >
-                Full Stack Developer
+                Full Stack Developer & AI/ML Engineer
               </motion.h2>
             </div>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-lg text-muted-foreground max-w-xl"
+              className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed"
             >
-              I build modern, responsive web applications with a focus on performance, accessibility, and user
-              experience. Specializing in React, Next.js, and Node.js ecosystems.
+              Specializing in modern web applications with React, Next.js, and AI/ML integration. 
+              Currently at IIT Mandi, building scalable solutions with machine learning and 
+              full-stack development expertise.
             </motion.p>
+
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55 }}
+              className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 text-sm text-muted-foreground"
+            >
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-primary" />
+                <span>saxenapragyansh@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                <span>+91 7999610227</span>
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
-              <Button asChild size="lg" className="glassmorphism-button group">
-                <Link href="/contact">
+              <Button asChild size="lg" className="bg-gradient-to-r from-primary via-purple-400 to-purple-500 hover:from-primary/90 hover:via-purple-400/90 hover:to-purple-500/90 transition-all duration-300 group border-0">
+                <Link href="#contact">
                   Hire Me
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="glassmorphism-button-outline">
-                <Link href="/projects">View My Work</Link>
+              <Button asChild variant="outline" size="lg" className="backdrop-blur-md bg-background/40 border-primary/30 hover:bg-background/60 hover:border-primary/50 transition-all duration-300">
+                <Link href="#projects">View My Work</Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg" className="hover:bg-primary/10 transition-all duration-300">
+                <Link href="https://github.com/Pragyansh612" target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-4 w-4" />
+                  GitHub
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="glassmorphism-card">
-              <h3 className="text-2xl font-semibold mb-4 text-gradient">About Me</h3>
-              <p className="text-muted-foreground mb-4">
-                I&apos;m a passionate Full Stack Developer currently pursuing my B.Tech at
-                the Indian Institute of Technology, Mandi. With a strong foundation in both front-end and back-end
-                technologies, I specialize in creating efficient, scalable, and user-friendly web applications.
-              </p>
-              <p className="text-muted-foreground mb-4">
-                My journey in tech has been marked by a continuous desire to learn and innovate. From leading web
-                development teams for major events to contributing to open-source projects, I&apos;ve honed my skills in a
-                variety of real-world scenarios.
-              </p>
-              <p className="text-muted-foreground">
-                When I&apos;m not coding, you can find me exploring new technologies, contributing to the developer
-                community, or working on personal projects that challenge my skills and creativity.
-              </p>
+            <div className="backdrop-blur-xl bg-background/30 dark:bg-background/20 border border-primary/20 rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl lg:text-2xl font-semibold mb-4 bg-gradient-to-r from-primary via-purple-400 to-purple-500 bg-clip-text text-transparent">
+                    About Me
+                  </h3>
+                  <p className="text-muted-foreground text-sm lg:text-base mb-4 leading-relaxed">
+                    Passionate Full Stack Developer and AI/ML Engineer pursuing B.Tech at IIT Mandi. 
+                    With extensive internship experience and expertise in modern web technologies, 
+                    I specialize in building intelligent, scalable applications that leverage machine learning 
+                    and cutting-edge development frameworks.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-primary mb-3 text-sm lg:text-base">Key Highlights</h4>
+                  <ul className="space-y-2 text-muted-foreground text-sm lg:text-base">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>4+ internships specializing in AI/ML and full-stack development</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Led web development for major tech events and festivals</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Expert in RAG systems, LLMs, and intelligent application development</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Proficient in React ecosystem, Python, and cloud technologies</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -97,4 +144,3 @@ export default function Hero() {
     </section>
   )
 }
-

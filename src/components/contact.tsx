@@ -85,16 +85,18 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-16 md:py-24 relative">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]"></div>
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I&apos;ll get back
             to you as soon as possible.
@@ -153,7 +155,7 @@ export default function Contact() {
                   className="min-h-[150px] bg-background/50 border-primary/20"
                 />
               </div>
-              <Button type="submit" disabled={isSubmitting} className="w-full group">
+              <Button type="submit" disabled={isSubmitting} className="w-full group bg-gradient-to-r from-primary to-purple-500 hover:from-primary/90 hover:to-purple-500/90 shadow-xl hover:shadow-primary/25 transition-all duration-300">
                 {isSubmitting ? (
                   "Sending..."
                 ) : (

@@ -11,29 +11,29 @@ export default function Home() {
     <main className="min-h-screen">
       <Hero />
       <Skills />
-      <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button">
+      {/* <div className="text-center mt-8 mb-16">
+        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
           <Link href="/skills">View All Skills</Link>
         </Button>
-      </div>
+      </div> */}
       <Experience />
-      <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button">
+      {/* <div className="text-center mt-8 mb-16">
+        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
           <Link href="/experience">View Full Experience</Link>
         </Button>
-      </div>
+      </div> */}
       <Projects />
-      <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button">
+      {/* <div className="text-center mt-8 mb-16">
+        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
           <Link href="/projects">View All Projects</Link>
         </Button>
-      </div>
+      </div> */}
       <Contact />
-      <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button">
+      {/* <div className="text-center mt-8 mb-16">
+        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
           <Link href="/contact">Get in Touch</Link>
         </Button>
-      </div>
+      </div> */}
       {/* <Footer /> */}
     </main>
   )
