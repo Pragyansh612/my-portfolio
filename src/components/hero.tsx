@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, MapPin, Phone, Mail, Github } from "lucide-react"
+import { ArrowRight, Phone, Mail, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -24,7 +24,7 @@ export default function Hero() {
                 transition={{ delay: 0.2 }}
                 className="text-primary font-medium text-base md:text-lg"
               >
-                Hello, I'm
+                Hello, I&apos;m
               </motion.p>
               <motion.h1
                 initial={{ opacity: 0 }}

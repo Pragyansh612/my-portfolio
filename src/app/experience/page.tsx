@@ -3,10 +3,9 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Calendar, MapPin, Briefcase, ExternalLink, Trophy, Code } from "lucide-react"
+import { Calendar, MapPin, Briefcase, ExternalLink, Trophy} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
 
 const experiences = [
   {

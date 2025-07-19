@@ -172,7 +172,7 @@ export default function Experience() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
               <div className="space-y-2">
                 <h4 className="font-semibold text-foreground">Programming Club Website Lead</h4>
-                <p className="text-muted-foreground">Developed and maintained the club's official website, enhancing online presence and community engagement.</p>
+                <p className="text-muted-foreground">Developed and maintained the club&apos;s official website, enhancing online presence and community engagement.</p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-semibold text-foreground">Event Web Development Lead</h4>

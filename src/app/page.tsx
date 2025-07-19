@@ -3,8 +3,8 @@ import Skills from "@/components/skills"
 import Experience from "@/components/experience"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+// import { Button } from "@/components/ui/button"
+// import Link from "next/link"
 
 export default function Home() {
   return (

@@ -6,7 +6,7 @@ import { useRef } from "react"
 import { ExternalLink, Github, Users, Calendar, Code, Globe, Brain, Zap, Database, Trophy, Target } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+// import { ArrowLeft } from "lucide-react"
 
 const projects = [
   {
@@ -323,7 +323,7 @@ export default function ProjectsPage() {
               Interested in collaborating on innovative projects?
             </h3>
             <p className="text-muted-foreground mb-4">
-              Let's discuss how we can build something amazing together.
+              Let&apos;s discuss how we can build something amazing together.
             </p>
             <Button 
               asChild 

@@ -3,17 +3,15 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+// import { Button } from "@/components/ui/button"
+// import Link from "next/link"
 import { 
-  ArrowLeft,
   Code, 
   Database, 
   Globe, 
   Brain,
   Server,
   Cloud,
-  Layers
 } from "lucide-react"
 
 const skillCategories = [

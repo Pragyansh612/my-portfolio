@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Github, Mail, Globe, Send, ArrowLeft, MapPin, Clock, Phone, MessageCircle } from "lucide-react"
+import { Github, Mail, Send, Clock, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -125,7 +125,7 @@ export default function ContactPage() {
             Get In Touch
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I'll get back to you as soon as possible.
+            Have a project in mind or want to discuss potential opportunities? Feel free to reach out and I&apos;ll get back to you as soon as possible.
           </p>
         </motion.div>
 
@@ -273,7 +273,7 @@ export default function ContactPage() {
             {/* Quick Connect */}
             <motion.div variants={item} className="backdrop-blur-lg bg-background/40 border border-primary/20 rounded-xl p-6 shadow-lg">
               <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                Let's Connect
+                Let&apos;s Connect
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 Prefer a quick chat? Reach out directly through your preferred platform.
@@ -313,7 +313,7 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">Full-stack web development, AI integration, custom web applications, and modern frontend solutions.</p>
               </div>
               <div>
-                <h4 className="font-medium text-foreground/90 mb-2">⏱️ What's my typical response time?</h4>
+                <h4 className="font-medium text-foreground/90 mb-2">⏱️ What&apos;s my typical response time?</h4>
                 <p className="text-muted-foreground">I respond to all inquiries within 24 hours, usually much sooner during business hours.</p>
               </div>
               <div>

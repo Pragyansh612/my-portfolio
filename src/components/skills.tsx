@@ -8,7 +8,6 @@ import {
   Database, 
   Globe, 
   Brain,
-  Layers,
   Server,
   Cloud
 } from "lucide-react"
@@ -147,7 +146,7 @@ export default function Skills() {
           animate={isInView ? "show" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
         >
-          {skillCategories.map((category, categoryIndex) => (
+          {skillCategories.map((category) => (
             <motion.div
               key={category.title}
               variants={item}
@@ -168,7 +167,7 @@ export default function Skills() {
 
               {/* Skills */}
               <div className="space-y-3 lg:space-y-4">
-                {category.skills.map((skill, skillIndex) => (
+                {category.skills.map((skill) => (
                   <div key={skill.name} className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="font-medium text-foreground text-sm lg:text-base">{skill.name}</span>

@@ -248,7 +248,7 @@ export default function Projects() {
             className="bg-gradient-to-r from-primary to-purple-500 hover:from-primary/90 hover:to-purple-500/90 shadow-xl hover:shadow-primary/25 transition-all duration-300"
           >
             <Link href="#contact">
-              Let's Build Something Amazing
+              Let&apos;s Build Something Amazing
             </Link>
           </Button>
         </motion.div>
