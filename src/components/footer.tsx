@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Mail, ArrowUp } from "lucide-react"
+import { Github, Mail, Linkedin, ArrowUp } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -10,40 +10,49 @@ export default function Footer() {
   }
 
   return (
-    <footer className="py-8 border-t border-border relative">
+    <footer className="relative border-t border-border/60 py-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <p className="text-muted-foreground text-sm">
-              &copy; {new Date().getFullYear()} Pragyansh Saxena. All rights reserved.
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} Pragyansh Saxena. Built with Next.js &amp; Tailwind.
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center space-x-4 mt-4 md:mt-0"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="flex items-center gap-3"
           >
             <Link
               href="https://github.com/Pragyansh612"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors duration-300"
+              className="rounded-full border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:text-primary"
             >
-              <Github className="h-5 w-5" />
+              <Github className="h-4 w-4" />
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
-              href="mailto:saxenapragyansh@gmail.com"
-              className="text-muted-foreground hover:text-primary transition-colors duration-300"
+              href="https://linkedin.com/in/pragyansh-saxena-3b94492b8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:text-primary"
             >
-              <Mail className="h-5 w-5" />
+              <Linkedin className="h-4 w-4" />
+              <span className="sr-only">LinkedIn</span>
+            </Link>
+            <Link
+              href="mailto:saxenapragyansh@gmail.com"
+              className="rounded-full border border-border/60 p-2 text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:text-primary"
+            >
+              <Mail className="h-4 w-4" />
               <span className="sr-only">Email</span>
             </Link>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300"
+              className="rounded-full bg-gradient-to-r from-primary to-purple-600 p-2 text-white shadow-md shadow-primary/25 transition-transform duration-300 hover:scale-105"
               aria-label="Scroll to top"
             >
               <ArrowUp className="h-4 w-4" />
@@ -54,4 +63,3 @@ export default function Footer() {
     </footer>
   )
 }
-

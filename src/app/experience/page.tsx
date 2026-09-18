@@ -3,9 +3,11 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Calendar, MapPin, Briefcase, ExternalLink, Trophy} from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Calendar, MapPin, Briefcase, ExternalLink, Trophy } from "lucide-react"
 import Link from "next/link"
+import { MagicCard } from "@/components/ui/magic-card"
+import { BorderBeam } from "@/components/ui/border-beam"
+import SectionHeading from "@/components/section-heading"
 
 const experiences = [
   {
@@ -13,7 +15,9 @@ const experiences = [
     company: "Instafarms",
     period: "Jun 2025 – Present",
     location: "Remote",
-    description: "Architecting and shipping production web and mobile applications, GCP-hosted RAG pipelines, and cloud infrastructure serving hundreds of daily active users.",
+    current: true,
+    description:
+      "Architecting and shipping production web and mobile applications, GCP-hosted RAG pipelines, and cloud infrastructure serving hundreds of daily active users.",
     responsibilities: [
       "Architected and shipped 3 production web and mobile applications using Next.js, React Native, and TypeScript",
       "Designed and deployed horizontally scalable RAG pipelines on GCP with semantic vector search over 50,000+ embeddings",
@@ -27,14 +31,16 @@ const experiences = [
       "Reduced dashboard query execution time by 50%",
     ],
     techStack: ["Next.js", "React Native", "TypeScript", "GCP", "PostgreSQL", "Docker", "Nginx", "GitHub Actions", "RAG"],
-    website: null
+    website: null,
   },
   {
     title: "Full Stack Developer Intern",
     company: "Dynish",
     period: "Mar 2025 – Jun 2025",
     location: "Remote",
-    description: "Built full-stack features and NLP-powered services for enhanced user experiences, and migrated the authentication layer to Firebase.",
+    current: false,
+    description:
+      "Built full-stack features and NLP-powered services for enhanced user experiences, and migrated the authentication layer to Firebase.",
     responsibilities: [
       "Improved frontend performance through React.js refactoring and Next.js server-side rendering",
       "Replaced manual data-processing workflows with NLP-powered FastAPI services",
@@ -49,258 +55,256 @@ const experiences = [
       "Increased sprint velocity by 22%",
     ],
     techStack: ["React.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "AWS", "Firebase", "Python", "FastAPI"],
-    website: "https://dynish.app/"
+    website: "https://dynish.app/",
   },
   {
     title: "SDE Intern – Backend, Freelance",
     company: "Nextfront Technologies",
     period: "Jul 2025 – Sep 2025",
     location: "Remote",
-    description: "Designed asynchronous FastAPI microservices and integrated LLM-powered automation pipelines for internal services.",
+    current: false,
+    description:
+      "Designed asynchronous FastAPI microservices and integrated LLM-powered automation pipelines for internal services.",
     responsibilities: [
       "Designed asynchronous FastAPI microservices to eliminate blocking I/O under concurrent workloads",
       "Optimized PostgreSQL data-access patterns for internal services",
       "Integrated LLM-powered automation pipelines using Python, FastAPI, Docker, and REST APIs",
     ],
-    achievements: [
-      "Improved backend throughput and reduced response latency across internal services",
-    ],
+    achievements: ["Improved backend throughput and reduced response latency across internal services"],
     techStack: ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs"],
-    website: null
+    website: null,
   },
   {
     title: "SDE, Freelance",
     company: "Finuance",
     period: "Dec 2024 – Feb 2025",
     location: "Remote",
-    description: "Refactored backend architecture and optimized query execution paths for a real-time financial analytics platform.",
+    current: false,
+    description:
+      "Refactored backend architecture and optimized query execution paths for a real-time financial analytics platform.",
     responsibilities: [
       "Refactored backend architecture using Django, Next.js, PostgreSQL, and Docker",
       "Optimized SQL query execution paths for real-time financial analytics workloads",
     ],
-    achievements: [
-      "Reduced API latency by 40% for real-time financial analytics",
-    ],
+    achievements: ["Reduced API latency by 40% for real-time financial analytics"],
     techStack: ["Django", "Next.js", "PostgreSQL", "Docker"],
-    website: null
+    website: null,
   },
   {
     title: "Full Stack Developer, Freelance",
     company: "Asynq",
     period: "Sep 2024 – Nov 2024",
     location: "Remote",
-    description: "Designed role-based access control and scalable analytics dashboards for secure, multi-role access.",
+    current: false,
+    description:
+      "Designed role-based access control and scalable analytics dashboards for secure, multi-role access.",
     responsibilities: [
       "Designed role-based access control (RBAC) using Next.js, Node.js, Django, MongoDB, and AWS",
       "Built scalable analytics dashboards to improve system observability",
     ],
-    achievements: [
-      "Enabled secure multi-role access and improved system observability",
-    ],
+    achievements: ["Enabled secure multi-role access and improved system observability"],
     techStack: ["Next.js", "Node.js", "Django", "MongoDB", "AWS"],
-    website: "https://www.asynq.ai/"
+    website: "https://www.asynq.ai/",
   },
   {
     title: "Developer, Freelance",
     company: "Artly",
     period: "Aug 2024 – Nov 2024",
     location: "Remote",
-    description: "Built reusable UI components and optimized client-side rendering for an art-focused platform.",
+    current: false,
+    description:
+      "Built reusable UI components and optimized client-side rendering for an art-focused platform.",
     responsibilities: [
       "Built reusable UI components using Next.js, MongoDB, and Tailwind CSS",
       "Optimized client-side rendering for better page performance",
     ],
-    achievements: [
-      "Improved page performance and UI consistency across the platform",
-    ],
+    achievements: ["Improved page performance and UI consistency across the platform"],
     techStack: ["Next.js", "MongoDB", "Tailwind CSS"],
-    website: "https://www.artly.co.in/"
+    website: "https://www.artly.co.in/",
+  },
+]
+
+const achievements = [
+  {
+    title: "2nd Place, KrackHack Hackathon (IIT Mandi)",
+    detail: "Built and delivered a working AI prototype within 24 hours among 50+ participating teams.",
+  },
+  {
+    title: "Programming Club Website Lead",
+    detail: "Led the Programming Club website rebuild, improving page-load performance by 40% for 1,000+ students.",
+  },
+  {
+    title: "Ranneti Annual Fest Registration Portal",
+    detail: "Delivered the registration portal, processing 10,000+ registrations with zero downtime over 3 days.",
+  },
+  {
+    title: "Event Web Development Lead",
+    detail: "Led web development teams for major college festivals including Ranneti and Exodia.",
   },
 ]
 
 const container = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
 }
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 }
 
 export default function ExperiencePage() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.05 })
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
+    <div className="relative min-h-screen overflow-hidden pb-20 pt-32 md:pt-36">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
       <div className="container mx-auto px-4">
-        {/* <Button asChild variant="ghost" className="mb-8 hover:bg-primary/10">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button> */}
+        <SectionHeading
+          eyebrow="Career Journey"
+          title="Professional Experience"
+          description="My journey across innovative startups — building scalable web applications, AI integrations, and production infrastructure."
+        />
 
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 mt-4"
+          variants={container}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="relative mx-auto max-w-3xl"
         >
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-            Professional Experience
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            My journey across innovative startups building scalable web applications, AI integrations, and exceptional user experiences.
-          </p>
-        </motion.div>
+          <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-border to-transparent md:left-[19px]" />
 
-        <motion.div variants={container} initial="hidden" animate={isInView ? "show" : "hidden"} className="space-y-6">
-          {experiences.map((exp, index) => (
-            <motion.div key={index} variants={item}>
-              <div className="backdrop-blur-lg bg-background/40 border border-primary/20 rounded-xl p-4 md:p-6 shadow-lg hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                  <div className="flex-1">
-                    <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent mb-1">
-                      {exp.title}
-                    </h2>
-                    <h3 className="text-lg font-medium text-foreground/90 mb-2">{exp.company}</h3>
-                  </div>
-                  {exp.website && (
-                    <Button asChild variant="outline" size="sm" className="w-fit border-primary/30 hover:bg-primary/10">
-                      <Link href={exp.website} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-3 w-3 mr-2" />
-                        Visit
-                      </Link>
-                    </Button>
+          {experiences.map((exp) => (
+            <motion.div key={exp.company + exp.period} variants={item} className="relative mb-6 pl-10 last:mb-0 md:pl-14">
+              <div
+                className={`absolute left-0 top-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-background md:h-10 md:w-10 ${
+                  exp.current ? "bg-gradient-to-br from-primary to-purple-600 shadow-lg shadow-primary/40" : "bg-secondary"
+                }`}
+              >
+                <span className={`h-2 w-2 rounded-full ${exp.current ? "bg-white animate-pulse" : "bg-muted-foreground"}`} />
+              </div>
+
+              <MagicCard
+                className="rounded-2xl"
+                gradientColor="hsl(var(--primary) / 0.12)"
+                gradientFrom="hsl(var(--primary))"
+                gradientTo="hsl(var(--gold))"
+              >
+                <div className="relative overflow-hidden rounded-2xl p-5 md:p-6">
+                  {exp.current && (
+                    <BorderBeam size={70} duration={7} colorFrom="hsl(var(--primary))" colorTo="hsl(var(--gold))" />
                   )}
-                </div>
 
-                {/* Meta Info */}
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1 text-primary" />
-                    <span className="font-medium">{exp.period}</span>
+                  <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h2 className="font-display text-lg font-bold md:text-xl">{exp.title}</h2>
+                        {exp.current && (
+                          <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                            Current
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-base font-medium text-foreground/80">{exp.company}</p>
+                    </div>
+                    {exp.website && (
+                      <Link
+                        href={exp.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </Link>
+                    )}
                   </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-1 text-primary" />
-                    {exp.location}
+
+                  <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground md:text-sm">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="h-3.5 w-3.5 text-primary" />
+                      {exp.period}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="h-3.5 w-3.5 text-primary" />
+                      {exp.location}
+                    </span>
                   </div>
-                </div>
 
-                {/* Description */}
-                <p className="mb-5 text-foreground/90 leading-relaxed">{exp.description}</p>
+                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground md:text-[15px]">{exp.description}</p>
 
-                {/* Compact Content */}
-                <div className="space-y-4">
-                  {/* Responsibilities - Compact */}
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center text-sm text-primary">
-                      <Briefcase className="h-4 w-4 mr-2" />
-                      Key Responsibilities
-                    </h4>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      {exp.responsibilities.slice(0, 3).map((responsibility, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="w-1 h-1 rounded-full bg-primary/60 mt-2 mr-2 flex-shrink-0"></div>
-                          {responsibility}
-                        </div>
-                      ))}
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <div>
+                      <h3 className="mb-2 flex items-center text-sm font-semibold text-primary">
+                        <Briefcase className="mr-2 h-4 w-4" />
+                        Key Responsibilities
+                      </h3>
+                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                        {exp.responsibilities.map((r) => (
+                          <div key={r} className="flex items-start">
+                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
+                            {r}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="mb-2 flex items-center text-sm font-semibold text-gold">
+                        <Trophy className="mr-2 h-4 w-4" />
+                        Key Achievements
+                      </h3>
+                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                        {exp.achievements.map((a) => (
+                          <div key={a} className="flex items-start">
+                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-gold/70" />
+                            {a}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Achievements - Compact */}
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center text-sm text-primary">
-                      <Trophy className="h-4 w-4 mr-2" />
-                      Key Achievements
-                    </h4>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      {exp.achievements.slice(0, 2).map((achievement, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="w-1 h-1 rounded-full bg-green-500/60 mt-2 mr-2 flex-shrink-0"></div>
-                          {achievement}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="mt-4 pt-4 border-t border-primary/10">
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border/50 pt-4">
                     {exp.techStack.map((tech) => (
-                      <span 
-                        key={tech} 
-                        className="px-2 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-primary/10 to-purple-600/10 text-primary border border-primary/20"
+                      <span
+                        key={tech}
+                        className="rounded-full border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs font-medium text-foreground/75"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </MagicCard>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Leadership Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mx-auto mt-14 max-w-3xl"
         >
-          <div className="backdrop-blur-lg bg-background/30 border border-primary/20 rounded-xl p-4 md:p-6">
-            <h3 className="text-lg font-semibold mb-4 text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Leadership & Achievements
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground flex items-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
-                  2nd Place, KrackHack Hackathon (IIT Mandi)
+          <div className="mb-6 flex items-center gap-2">
+            <Trophy className="h-5 w-5 text-gold" />
+            <h3 className="font-display text-xl font-semibold">Leadership &amp; Achievements</h3>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {achievements.map((a) => (
+              <div
+                key={a.title}
+                className="rounded-xl border border-border/60 bg-card/40 p-4 backdrop-blur-md transition-colors hover:border-gold/40"
+              >
+                <h4 className="mb-1.5 flex items-start gap-2 text-sm font-semibold text-foreground">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-gold to-primary" />
+                  {a.title}
                 </h4>
-                <p className="text-muted-foreground ml-4">
-                  Built and delivered a working AI prototype within 24 hours among 50+ participating teams.
-                </p>
+                <p className="pl-3.5 text-sm text-muted-foreground">{a.detail}</p>
               </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground flex items-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
-                  Programming Club Website Lead
-                </h4>
-                <p className="text-muted-foreground ml-4">
-                  Led the Programming Club website rebuild, improving page-load performance by 40% for 1,000+ students.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground flex items-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
-                  Ranneti Annual Fest Registration Portal
-                </h4>
-                <p className="text-muted-foreground ml-4">
-                  Delivered the registration portal, processing 10,000+ registrations with zero downtime over 3 days.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground flex items-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
-                  Event Web Development Lead
-                </h4>
-                <p className="text-muted-foreground ml-4">
-                  Led web development for major college festivals including Ranneti and Exodia.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </motion.div>
       </div>

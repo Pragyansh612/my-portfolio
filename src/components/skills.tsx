@@ -10,15 +10,18 @@ import {
   Brain,
   Server,
   Cloud,
-  CheckCircle2
+  CheckCircle2,
 } from "lucide-react"
+import { Marquee } from "@/components/ui/marquee"
+import { MagicCard } from "@/components/ui/magic-card"
+import { NumberTicker } from "@/components/ui/number-ticker"
+import SectionHeading from "@/components/section-heading"
 
 const skillCategories = [
   {
     title: "Languages",
     icon: <Code className="w-5 h-5" />,
-    color: "from-blue-500/10 to-cyan-500/10",
-    borderColor: "border-blue-500/20",
+    accent: "from-blue-500 to-cyan-400",
     skills: [
       { name: "Python", level: 92 },
       { name: "Go", level: 80 },
@@ -31,8 +34,7 @@ const skillCategories = [
   {
     title: "Frontend Development",
     icon: <Globe className="w-5 h-5" />,
-    color: "from-green-500/10 to-emerald-500/10",
-    borderColor: "border-green-500/20",
+    accent: "from-emerald-500 to-green-400",
     skills: [
       { name: "React.js", level: 92 },
       { name: "Next.js", level: 90 },
@@ -44,8 +46,7 @@ const skillCategories = [
   {
     title: "Backend & APIs",
     icon: <Server className="w-5 h-5" />,
-    color: "from-purple-400/10 to-purple-500/10",
-    borderColor: "border-purple-400/20",
+    accent: "from-violet-500 to-purple-400",
     skills: [
       { name: "FastAPI", level: 90 },
       { name: "Django", level: 78 },
@@ -57,8 +58,7 @@ const skillCategories = [
   {
     title: "Databases",
     icon: <Database className="w-5 h-5" />,
-    color: "from-orange-500/10 to-red-500/10",
-    borderColor: "border-orange-500/20",
+    accent: "from-orange-500 to-amber-400",
     skills: [
       { name: "PostgreSQL", level: 88 },
       { name: "MongoDB", level: 85 },
@@ -70,8 +70,7 @@ const skillCategories = [
   {
     title: "AI/ML & Data Science",
     icon: <Brain className="w-5 h-5" />,
-    color: "from-pink-500/10 to-rose-500/10",
-    borderColor: "border-pink-500/20",
+    accent: "from-pink-500 to-rose-400",
     skills: [
       { name: "LLMs & RAG", level: 90 },
       { name: "LangChain", level: 85 },
@@ -84,8 +83,7 @@ const skillCategories = [
   {
     title: "Cloud & DevOps",
     icon: <Cloud className="w-5 h-5" />,
-    color: "from-indigo-500/10 to-blue-500/10",
-    borderColor: "border-indigo-500/20",
+    accent: "from-indigo-500 to-blue-400",
     skills: [
       { name: "AWS", level: 80 },
       { name: "GCP", level: 82 },
@@ -97,8 +95,7 @@ const skillCategories = [
   {
     title: "Testing & Engineering",
     icon: <CheckCircle2 className="w-5 h-5" />,
-    color: "from-teal-500/10 to-cyan-500/10",
-    borderColor: "border-teal-500/20",
+    accent: "from-teal-500 to-cyan-400",
     skills: [
       { name: "Pytest / Jest", level: 82 },
       { name: "Test Automation", level: 80 },
@@ -108,12 +105,23 @@ const skillCategories = [
   },
 ]
 
+const marqueeTech = Array.from(
+  new Set(skillCategories.flatMap((c) => c.skills.map((s) => s.name)))
+)
+
+const stats = [
+  { label: "Technologies", value: 30, suffix: "+" },
+  { label: "Frameworks", value: 15, suffix: "+" },
+  { label: "AI/ML Tools", value: 10, suffix: "+" },
+  { label: "Cloud Services", value: 8, suffix: "+" },
+]
+
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 }
@@ -127,8 +135,8 @@ const skillBar = {
   hidden: { width: 0 },
   show: (level: number) => ({
     width: `${level}%`,
-    transition: { duration: 1.2, delay: 0.3, ease: "easeOut" }
-  })
+    transition: { duration: 1.2, delay: 0.2, ease: "easeOut" },
+  }),
 }
 
 export default function Skills() {
@@ -136,72 +144,85 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section id="skills" className="py-16 md:py-20 lg:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]"></div>
+    <section id="skills" className="relative overflow-hidden py-20 md:py-28">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.1),transparent_60%)]" />
+
+      <div className="container mx-auto px-4">
+        <SectionHeading
+          eyebrow="What I Work With"
+          title="Technical Skills"
+          description="Comprehensive expertise across the stack — from systems and distributed backends to AI pipelines and modern frontends."
+        />
+      </div>
+
+      <div className="relative mb-14 w-full">
+        <Marquee pauseOnHover className="[--duration:35s]">
+          {marqueeTech.map((tech) => (
+            <span
+              key={tech}
+              className="mx-1.5 inline-flex items-center rounded-full border border-border/60 bg-card/50 px-4 py-2 font-mono text-sm text-muted-foreground backdrop-blur-sm"
+            >
+              {tech}
+            </span>
+          ))}
+        </Marquee>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent" />
+      </div>
+
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-            Technical Skills
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Comprehensive expertise in modern technologies for building intelligent, scalable applications.
-          </p>
-        </motion.div>
-
-        <motion.div
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5"
         >
           {skillCategories.map((category) => (
-            <motion.div
-              key={category.title}
-              variants={item}
-              className={`group relative backdrop-blur-xl bg-background/40 dark:bg-background/20 border ${category.borderColor} hover:border-primary/30 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1`}
-            >
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${category.color} rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}></div>
-              
-              {/* Header */}
-              <div className="flex items-center mb-4 lg:mb-6">
-                <div className="p-2 lg:p-3 rounded-lg lg:rounded-xl bg-gradient-to-r from-primary/10 via-purple-400/10 to-purple-500/10 text-primary mr-3 group-hover:scale-105 transition-transform duration-300">
-                  {category.icon}
-                </div>
-                <h3 className="text-base lg:text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                  {category.title}
-                </h3>
-              </div>
-
-              {/* Skills */}
-              <div className="space-y-3 lg:space-y-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-foreground text-sm lg:text-base">{skill.name}</span>
+            <motion.div key={category.title} variants={item}>
+              <MagicCard
+                className="h-full rounded-2xl"
+                gradientColor="hsl(var(--primary) / 0.15)"
+                gradientFrom="hsl(var(--primary))"
+                gradientTo="hsl(var(--gold))"
+              >
+                <div className="h-full p-5 lg:p-6">
+                  <div className="mb-5 flex items-center gap-3">
+                    <div
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${category.accent} text-white shadow-lg`}
+                    >
+                      {category.icon}
                     </div>
-                    
-                    <div className="relative h-2 w-full bg-muted/20 dark:bg-muted/10 rounded-full overflow-hidden">
-                      <motion.div
-                        custom={skill.level}
-                        variants={skillBar}
-                        initial="hidden"
-                        animate={isInView ? "show" : "hidden"}
-                        className="h-full bg-gradient-to-r from-primary via-purple-400 to-purple-500 rounded-full relative overflow-hidden"
-                      >
-                        {/* Shimmer effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite] delay-1000"></div>
-                      </motion.div>
-                    </div>
+                    <h3 className="font-display text-base lg:text-lg font-semibold">
+                      {category.title}
+                    </h3>
                   </div>
-                ))}
-              </div>
+
+                  <div className="space-y-3.5">
+                    {category.skills.map((skill) => (
+                      <div key={skill.name} className="space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-foreground/90">
+                            {skill.name}
+                          </span>
+                          <span className="font-mono text-[11px] text-muted-foreground">
+                            {skill.level}%
+                          </span>
+                        </div>
+                        <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted/40">
+                          <motion.div
+                            custom={skill.level}
+                            variants={skillBar}
+                            initial="hidden"
+                            animate={isInView ? "show" : "hidden"}
+                            className={`h-full rounded-full bg-gradient-to-r ${category.accent}`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </MagicCard>
             </motion.div>
           ))}
         </motion.div>
@@ -210,29 +231,23 @@ export default function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-6 grid grid-cols-2 gap-4 md:mt-8 md:grid-cols-4 md:gap-5"
         >
-          {[
-            { label: "Technologies", value: "30+" },
-            { label: "Frameworks", value: "15+" },
-            { label: "AI/ML Tools", value: "10+" },
-            { label: "Cloud Services", value: "8+" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center backdrop-blur-xl bg-background/30 dark:bg-background/20 border border-primary/10 hover:border-primary/20 rounded-xl p-4 lg:p-6 transition-all duration-300">
-              <div className="text-2xl lg:text-3xl font-bold text-primary mb-1 lg:mb-2">{stat.value}</div>
-              <div className="text-xs lg:text-sm text-muted-foreground">{stat.label}</div>
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-xl border border-border/60 bg-card/40 p-4 text-center backdrop-blur-md transition-colors duration-300 hover:border-primary/30 lg:p-6"
+            >
+              <div className="font-display text-2xl font-bold text-gradient lg:text-3xl">
+                <NumberTicker value={stat.value} className="text-gradient font-display" />
+                {stat.suffix}
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground lg:text-sm">{stat.label}</div>
             </div>
           ))}
         </motion.div>
       </div>
-
-      <style jsx>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-      `}</style>
     </section>
   )
 }

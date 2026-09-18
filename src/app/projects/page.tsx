@@ -5,8 +5,10 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { ExternalLink, Github, Users, Calendar, Code, Globe, Brain, Zap, Database, Trophy, Target, Network, LineChart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { MagicCard } from "@/components/ui/magic-card"
+import { ShimmerButton } from "@/components/ui/shimmer-button"
+import SectionHeading from "@/components/section-heading"
 import Link from "next/link"
-// import { ArrowLeft } from "lucide-react"
 
 const projects = [
   {
@@ -197,162 +199,137 @@ const projects = [
 
 const container = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.12 } },
 }
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
 export default function ProjectsPage() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const isInView = useInView(ref, { once: true, amount: 0.05 })
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
+    <div className="relative min-h-screen overflow-hidden pb-20 pt-32 md:pt-36">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
       <div className="container mx-auto px-4">
-        {/* <Button asChild variant="ghost" className="mb-8 hover:bg-primary/10">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button> */}
+        <SectionHeading
+          eyebrow="Selected Work"
+          title="Featured Projects"
+          description="A showcase of systems engineering, AI-powered products, and full-stack platforms — with the challenges, decisions, and impact behind each one."
+        />
 
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 mt-4"
-        >
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-            Featured Projects
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            A showcase of innovative solutions and cutting-edge technologies through impactful projects that demonstrate expertise in full-stack development and modern web technologies.
-          </p>
-        </motion.div>
-
-        <motion.div variants={container} initial="hidden" animate={isInView ? "show" : "hidden"} className="space-y-6">
-          {projects.map((project, index) => (
-            <motion.div key={index} variants={item}>
-              <div className="backdrop-blur-lg bg-background/40 border border-primary/20 rounded-xl p-4 md:p-6 shadow-lg hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                  <div className="flex items-start gap-3 flex-1">
-                    <div className="p-2 rounded-lg bg-gradient-to-r from-primary/10 to-purple-600/10 text-primary mt-1">
-                      {project.icon}
-                    </div>
-                    <div>
-                      <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent mb-1">
-                        {project.title}
-                      </h2>
-                      <div className="text-xs text-muted-foreground mb-2">
-                        <span className="px-2 py-1 rounded-full bg-primary/10 text-primary font-medium">
+        <motion.div ref={ref} variants={container} initial="hidden" animate={isInView ? "show" : "hidden"} className="space-y-6">
+          {projects.map((project) => (
+            <motion.div key={project.title} variants={item}>
+              <MagicCard
+                className="rounded-2xl"
+                gradientColor="hsl(var(--primary) / 0.12)"
+                gradientFrom="hsl(var(--primary))"
+                gradientTo="hsl(var(--gold))"
+              >
+                <div className="p-5 md:p-7">
+                  {/* Header */}
+                  <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
+                    <div className="flex flex-1 items-start gap-3.5">
+                      <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg shadow-primary/25">
+                        {project.icon}
+                      </div>
+                      <div>
+                        <h2 className="font-display text-xl font-bold md:text-2xl">{project.title}</h2>
+                        <span className="mt-1.5 inline-block rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
                           {project.category}
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex gap-2 mt-2 sm:mt-0">
-                    {project.githubLink && (
-                      <Button asChild variant="outline" size="sm" className="border-primary/30 hover:bg-primary/10">
-                        <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-3 w-3 mr-2" />
-                          Code
-                        </Link>
-                      </Button>
-                    )}
-                    {project.liveLink && (
-                      <Button asChild size="sm" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
-                        <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-3 w-3 mr-2" />
-                          Live Demo
-                        </Link>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-
-                {/* Meta Info */}
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4 ml-11">
-                  <div className="flex items-center">
-                    <Users className="h-4 w-4 mr-1 text-primary" />
-                    <span className="font-medium">{project.role}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1 text-primary" />
-                    {project.date}
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="mb-5 text-foreground/90 leading-relaxed ml-11">{project.description}</p>
-
-                {/* Compact Content */}
-                <div className="ml-11 space-y-4">
-                  {/* Features */}
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center text-sm text-primary">
-                      <Target className="h-4 w-4 mr-2" />
-                      Key Features
-                    </h4>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      {project.features.slice(0, 3).map((feature, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="w-1 h-1 rounded-full bg-primary/60 mt-2 mr-2 flex-shrink-0"></div>
-                          {feature}
-                        </div>
-                      ))}
+                    <div className="flex gap-2">
+                      {project.githubLink && (
+                        <Button asChild variant="outline" size="sm" className="border-border/60 hover:border-primary/40 hover:bg-primary/10">
+                          <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-1.5 h-3.5 w-3.5" />
+                            Code
+                          </Link>
+                        </Button>
+                      )}
+                      {project.liveLink && (
+                        <Button asChild size="sm" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
+                          <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                            Live Demo
+                          </Link>
+                        </Button>
+                      )}
                     </div>
                   </div>
 
-                  {/* Challenges */}
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center text-sm text-primary">
-                      <Code className="h-4 w-4 mr-2" />
-                      Technical Challenges
-                    </h4>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      {project.challenges.slice(0, 2).map((challenge, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="w-1 h-1 rounded-full bg-orange-500/60 mt-2 mr-2 flex-shrink-0"></div>
-                          {challenge}
-                        </div>
-                      ))}
+                  {/* Meta Info */}
+                  <div className="mb-4 flex flex-wrap gap-4 text-sm text-muted-foreground md:ml-[3.6rem]">
+                    <div className="flex items-center">
+                      <Users className="mr-1.5 h-4 w-4 text-primary" />
+                      <span className="font-medium">{project.role}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar className="mr-1.5 h-4 w-4 text-primary" />
+                      {project.date}
                     </div>
                   </div>
 
-                  {/* Impact */}
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center text-sm text-primary">
-                      <Trophy className="h-4 w-4 mr-2" />
-                      Impact & Results
-                    </h4>
-                    <p className="text-sm text-muted-foreground">{project.impact}</p>
-                  </div>
-                </div>
+                  <p className="mb-5 leading-relaxed text-foreground/85 md:ml-[3.6rem]">{project.description}</p>
 
-                {/* Tech Stack */}
-                <div className="mt-4 pt-4 border-t border-primary/10 ml-11">
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="grid grid-cols-1 gap-5 md:ml-[3.6rem] md:grid-cols-3">
+                    <div>
+                      <h3 className="mb-2 flex items-center text-sm font-semibold text-primary">
+                        <Target className="mr-2 h-4 w-4" />
+                        Key Features
+                      </h3>
+                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                        {project.features.slice(0, 3).map((f) => (
+                          <div key={f} className="flex items-start">
+                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
+                            {f}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="mb-2 flex items-center text-sm font-semibold text-gold">
+                        <Code className="mr-2 h-4 w-4" />
+                        Technical Challenges
+                      </h3>
+                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                        {project.challenges.slice(0, 2).map((c) => (
+                          <div key={c} className="flex items-start">
+                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-gold/60" />
+                            {c}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="mb-2 flex items-center text-sm font-semibold text-emerald-400">
+                        <Trophy className="mr-2 h-4 w-4" />
+                        Impact &amp; Results
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{project.impact}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border/50 pt-4 md:ml-[3.6rem]">
                     {project.tags.map((tech) => (
-                      <span 
-                        key={tech} 
-                        className="px-2 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-primary/10 to-purple-600/10 text-primary border border-primary/20"
+                      <span
+                        key={tech}
+                        className="rounded-full border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs font-medium text-foreground/75"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </MagicCard>
             </motion.div>
           ))}
         </motion.div>
@@ -361,26 +338,18 @@ export default function ProjectsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 text-center"
         >
-          <div className="backdrop-blur-lg bg-background/30 border border-primary/20 rounded-xl p-6">
-            <h3 className="text-lg font-semibold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Interested in collaborating on innovative projects?
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              Let&apos;s discuss how we can build something amazing together.
-            </p>
-            <Button 
-              asChild 
-              size="lg" 
-              className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-primary/25"
+          <p className="mb-5 text-muted-foreground">Interested in collaborating on innovative projects?</p>
+          <Link href="#contact">
+            <ShimmerButton
+              background="linear-gradient(110deg, hsl(var(--primary)), #a855f7)"
+              className="mx-auto px-6 py-3 text-sm font-semibold"
             >
-              <Link href="#contact">
-                Start a Conversation
-              </Link>
-            </Button>
-          </div>
+              Start a Conversation
+            </ShimmerButton>
+          </Link>
         </motion.div>
       </div>
     </div>

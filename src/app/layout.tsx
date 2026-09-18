@@ -1,19 +1,29 @@
 import type React from "react"
 import "./globals.css"
-import { Inter } from "next/font/google"
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/navbar"
-// import ParticleBackground from "@/components/particle-background"
+import ScrollProgress from "@/components/scroll-progress"
 import { cn } from "@/lib/utils"
 import Footer from "@/components/footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-space-grotesk",
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+})
 
 export const metadata = {
-  title: "Pragyansh Saxena | Full Stack Developer",
+  title: "Pragyansh Saxena | Software Engineer",
   description:
-    "Professional portfolio of Pragyansh Saxena, a Full Stack Developer specializing in React, Next.js, and Node.js.",
+    "Portfolio of Pragyansh Saxena, a Software Engineer building production web, mobile, backend, and AI-powered systems.",
 }
 
 export default function RootLayout({
@@ -23,14 +33,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.className,
+          inter.variable,
+          spaceGrotesk.variable,
+          jetbrainsMono.variable
+        )}
+      >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {/* <ParticleBackground /> */}
           <div className="relative z-10">
+            <ScrollProgress />
             <Navbar />
             <main className="page-transition">{children}</main>
             <Toaster />
-            <Footer/>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>
