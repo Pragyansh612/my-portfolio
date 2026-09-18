@@ -3,27 +3,29 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { 
-  Code, 
-  Database, 
-  Globe, 
+import {
+  Code,
+  Database,
+  Globe,
   Brain,
   Server,
-  Cloud
+  Cloud,
+  CheckCircle2
 } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Programming Languages",
+    title: "Languages",
     icon: <Code className="w-5 h-5" />,
     color: "from-blue-500/10 to-cyan-500/10",
     borderColor: "border-blue-500/20",
     skills: [
-      { name: "JavaScript", level: 95 },
-      { name: "Python", level: 90 },
+      { name: "Python", level: 92 },
+      { name: "Go", level: 80 },
       { name: "TypeScript", level: 90 },
-      { name: "C++", level: 75 },
-      { name: "HTML/CSS", level: 98 },
+      { name: "JavaScript", level: 90 },
+      { name: "C++", level: 78 },
+      { name: "SQL", level: 85 },
     ],
   },
   {
@@ -32,11 +34,11 @@ const skillCategories = [
     color: "from-green-500/10 to-emerald-500/10",
     borderColor: "border-green-500/20",
     skills: [
-      { name: "React.js", level: 95 },
+      { name: "React.js", level: 92 },
       { name: "Next.js", level: 90 },
-      { name: "React Native", level: 85 },
-      { name: "Tailwind CSS", level: 95 },
-      { name: "Bootstrap", level: 88 },
+      { name: "React Native", level: 82 },
+      { name: "Tailwind CSS", level: 92 },
+      { name: "Redux / Zustand", level: 80 },
     ],
   },
   {
@@ -45,11 +47,11 @@ const skillCategories = [
     color: "from-purple-400/10 to-purple-500/10",
     borderColor: "border-purple-400/20",
     skills: [
-      { name: "Node.js", level: 88 },
-      { name: "Express.js", level: 85 },
+      { name: "FastAPI", level: 90 },
       { name: "Django", level: 78 },
-      { name: "FastAPI", level: 82 },
+      { name: "Node.js / Express.js", level: 82 },
       { name: "REST APIs", level: 90 },
+      { name: "Microservices", level: 82 },
     ],
   },
   {
@@ -58,11 +60,11 @@ const skillCategories = [
     color: "from-orange-500/10 to-red-500/10",
     borderColor: "border-orange-500/20",
     skills: [
-      { name: "MongoDB", level: 90 },
-      { name: "PostgreSQL", level: 85 },
-      { name: "Firebase", level: 88 },
+      { name: "PostgreSQL", level: 88 },
+      { name: "MongoDB", level: 85 },
+      { name: "Redis", level: 78 },
       { name: "Supabase", level: 85 },
-      { name: "Vector DBs", level: 75 },
+      { name: "Firebase Firestore", level: 85 },
     ],
   },
   {
@@ -71,12 +73,12 @@ const skillCategories = [
     color: "from-pink-500/10 to-rose-500/10",
     borderColor: "border-pink-500/20",
     skills: [
-      { name: "PyTorch", level: 80 },
-      { name: "scikit-learn", level: 85 },
-      { name: "OpenAI APIs", level: 90 },
+      { name: "LLMs & RAG", level: 90 },
       { name: "LangChain", level: 85 },
-      { name: "RAG Systems", level: 88 },
-      { name: "Hugging Face", level: 82 },
+      { name: "Scikit-learn", level: 85 },
+      { name: "PyTorch", level: 78 },
+      { name: "Vector Databases", level: 82 },
+      { name: "Prompt Engineering", level: 88 },
     ],
   },
   {
@@ -85,11 +87,23 @@ const skillCategories = [
     color: "from-indigo-500/10 to-blue-500/10",
     borderColor: "border-indigo-500/20",
     skills: [
-      { name: "AWS", level: 82 },
-      { name: "Docker", level: 80 },
-      { name: "Git/GitHub", level: 95 },
-      { name: "Vercel", level: 90 },
-      { name: "CI/CD", level: 78 },
+      { name: "AWS", level: 80 },
+      { name: "GCP", level: 82 },
+      { name: "Docker", level: 85 },
+      { name: "Linux / Nginx", level: 85 },
+      { name: "GitHub Actions / CI/CD", level: 85 },
+    ],
+  },
+  {
+    title: "Testing & Engineering",
+    icon: <CheckCircle2 className="w-5 h-5" />,
+    color: "from-teal-500/10 to-cyan-500/10",
+    borderColor: "border-teal-500/20",
+    skills: [
+      { name: "Pytest / Jest", level: 82 },
+      { name: "Test Automation", level: 80 },
+      { name: "System Design", level: 82 },
+      { name: "Agile / Scrum", level: 85 },
     ],
   },
 ]
@@ -200,10 +214,10 @@ export default function Skills() {
           className="mt-12 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
         >
           {[
-            { label: "Technologies", value: "25+" },
-            { label: "Frameworks", value: "12+" },
-            { label: "AI/ML Tools", value: "8+" },
-            { label: "Cloud Services", value: "6+" },
+            { label: "Technologies", value: "30+" },
+            { label: "Frameworks", value: "15+" },
+            { label: "AI/ML Tools", value: "10+" },
+            { label: "Cloud Services", value: "8+" },
           ].map((stat, index) => (
             <div key={index} className="text-center backdrop-blur-xl bg-background/30 dark:bg-background/20 border border-primary/10 hover:border-primary/20 rounded-xl p-4 lg:p-6 transition-all duration-300">
               <div className="text-2xl lg:text-3xl font-bold text-primary mb-1 lg:mb-2">{stat.value}</div>

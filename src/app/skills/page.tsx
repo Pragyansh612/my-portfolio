@@ -5,27 +5,32 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 // import { Button } from "@/components/ui/button"
 // import Link from "next/link"
-import { 
-  Code, 
-  Database, 
-  Globe, 
+import {
+  Code,
+  Database,
+  Globe,
   Brain,
   Server,
   Cloud,
+  CheckCircle2,
 } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Programming Languages",
+    title: "Languages",
     icon: <Code className="w-4 h-4" />,
     color: "from-blue-500/10 to-cyan-500/10",
     borderColor: "border-blue-500/20",
     skills: [
-      { name: "Python", level: 90, description: "Advanced proficiency in data science, web development, AI/ML, and automation scripting" },
-      { name: "JavaScript", level: 85, description: "Expert in ES6+ features, async programming, and modern web development patterns" },
-      { name: "TypeScript", level: 85, description: "Strong typing expertise for large-scale applications and better code maintainability" },
-      { name: "PHP", level: 75, description: "Experienced in server-side scripting, CMS development, and WordPress customization" },
-      { name: "C++", level: 75, description: "Solid foundation in object-oriented programming, algorithms, and competitive programming" },
+      { name: "Python", level: 92, description: "Primary language for backend services, automation, ML pipelines, and data processing" },
+      { name: "Go", level: 80, description: "Concurrent, network-aware distributed systems and backend microservices" },
+      { name: "TypeScript", level: 90, description: "Type-safe frontend and backend development across React, Next.js, and Node.js" },
+      { name: "JavaScript", level: 90, description: "Modern ES6+ features, async programming, and full-stack web development" },
+      { name: "C++", level: 78, description: "Systems programming, data structures and algorithms, and performance-critical code" },
+      { name: "SQL", level: 85, description: "Complex queries, schema design, and query optimization across relational databases" },
+      { name: "Java", level: 68, description: "Object-oriented programming fundamentals and backend coursework" },
+      { name: "Bash", level: 78, description: "Shell scripting for automation, deployment, and Linux server administration" },
+      { name: "Dart", level: 60, description: "Cross-platform mobile development experience via Flutter" },
     ],
   },
   {
@@ -34,12 +39,12 @@ const skillCategories = [
     color: "from-green-500/10 to-emerald-500/10",
     borderColor: "border-green-500/20",
     skills: [
-      { name: "React.js", level: 90, description: "Expertise in hooks, context API, state management, and building scalable component architectures" },
-      { name: "Next.js", level: 85, description: "Proficient in SSR, SSG, API routes, and building performant full-stack applications" },
-      { name: "React Native", level: 80, description: "Cross-platform mobile app development with native performance optimization" },
-      { name: "HTML/CSS", level: 95, description: "Mastery in semantic HTML, modern CSS features, animations, and responsive design principles" },
-      { name: "Tailwind CSS", level: 90, description: "Rapid UI development with utility-first approach and custom design system creation" },
-      { name: "Bootstrap", level: 85, description: "Experienced in responsive grid systems and component-based design workflows" },
+      { name: "React.js", level: 92, description: "Expertise in hooks, context API, state management, and scalable component architectures" },
+      { name: "Next.js", level: 90, description: "Proficient in SSR, SSG, API routes, and building performant full-stack applications" },
+      { name: "React Native", level: 82, description: "Cross-platform mobile app development with native performance optimization" },
+      { name: "Tailwind CSS", level: 92, description: "Rapid UI development with utility-first approach and custom design system creation" },
+      { name: "Redux / Zustand", level: 80, description: "Predictable state management for medium-to-large single-page applications" },
+      { name: "HTML/CSS", level: 95, description: "Mastery in semantic HTML, modern CSS features, animations, and responsive design" },
     ],
   },
   {
@@ -48,11 +53,13 @@ const skillCategories = [
     color: "from-purple-500/10 to-indigo-500/10",
     borderColor: "border-purple-500/20",
     skills: [
-      { name: "Node.js", level: 80, description: "Building scalable server-side applications, microservices, and real-time systems" },
-      { name: "Express.js", level: 80, description: "RESTful API development, middleware implementation, and authentication systems" },
-      { name: "Django", level: 75, description: "Robust web applications with ORM, admin interface, and security best practices" },
-      { name: "FastAPI", level: 80, description: "High-performance async APIs with automatic documentation and type validation" },
-      { name: "REST APIs", level: 85, description: "Design and implementation of scalable, well-documented API architectures" },
+      { name: "FastAPI", level: 90, description: "High-performance async APIs and microservices with automatic docs and type validation" },
+      { name: "Django", level: 78, description: "Robust web applications with ORM, admin interface, and security best practices" },
+      { name: "Node.js / Express.js", level: 82, description: "Scalable server-side applications, middleware, and RESTful API development" },
+      { name: "REST APIs", level: 90, description: "Design and implementation of scalable, well-documented API architectures" },
+      { name: "GraphQL / gRPC", level: 68, description: "Schema-driven and high-performance RPC-based service communication" },
+      { name: "WebSockets", level: 78, description: "Real-time, bidirectional communication for live features and notifications" },
+      { name: "Microservices", level: 82, description: "Decomposing systems into independently deployable, asynchronous services" },
     ],
   },
   {
@@ -61,11 +68,12 @@ const skillCategories = [
     color: "from-orange-500/10 to-red-500/10",
     borderColor: "border-orange-500/20",
     skills: [
+      { name: "PostgreSQL", level: 88, description: "Schema design, composite indexes, and query optimization for high-traffic workloads" },
       { name: "MongoDB", level: 85, description: "NoSQL database design, aggregation pipelines, and performance optimization" },
-      { name: "PostgreSQL", level: 75, description: "Advanced SQL features, database optimization, and complex query design" },
-      { name: "MySQL", level: 80, description: "Relational database management, stored procedures, and performance tuning" },
-      { name: "Firebase", level: 80, description: "Real-time database, authentication, hosting, and cloud functions integration" },
-      { name: "Supabase", level: 80, description: "Open-source Firebase alternative with PostgreSQL backend and real-time subscriptions" },
+      { name: "Redis", level: 78, description: "Caching, session storage, and pub/sub for low-latency application layers" },
+      { name: "Supabase", level: 85, description: "Postgres-backed BaaS with real-time subscriptions and row-level security" },
+      { name: "Firebase Firestore", level: 85, description: "Real-time database, authentication, hosting, and cloud functions integration" },
+      { name: "MySQL / SQLite", level: 80, description: "Relational database management, stored procedures, and performance tuning" },
     ],
   },
   {
@@ -74,12 +82,14 @@ const skillCategories = [
     color: "from-pink-500/10 to-rose-500/10",
     borderColor: "border-pink-500/20",
     skills: [
-      { name: "PyTorch", level: 75, description: "Deep learning model development, training, and neural network architectures" },
-      { name: "TensorFlow", level: 70, description: "Machine learning model creation, deployment, and production pipelines" },
-      { name: "scikit-learn", level: 78, description: "Classical ML algorithms, data preprocessing, and model evaluation techniques" },
-      { name: "OpenAI APIs", level: 85, description: "GPT integration, prompt engineering, and AI-powered application development" },
-      { name: "LangChain", level: 80, description: "Building LLM applications, RAG systems, and intelligent document processing" },
-      { name: "RAG Systems", level: 82, description: "Retrieval-Augmented Generation for context-aware AI applications and chatbots" },
+      { name: "LLMs & Prompt Engineering", level: 90, description: "Designing reliable prompts and integrating LLMs into production applications" },
+      { name: "RAG Systems", level: 88, description: "Retrieval-Augmented Generation with semantic vector search over 50,000+ embeddings" },
+      { name: "LangChain", level: 85, description: "Building LLM applications, RAG pipelines, and intelligent document processing" },
+      { name: "Vector Databases", level: 82, description: "Embedding storage and semantic search for context-aware AI applications" },
+      { name: "Scikit-learn / XGBoost", level: 85, description: "Classical ML algorithms, feature engineering, and model evaluation techniques" },
+      { name: "PyTorch / TensorFlow", level: 76, description: "Deep learning model development, training, and neural network architectures" },
+      { name: "Hugging Face", level: 80, description: "Fine-tuning and deploying transformer models for NLP tasks" },
+      { name: "OpenCV", level: 72, description: "Image processing and computer vision pipelines" },
     ],
   },
   {
@@ -88,10 +98,25 @@ const skillCategories = [
     color: "from-violet-500/10 to-purple-500/10",
     borderColor: "border-violet-500/20",
     skills: [
-      { name: "AWS", level: 75, description: "Cloud infrastructure, EC2, S3, Lambda functions, and serverless architectures" },
-      { name: "Docker", level: 75, description: "Containerization, multi-stage builds, and development environment standardization" },
-      { name: "Git/GitHub", level: 90, description: "Advanced version control, collaborative workflows, CI/CD, and project management" },
-      { name: "Vercel", level: 85, description: "Modern deployment platform for frontend applications with edge functions" },
+      { name: "AWS", level: 80, description: "Cloud infrastructure, EC2, S3, Lambda functions, and serverless architectures" },
+      { name: "GCP", level: 82, description: "Provisioning and scaling RAG pipelines and backend services on Google Cloud" },
+      { name: "Docker / Kubernetes", level: 82, description: "Containerization, multi-stage builds, and orchestration for scalable deployments" },
+      { name: "Linux / Nginx", level: 85, description: "VM provisioning, reverse proxying, and production server administration" },
+      { name: "GitHub Actions / CI/CD", level: 85, description: "Automated build, test, and deployment pipelines with quality gates" },
+      { name: "Vercel / Firebase", level: 88, description: "Modern deployment platforms for frontend and full-stack applications" },
+    ],
+  },
+  {
+    title: "Testing & Engineering",
+    icon: <CheckCircle2 className="w-4 h-4" />,
+    color: "from-teal-500/10 to-cyan-500/10",
+    borderColor: "border-teal-500/20",
+    skills: [
+      { name: "Pytest / Jest", level: 82, description: "Unit, integration, and functional test suites with automated regression checks" },
+      { name: "Test Automation", level: 80, description: "CI-gated automated testing to improve release reliability and code coverage" },
+      { name: "System Design", level: 82, description: "Designing scalable, maintainable architectures for distributed applications" },
+      { name: "Agile / Scrum", level: 85, description: "Sprint planning, code reviews, and cross-functional team collaboration" },
+      { name: "RBAC & Access Control", level: 80, description: "Role-based access control for secure, multi-tenant applications" },
     ],
   },
 ]

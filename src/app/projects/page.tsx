@@ -3,57 +3,103 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { ExternalLink, Github, Users, Calendar, Code, Globe, Brain, Zap, Database, Trophy, Target } from "lucide-react"
+import { ExternalLink, Github, Users, Calendar, Code, Globe, Brain, Zap, Database, Trophy, Target, Network, LineChart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 // import { ArrowLeft } from "lucide-react"
 
 const projects = [
   {
+    title: "NetSched — Network-Aware Distributed Task Scheduler",
+    description: "A distributed task scheduler that selects execution nodes using CPU/memory availability, queue state, network latency, bandwidth, transfer cost, and failure risk, with concurrent Go/C++ scheduler and worker runtimes.",
+    icon: <Network className="w-6 h-6" />,
+    tags: ["Go", "C++", "Linux", "TCP", "Docker"],
+    liveLink: "",
+    githubLink: "https://github.com/Pragyansh612/NetSched",
+    features: [
+      "Custom TCP messaging, task queues, and resource accounting",
+      "Heartbeats, acknowledgements, and node-state tracking",
+      "FIFO, Round Robin, Least-Loaded, and network-aware scheduling strategies",
+      "Automatic orphan-task recovery on node failure"
+    ],
+    challenges: [
+      "Designing normalized multi-factor placement costs across heterogeneous nodes",
+      "Building fault detection and recovery for orphaned tasks without central coordination",
+      "Implementing low-overhead concurrent TCP messaging in Go and C++"
+    ],
+    impact: "Applied OS, data structures, networking, and concurrency concepts to build a scheduler that handles failure detection and recovery for distributed task execution.",
+    role: "Solo Developer",
+    date: "2025",
+    category: "Distributed Systems"
+  },
+  {
     title: "WebSync",
-    description: "Advanced website monitoring tool that provides real-time alerts and AI-powered diagnostics to ensure optimal site performance and uptime. Built with modern React architecture and intelligent monitoring systems.",
+    description: "AI-powered uptime monitoring platform providing automated LLM-based anomaly detection, real-time alerting, and event storage to reduce downtime and speed up incident response.",
     icon: <Globe className="w-6 h-6" />,
-    tags: ["React.js", "TypeScript", "Supabase", "Gemini API", "LLM", "Tailwind CSS"],
+    tags: ["Next.js", "FastAPI", "PostgreSQL", "LLMs"],
     liveLink: "https://websyncai.vercel.app/",
     githubLink: "https://github.com/Pragyansh612/websync",
     features: [
-      "Real-time website monitoring with instant alerts",
-      "AI-powered diagnostics using Gemini API",
-      "Performance analytics and uptime tracking",
-      "Intelligent alert system with customizable thresholds"
+      "Automated LLM-based anomaly detection across 200+ endpoints",
+      "Real-time monitoring with instant, customizable alerts",
+      "PostgreSQL event storage for historical incident analysis",
+      "Real-time alerting workflows for faster response"
     ],
     challenges: [
       "Implementing efficient real-time monitoring without overwhelming server resources",
-      "Integrating AI diagnostics to provide meaningful insights from monitoring data",
-      "Creating responsive alerts system that scales with multiple websites"
+      "Integrating LLM diagnostics to surface meaningful insights from monitoring data",
+      "Creating an alerting system that scales cleanly across many monitored sites"
     ],
-    impact: "Provides website owners with proactive monitoring and AI-driven insights, reducing downtime and improving overall site performance.",
+    impact: "Reduced client downtime by 15% and enabled 3x faster incident response compared with manual monitoring.",
     role: "Solo Developer",
     date: "2025",
     category: "AI/ML Tool"
   },
   {
     title: "GenWeb",
-    description: "Revolutionary AI-powered website builder that streamlines web development using cutting-edge tools like Clerk for authentication, Supabase for data storage, and intelligent code generation agents.",
+    description: "One-click AI website generation platform that automates hosting and component generation, cutting deployment time from 4+ hours to under 10 minutes.",
     icon: <Brain className="w-6 h-6" />,
-    tags: ["Next.js", "React.js", "Tailwind CSS", "Clerk", "Supabase", "AI Agents", "Python", "Django"],
+    tags: ["Next.js", "Node.js", "Firebase", "Tailwind CSS"],
     liveLink: "https://genwebai.vercel.app/",
     githubLink: "https://github.com/Pragyansh612/GenWeb",
     features: [
-      "AI-powered content generation and website building",
-      "Secure user authentication with Clerk integration",
-      "Real-time database operations with Supabase",
+      "AI-powered website generation and content creation",
+      "Automated Firebase hosting for published sites",
+      "Reusable AI-generated component library",
       "Responsive design templates with modern UI/UX"
     ],
     challenges: [
       "Creating seamless AI integration for automated website generation",
-      "Building intuitive interface for users without technical background",
-      "Implementing scalable architecture to handle multiple concurrent users"
+      "Building an intuitive interface for users without technical background",
+      "Automating hosting and deployment reliably at scale"
     ],
-    impact: "Democratized web development by enabling non-technical users to create professional websites, reducing development time by up to 70%.",
+    impact: "Reduced website deployment time from 4+ hours to under 10 minutes, supporting 300+ published websites within 30 days.",
     role: "Lead Developer",
     date: "2025",
     category: "AI Platform"
+  },
+  {
+    title: "Food Delivery ETA Prediction",
+    description: "End-to-end ML pipeline over 40,197 cleaned food delivery orders, engineering distance, temporal, traffic, categorical, and distance-traffic interaction features to predict delivery ETAs.",
+    icon: <LineChart className="w-6 h-6" />,
+    tags: ["Python", "Scikit-learn", "XGBoost", "Pandas"],
+    liveLink: "",
+    githubLink: "https://github.com/Pragyansh612/Food-Delivery-ETA-Prediction",
+    features: [
+      "Feature engineering across distance, temporal, traffic, and categorical signals",
+      "Compared Linear Regression, Random Forest, and XGBoost on a time-based split",
+      "Random Forest achieved 3.097 min MAE, 3.802 min RMSE, and 0.840 R²",
+      "Leakage analysis excluding post-order fields and target-proxy features"
+    ],
+    challenges: [
+      "Preventing data leakage from post-order and target-proxy fields",
+      "Engineering distance-traffic interaction features that generalize across regions",
+      "Validating generalization with time-based splits and 5-fold cross-validation"
+    ],
+    impact: "Produced a validated ETA model with sub-3.1-minute MAE, demonstrating rigorous feature engineering and leakage-aware evaluation.",
+    role: "Solo Developer",
+    date: "2025",
+    category: "Machine Learning"
   },
   {
     title: "ProdByShyrap",

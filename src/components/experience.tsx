@@ -9,38 +9,56 @@ import Link from "next/link"
 
 const experiences = [
   {
+    title: "Software Engineer",
+    company: "Instafarms",
+    period: "Jun 2025 – Present",
+    location: "Remote",
+    description: "Shipped 3 production web and mobile apps and deployed GCP-hosted RAG pipelines over 50,000+ embeddings. Managed Linux VMs with Docker/Nginx at 99.9% uptime and optimized PostgreSQL for a 50% faster dashboard.",
+    techStack: ["Next.js", "React Native", "TypeScript", "GCP", "PostgreSQL", "Docker", "Nginx", "GitHub Actions"],
+    website: null
+  },
+  {
     title: "Full Stack Developer Intern",
     company: "Dynish",
     period: "Mar 2025 – Jun 2025",
     location: "Remote",
-    description: "Built full-stack features and integrated NLP models for enhanced user experiences. Developed scalable web applications using modern frameworks and cloud technologies.",
+    description: "Improved frontend performance 25% via React/Next.js SSR, replaced manual workflows with NLP-powered FastAPI services, and migrated auth to Firebase, cutting login failures and infra costs.",
     techStack: ["React.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "AWS", "Firebase", "Python", "FastAPI"],
     website: "https://dynish.app/"
   },
   {
-    title: "SDE Intern",
-    company: "Finuance",
-    period: "Dec 2024 – Feb 2025",
+    title: "SDE Intern – Backend, Freelance",
+    company: "Nextfront Technologies",
+    period: "Jul 2025 – Sep 2025",
     location: "Remote",
-    description: "Optimized and developed financial web applications with focus on performance, security, and user experience. Implemented RAG systems and integrated OpenAI APIs for intelligent features.",
-    techStack: ["React.js", "Next.js", "Django", "PostgreSQL", "Docker", "OpenAI APIs", "RAG"],
+    description: "Designed asynchronous FastAPI microservices to eliminate blocking I/O under concurrent workloads, and integrated LLM-powered automation pipelines with optimized PostgreSQL data access.",
+    techStack: ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs"],
     website: null
   },
   {
-    title: "Full Stack Developer",
-    company: "Asynq",
-    period: "Dec 2024 – Jan 2025",
+    title: "SDE, Freelance",
+    company: "Finuance",
+    period: "Dec 2024 – Feb 2025",
     location: "Remote",
-    description: "Built secure, performant UI/UX applications with emphasis on scalability and modern design patterns. Worked with LangChain for AI integrations and cloud deployment.",
-    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "Tailwind CSS", "AWS", "LangChain"],
+    description: "Refactored backend architecture and optimized SQL query execution paths, reducing API latency by 40% for real-time financial analytics.",
+    techStack: ["Django", "Next.js", "PostgreSQL", "Docker"],
+    website: null
+  },
+  {
+    title: "Full Stack Developer, Freelance",
+    company: "Asynq",
+    period: "Sep 2024 – Nov 2024",
+    location: "Remote",
+    description: "Designed role-based access control and scalable analytics dashboards, enabling secure multi-role access and improved system observability.",
+    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "AWS"],
     website: "https://www.asynq.ai/"
   },
   {
-    title: "Developer Intern",
+    title: "Developer, Freelance",
     company: "Artly",
-    period: "Sep 2024 – Nov 2024",
+    period: "Aug 2024 – Nov 2024",
     location: "Remote",
-    description: "Created interactive UI components and optimized application performance. Collaborated with design team to implement responsive, pixel-perfect interfaces using modern web technologies.",
+    description: "Built reusable UI components and optimized client-side rendering, improving page performance and UI consistency.",
     techStack: ["Next.js", "MongoDB", "Tailwind CSS"],
     website: "https://www.artly.co.in/"
   },
@@ -171,8 +189,16 @@ export default function Experience() {
             <h3 className="text-xl font-semibold mb-4 text-primary">Leadership & Achievements</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
               <div className="space-y-2">
+                <h4 className="font-semibold text-foreground">2nd Place, KrackHack Hackathon (IIT Mandi)</h4>
+                <p className="text-muted-foreground">Built and delivered a working AI prototype within 24 hours among 50+ participating teams.</p>
+              </div>
+              <div className="space-y-2">
                 <h4 className="font-semibold text-foreground">Programming Club Website Lead</h4>
-                <p className="text-muted-foreground">Developed and maintained the club&apos;s official website, enhancing online presence and community engagement.</p>
+                <p className="text-muted-foreground">Led the Programming Club website rebuild at IIT Mandi, improving page-load performance by 40% for 1,000+ students.</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground">Ranneti Annual Fest Registration Portal</h4>
+                <p className="text-muted-foreground">Delivered the registration portal, processing 10,000+ registrations with zero downtime over 3 days.</p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-semibold text-foreground">Event Web Development Lead</h4>

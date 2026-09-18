@@ -9,85 +9,109 @@ import Link from "next/link"
 
 const experiences = [
   {
+    title: "Software Engineer",
+    company: "Instafarms",
+    period: "Jun 2025 – Present",
+    location: "Remote",
+    description: "Architecting and shipping production web and mobile applications, GCP-hosted RAG pipelines, and cloud infrastructure serving hundreds of daily active users.",
+    responsibilities: [
+      "Architected and shipped 3 production web and mobile applications using Next.js, React Native, and TypeScript",
+      "Designed and deployed horizontally scalable RAG pipelines on GCP with semantic vector search over 50,000+ embeddings",
+      "Provisioned and managed 5 Linux VMs with Docker and Nginx, building GitHub Actions CI/CD with automated test gates",
+      "Optimized PostgreSQL schemas, composite indexes, and SQL queries using telemetry-driven performance monitoring",
+    ],
+    achievements: [
+      "Reduced API response latency by 35% and onboarding overhead by 20%",
+      "Cut LLM query latency by 40% for 500+ daily active users",
+      "Achieved 99.9% uptime while reducing deployment cycles by 30%",
+      "Reduced dashboard query execution time by 50%",
+    ],
+    techStack: ["Next.js", "React Native", "TypeScript", "GCP", "PostgreSQL", "Docker", "Nginx", "GitHub Actions", "RAG"],
+    website: null
+  },
+  {
     title: "Full Stack Developer Intern",
     company: "Dynish",
     period: "Mar 2025 – Jun 2025",
     location: "Remote",
-    description: "Built full-stack features and integrated NLP models for enhanced user experiences. Developed scalable web applications using modern frameworks and cloud technologies.",
+    description: "Built full-stack features and NLP-powered services for enhanced user experiences, and migrated the authentication layer to Firebase.",
     responsibilities: [
-      "Developed and deployed full-stack web applications with modern React.js and TypeScript",
-      "Integrated advanced NLP models to enhance user interaction and experience",
-      "Implemented scalable backend solutions using FastAPI and Python",
-      "Collaborated with cross-functional teams to deliver high-quality features",
-      "Optimized application performance and implemented responsive design patterns",
+      "Improved frontend performance through React.js refactoring and Next.js server-side rendering",
+      "Replaced manual data-processing workflows with NLP-powered FastAPI services",
+      "Migrated the authentication layer to Firebase to resolve recurring login failures",
+      "Developed unit and functional test suites with automated regression checks",
+      "Contributed across React.js, TypeScript, PostgreSQL, and AWS in a 6-person Agile/Scrum team",
     ],
     achievements: [
-      "Successfully integrated NLP models that improved user engagement by 35%",
-      "Developed reusable components that reduced development time by 40%",
-      "Implemented cloud-based solutions using AWS and Firebase for better scalability",
+      "Improved frontend performance by 25%, contributing to an 18% increase in user retention",
+      "Saved 15+ engineering hours per week by automating 4 manual workflows",
+      "Resolved 60% of recurring login failures and cut cloud infra costs by $200/month",
+      "Increased sprint velocity by 22%",
     ],
     techStack: ["React.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "AWS", "Firebase", "Python", "FastAPI"],
     website: "https://dynish.app/"
   },
   {
-    title: "Software Development Engineering Intern",
-    company: "Finuance",
-    period: "Dec 2024 – Feb 2025",
+    title: "SDE Intern – Backend, Freelance",
+    company: "Nextfront Technologies",
+    period: "Jul 2025 – Sep 2025",
     location: "Remote",
-    description: "Optimized and developed financial web applications with focus on performance, security, and user experience. Implemented RAG systems and integrated OpenAI APIs for intelligent features.",
+    description: "Designed asynchronous FastAPI microservices and integrated LLM-powered automation pipelines for internal services.",
     responsibilities: [
-      "Developed and optimized financial web applications with emphasis on security",
-      "Implemented RAG (Retrieval-Augmented Generation) systems for intelligent data processing",
-      "Integrated OpenAI APIs to provide AI-powered financial insights and recommendations",
-      "Collaborated with backend teams to ensure seamless API integration and data flow",
-      "Participated in code reviews and contributed to best practices documentation",
+      "Designed asynchronous FastAPI microservices to eliminate blocking I/O under concurrent workloads",
+      "Optimized PostgreSQL data-access patterns for internal services",
+      "Integrated LLM-powered automation pipelines using Python, FastAPI, Docker, and REST APIs",
     ],
     achievements: [
-      "Reduced page load time by 40% through advanced optimization techniques and lazy loading",
-      "Implemented secure authentication system using JWT, enhancing overall application security",
-      "Developed intelligent RAG system that improved data retrieval accuracy by 50%",
+      "Improved backend throughput and reduced response latency across internal services",
     ],
-    techStack: ["React.js", "Next.js", "Django", "PostgreSQL", "Docker", "OpenAI APIs", "RAG", "Python", "Tailwind CSS"],
+    techStack: ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs"],
     website: null
   },
   {
-    title: "Full Stack Developer",
-    company: "Asynq",
-    period: "Dec 2024 – Jan 2025",
+    title: "SDE, Freelance",
+    company: "Finuance",
+    period: "Dec 2024 – Feb 2025",
     location: "Remote",
-    description: "Built secure, performant UI/UX applications with emphasis on scalability and modern design patterns. Worked with LangChain for AI integrations and cloud deployment.",
+    description: "Refactored backend architecture and optimized query execution paths for a real-time financial analytics platform.",
     responsibilities: [
-      "Designed and implemented scalable backend architectures using Node.js and Django",
-      "Developed responsive and interactive front-end interfaces using React.js and Next.js",
-      "Integrated LangChain for advanced AI-powered features and automation",
-      "Implemented RESTful APIs and optimized database queries for improved performance",
-      "Deployed applications on AWS with focus on scalability and reliability",
+      "Refactored backend architecture using Django, Next.js, PostgreSQL, and Docker",
+      "Optimized SQL query execution paths for real-time financial analytics workloads",
     ],
     achievements: [
-      "Developed real-time notification system using WebSockets, improving user engagement by 25%",
-      "Created custom dashboard with interactive data visualizations for enhanced user experience",
-      "Implemented CI/CD pipeline using modern DevOps practices, reducing deployment time by 50%",
+      "Reduced API latency by 40% for real-time financial analytics",
     ],
-    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "Tailwind CSS", "AWS", "LangChain"],
+    techStack: ["Django", "Next.js", "PostgreSQL", "Docker"],
+    website: null
+  },
+  {
+    title: "Full Stack Developer, Freelance",
+    company: "Asynq",
+    period: "Sep 2024 – Nov 2024",
+    location: "Remote",
+    description: "Designed role-based access control and scalable analytics dashboards for secure, multi-role access.",
+    responsibilities: [
+      "Designed role-based access control (RBAC) using Next.js, Node.js, Django, MongoDB, and AWS",
+      "Built scalable analytics dashboards to improve system observability",
+    ],
+    achievements: [
+      "Enabled secure multi-role access and improved system observability",
+    ],
+    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "AWS"],
     website: "https://www.asynq.ai/"
   },
   {
-    title: "Full Stack Developer Intern",
+    title: "Developer, Freelance",
     company: "Artly",
-    period: "Sep 2024 – Nov 2024",
+    period: "Aug 2024 – Nov 2024",
     location: "Remote",
-    description: "Created interactive UI components and optimized application performance for an art-focused platform. Collaborated with design team to implement responsive, pixel-perfect interfaces.",
+    description: "Built reusable UI components and optimized client-side rendering for an art-focused platform.",
     responsibilities: [
-      "Collaborated with designers to implement pixel-perfect, responsive interfaces",
-      "Developed interactive web pages and optimized UI performance for better user experience",
-      "Integrated third-party APIs to enhance application functionality and features",
-      "Participated in agile development processes including daily stand-ups and sprint planning",
-      "Assisted in database schema design and optimization for improved data handling",
+      "Built reusable UI components using Next.js, MongoDB, and Tailwind CSS",
+      "Optimized client-side rendering for better page performance",
     ],
     achievements: [
-      "Redesigned the product gallery interface, increasing user engagement by 25%",
-      "Optimized database queries and caching strategies, reducing load times by 30%",
-      "Implemented responsive design system ensuring consistent experience across all devices",
+      "Improved page performance and UI consistency across the platform",
     ],
     techStack: ["Next.js", "MongoDB", "Tailwind CSS"],
     website: "https://www.artly.co.in/"
@@ -237,16 +261,34 @@ export default function ExperiencePage() {
         >
           <div className="backdrop-blur-lg bg-background/30 border border-primary/20 rounded-xl p-4 md:p-6">
             <h3 className="text-lg font-semibold mb-4 text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Leadership & Additional Experience
+              Leadership & Achievements
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground flex items-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
+                  2nd Place, KrackHack Hackathon (IIT Mandi)
+                </h4>
+                <p className="text-muted-foreground ml-4">
+                  Built and delivered a working AI prototype within 24 hours among 50+ participating teams.
+                </p>
+              </div>
               <div className="space-y-2">
                 <h4 className="font-semibold text-foreground flex items-center">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
                   Programming Club Website Lead
                 </h4>
                 <p className="text-muted-foreground ml-4">
-                  Led development and maintenance of the programming club&apos;s website, enhancing community engagement.
+                  Led the Programming Club website rebuild, improving page-load performance by 40% for 1,000+ students.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground flex items-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
+                  Ranneti Annual Fest Registration Portal
+                </h4>
+                <p className="text-muted-foreground ml-4">
+                  Delivered the registration portal, processing 10,000+ registrations with zero downtime over 3 days.
                 </p>
               </div>
               <div className="space-y-2">

@@ -3,30 +3,48 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { ExternalLink, Github, Code, Globe, Database, Brain, Zap } from "lucide-react"
+import { ExternalLink, Github, Code, Globe, Database, Brain, Zap, Network, LineChart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const projects = [
   {
+    title: "NetSched",
+    description:
+      "Network-aware distributed task scheduler that selects execution nodes using CPU/memory availability, queue state, latency, bandwidth, and failure risk, with concurrent Go/C++ runtimes and custom TCP messaging.",
+    icon: <Network className="w-8 h-8" />,
+    tags: ["Go", "C++", "Linux", "TCP", "Docker"],
+    githubLink: "https://github.com/Pragyansh612/NetSched",
+    features: ["Network-aware node selection", "Custom TCP messaging & heartbeats", "Multi-strategy scheduling", "Automatic orphan-task recovery"]
+  },
+  {
     title: "WebSync",
     description:
-      "Advanced website monitoring tool that provides real-time alerts and AI-powered diagnostics to ensure optimal site performance and uptime.",
+      "AI-powered uptime monitoring platform with automated LLM-based anomaly detection across 200+ endpoints and real-time alerting for faster incident response.",
     icon: <Globe className="w-8 h-8" />,
-    tags: ["React.js", "TypeScript", "Supabase", "Gemini API", "LLM", "Tailwind CSS"],
+    tags: ["Next.js", "FastAPI", "PostgreSQL", "LLMs"],
     liveLink: "https://websyncai.vercel.app/",
     githubLink: "https://github.com/Pragyansh612/websync",
-    features: ["Real-time monitoring", "AI-based alerts", "Performance diagnostics", "Uptime tracking"]
+    features: ["Real-time monitoring", "AI-based anomaly detection", "Event storage & alerting", "3x faster incident response"]
   },
   {
     title: "GenWeb",
     description:
-      "Revolutionary AI-powered website builder that streamlines web development using cutting-edge tools and intelligent code generation.",
+      "One-click AI website generator that cut deployment time from 4+ hours to under 10 minutes, supporting 300+ published websites within 30 days.",
     icon: <Brain className="w-8 h-8" />,
-    tags: ["Next.js", "Clerk", "Supabase", "Django", "Tailwind", "AI Agents"],
+    tags: ["Next.js", "Node.js", "Firebase", "Tailwind CSS"],
     liveLink: "https://genwebai.vercel.app/",
     githubLink: "https://github.com/Pragyansh612/GenWeb",
-    features: ["AI code generation", "Modern authentication", "Real-time collaboration", "Responsive design"]
+    features: ["AI code generation", "Automated Firebase hosting", "Reusable component generation", "One-click deployment"]
+  },
+  {
+    title: "Food Delivery ETA Prediction",
+    description:
+      "End-to-end ML pipeline over 40,197 cleaned orders comparing Linear Regression, Random Forest, and XGBoost to predict delivery ETAs.",
+    icon: <LineChart className="w-8 h-8" />,
+    tags: ["Python", "Scikit-learn", "XGBoost", "Pandas"],
+    githubLink: "https://github.com/Pragyansh612/Food-Delivery-ETA-Prediction",
+    features: ["Distance/temporal/traffic feature engineering", "Time-based train/test split", "3.10 min MAE, 0.84 R²", "Leakage analysis & 5-fold CV"]
   },
   {
     title: "ProdByShyrap",

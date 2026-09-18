@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { Github, Mail, Globe, Send } from "lucide-react"
+import { Github, Mail, Send, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -72,14 +72,14 @@ export default function Contact() {
       url: "https://github.com/Pragyansh612",
     },
     {
+      name: "LinkedIn",
+      icon: <Linkedin className="h-5 w-5" />,
+      url: "https://linkedin.com/in/pragyansh-saxena-3b94492b8",
+    },
+    {
       name: "Email",
       icon: <Mail className="h-5 w-5" />,
       url: "mailto:saxenapragyansh@gmail.com",
-    },
-    {
-      name: "Website",
-      icon: <Globe className="h-5 w-5" />,
-      url: "#",
     },
   ]
 

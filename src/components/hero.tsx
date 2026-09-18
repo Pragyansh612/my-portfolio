@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Phone, Mail, Github } from "lucide-react"
+import { ArrowRight, Phone, Mail, Github, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -40,7 +40,7 @@ export default function Hero() {
                 transition={{ delay: 0.4 }}
                 className="text-xl sm:text-2xl lg:text-3xl text-foreground/80 leading-tight font-semibold"
               >
-                Full Stack Developer & AI/ML Engineer
+                Software Engineer
               </motion.h2>
             </div>
             <motion.p
@@ -49,9 +49,10 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed"
             >
-              Specializing in modern web applications with React, Next.js, and AI/ML integration. 
-              Currently at IIT Mandi, building scalable solutions with machine learning and 
-              full-stack development expertise.
+              2+ years building production web, mobile, backend, and AI-powered systems.
+              Delivered systems serving 10,000+ users with 99.9% uptime, cut API latency by up to
+              40%, and shipped RAG pipelines over 50,000+ embeddings using Python, Go, TypeScript,
+              Next.js, FastAPI, and PostgreSQL.
             </motion.p>
 
             {/* Contact Info */}
@@ -69,6 +70,15 @@ export default function Hero() {
                 <Phone className="h-4 w-4 text-primary" />
                 <span>+91 7999610227</span>
               </div>
+              <Link
+                href="https://linkedin.com/in/pragyansh-saxena-3b94492b8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-primary transition-colors duration-300"
+              >
+                <Linkedin className="h-4 w-4 text-primary" />
+                <span>LinkedIn</span>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -108,10 +118,10 @@ export default function Hero() {
                     About Me
                   </h3>
                   <p className="text-muted-foreground text-sm lg:text-base mb-4 leading-relaxed">
-                    Passionate Full Stack Developer and AI/ML Engineer pursuing B.Tech at IIT Mandi. 
-                    With extensive internship experience and expertise in modern web technologies, 
-                    I specialize in building intelligent, scalable applications that leverage machine learning 
-                    and cutting-edge development frameworks.
+                    Software Engineer with 2+ years of experience building production web, mobile,
+                    backend, and AI-powered systems across startups and freelance engagements.
+                    Strong background in backend architecture, distributed systems, asynchronous
+                    programming, databases, cloud infrastructure, and full-stack development.
                   </p>
                 </div>
 
@@ -120,19 +130,19 @@ export default function Hero() {
                   <ul className="space-y-2 text-muted-foreground text-sm lg:text-base">
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>4+ internships specializing in AI/ML and full-stack development</span>
+                      <span>Delivered systems serving 10,000+ users with 99.9% uptime</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>Led web development for major tech events and festivals</span>
+                      <span>Reduced API latency by up to 40% and automated deployments with CI/CD</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>Expert in RAG systems, LLMs, and intelligent application development</span>
+                      <span>Built RAG pipelines and semantic vector search over 50,000+ embeddings</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>Proficient in React ecosystem, Python, and cloud technologies</span>
+                      <span>Proficient across Python, Go, TypeScript, and modern cloud infrastructure</span>
                     </li>
                   </ul>
                 </div>
