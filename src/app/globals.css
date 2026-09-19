@@ -208,10 +208,8 @@
 
   body {
     @apply bg-background text-foreground overflow-x-hidden font-sans antialiased;
-    background-image: radial-gradient(ellipse 80% 60% at 15% -10%, rgba(var(--primary-rgb), 0.22), transparent 55%),
-      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(var(--gold-rgb), 0.1), transparent 50%),
-      radial-gradient(ellipse 70% 60% at 100% 100%, rgba(var(--primary-rgb), 0.12), transparent 55%);
-    background-attachment: fixed;
+    background-image: radial-gradient(ellipse 80% 60% at 15% -10%, rgba(var(--primary-rgb), 0.2), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(var(--gold-rgb), 0.09), transparent 50%);
   }
 
   ::selection {

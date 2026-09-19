@@ -140,7 +140,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Contact Form */}
-          <motion.div variants={item} initial="hidden" animate={isInView ? "show" : "hidden"} className="lg:col-span-2">
+          <motion.div ref={ref} variants={item} initial="hidden" animate={isInView ? "show" : "hidden"} className="lg:col-span-2">
             <MagicCard
               className="h-full rounded-2xl"
               gradientColor="hsl(var(--primary) / 0.12)"

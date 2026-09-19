@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { ShimmerButton } from "@/components/ui/shimmer-button"
 import { MagicCard } from "@/components/ui/magic-card"
 import { BorderBeam } from "@/components/ui/border-beam"
-import { DotPattern } from "@/components/ui/dot-pattern"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import Link from "next/link"
 
@@ -42,9 +41,9 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-screen items-center justify-center overflow-hidden pt-28 pb-16 md:pt-32"
     >
-      <DotPattern
-        glow
-        className="absolute inset-0 -z-20 h-full w-full bg-grid-fade [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,black_20%,transparent_100%)] fill-primary/25"
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-20 h-full w-full [background-image:radial-gradient(rgba(var(--primary-rgb),0.35)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,black_20%,transparent_100%)]"
       />
       <div className="pointer-events-none absolute -top-40 left-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-primary/25 blur-[120px] animate-glow-pulse" />
       <div className="pointer-events-none absolute -bottom-32 right-0 -z-10 h-[24rem] w-[24rem] rounded-full bg-gold/15 blur-[120px] animate-glow-pulse [animation-delay:1.5s]" />
