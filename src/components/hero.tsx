@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 import { Marquee } from "@/components/ui/marquee"
@@ -29,6 +29,9 @@ const highlights = [
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] })
+  const driftY = useTransform(scrollYProgress, [0, 1], [0, 140])
+  const driftOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.15])
 
   useEffect(() => {
     const interval = setInterval(() => setRoleIndex((i) => (i + 1) % roles.length), 2600)
@@ -90,7 +93,7 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <div className="grid items-center gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-10">
+        <motion.div style={{ y: driftY, opacity: driftOpacity }} className="grid items-center gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-10">
           {/* Left */}
           <div>
             <motion.h1
@@ -232,7 +235,7 @@ export default function Hero() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Stats */}
         <motion.div

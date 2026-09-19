@@ -1,41 +1,23 @@
 import Hero from "@/components/hero"
+import Story from "@/components/story"
 import Skills from "@/components/skills"
 import Experience from "@/components/experience"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
-// import { Button } from "@/components/ui/button"
-// import Link from "next/link"
+import ChapterNav from "@/components/chapter-nav"
+import IntroLoader from "@/components/intro-loader"
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <IntroLoader />
+      <ChapterNav />
       <Hero />
+      <Story />
       <Skills />
-      {/* <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
-          <Link href="/skills">View All Skills</Link>
-        </Button>
-      </div> */}
       <Experience />
-      {/* <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
-          <Link href="/experience">View Full Experience</Link>
-        </Button>
-      </div> */}
       <Projects />
-      {/* <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
-          <Link href="/projects">View All Projects</Link>
-        </Button>
-      </div> */}
       <Contact />
-      {/* <div className="text-center mt-8 mb-16">
-        <Button asChild size="lg" className="glassmorphism-button dark:text-white">
-          <Link href="/contact">Get in Touch</Link>
-        </Button>
-      </div> */}
-      {/* <Footer /> */}
     </main>
   )
 }
-

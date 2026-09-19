@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { Github, Mail, Send, Linkedin, MapPin, CircleCheck } from "lucide-react"
+import { ArrowUpRight, Github, Mail, Send, Linkedin, MapPin, CircleCheck } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
@@ -89,6 +89,23 @@ export default function Contact() {
           }
           description="Have a project in mind or want to discuss opportunities? I'd love to hear from you — I usually reply within a day."
         />
+
+        <a
+          href="mailto:saxenapragyansh@gmail.com"
+          className="group mb-14 block border-y border-border py-8 transition-colors duration-500 hover:border-primary/60 md:py-12"
+        >
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+            Say hello &mdash; I reply within a day
+          </p>
+          <div className="flex items-center justify-between gap-6">
+            <span className="min-w-0 break-all font-display text-[clamp(1.5rem,5.2vw,4.75rem)] font-extrabold leading-none tracking-tight transition-all duration-500 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:via-violet-400 group-hover:to-gold group-hover:bg-clip-text group-hover:text-transparent">
+              saxenapragyansh@gmail.com
+            </span>
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border transition-all duration-500 group-hover:rotate-45 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground md:h-24 md:w-24">
+              <ArrowUpRight className="h-6 w-6 md:h-10 md:w-10" />
+            </span>
+          </div>
+        </a>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           <motion.div
