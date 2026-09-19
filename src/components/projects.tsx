@@ -127,7 +127,7 @@ function ProjectLinks({ project }: { project: Project }) {
         </Button>
       )}
       {project.liveLink && (
-        <Button asChild size="sm" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
+        <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
           <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
             Live
@@ -148,7 +148,7 @@ function FeaturedCard({ project, className = "" }: { project: Project; className
     >
       <div className="flex h-full flex-col p-6 lg:p-7">
         <div className="mb-5 flex items-start justify-between">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg shadow-primary/30">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
             {project.icon}
           </div>
           <span className="rounded-full border border-gold/30 bg-gold/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-gold">
@@ -194,7 +194,7 @@ function CompactCard({ project }: { project: Project }) {
     >
       <div className="flex h-full flex-col p-5">
         <div className="mb-4 flex items-center justify-between">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary/15 to-purple-500/15 text-primary">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
             {project.icon}
           </div>
           <div className="flex gap-1.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -239,8 +239,14 @@ export default function Projects() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
       <div className="container mx-auto px-4">
         <SectionHeading
+          index="04"
+          align="left"
           eyebrow="Selected Work"
-          title="Featured Projects"
+          title={
+            <>
+              Things I&apos;ve <span className="font-serif font-normal italic text-primary">built</span>
+            </>
+          }
           description="A mix of systems engineering, AI-powered products, and full-stack platforms — built end to end, from architecture to deployment."
         />
 
@@ -283,8 +289,8 @@ export default function Projects() {
           <p className="mb-5 text-muted-foreground">Interested in collaborating on innovative projects?</p>
           <Link href="#contact">
             <ShimmerButton
-              background="linear-gradient(110deg, hsl(var(--primary)), #a855f7)"
-              className="mx-auto px-6 py-3 text-sm font-semibold"
+              background="hsl(var(--primary))"
+              className="mx-auto px-6 py-3 text-sm font-semibold text-primary-foreground"
             >
               Let&apos;s Build Something Amazing
             </ShimmerButton>

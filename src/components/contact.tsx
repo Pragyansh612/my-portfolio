@@ -78,8 +78,15 @@ export default function Contact() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.1),transparent_60%)]" />
       <div className="container mx-auto px-4">
         <SectionHeading
+          index="05"
+          align="left"
           eyebrow="Get In Touch"
-          title="Let's Build Something Great"
+          title={
+            <>
+              Let&apos;s build something{" "}
+              <span className="font-serif font-normal italic text-primary">great</span>
+            </>
+          }
           description="Have a project in mind or want to discuss opportunities? I'd love to hear from you — I usually reply within a day."
         />
 
@@ -147,8 +154,8 @@ export default function Contact() {
                 <ShimmerButton
                   type="submit"
                   disabled={isSubmitting}
-                  background="linear-gradient(110deg, hsl(var(--primary)), #a855f7)"
-                  className="w-full py-3 text-sm font-semibold disabled:opacity-60"
+                  background="hsl(var(--primary))"
+                  className="w-full py-3 text-sm font-semibold text-primary-foreground disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     "Sending..."

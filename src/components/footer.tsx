@@ -52,7 +52,7 @@ export default function Footer() {
             </Link>
             <button
               onClick={scrollToTop}
-              className="rounded-full bg-gradient-to-r from-primary to-purple-600 p-2 text-white shadow-md shadow-primary/25 transition-transform duration-300 hover:scale-105"
+              className="rounded-full bg-primary p-2 text-primary-foreground transition-transform duration-300 hover:scale-105"
               aria-label="Scroll to top"
             >
               <ArrowUp className="h-4 w-4" />

@@ -1,13 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { Calendar, MapPin, ExternalLink, Trophy } from "lucide-react"
+import { ArrowUpRight, Plus } from "lucide-react"
 import Link from "next/link"
-import { MagicCard } from "@/components/ui/magic-card"
-import { BorderBeam } from "@/components/ui/border-beam"
 import SectionHeading from "@/components/section-heading"
+import { cn } from "@/lib/utils"
 
 const experiences = [
   {
@@ -80,162 +78,162 @@ const experiences = [
 
 const achievements = [
   {
-    title: "2nd Place, KrackHack Hackathon (IIT Mandi)",
-    detail: "Built and delivered a working AI prototype within 24 hours among 50+ participating teams.",
+    metric: "#2",
+    title: "KrackHack Hackathon",
+    detail: "Built a working AI prototype in 24 hours among 50+ teams at IIT Mandi.",
   },
   {
-    title: "Programming Club Website Lead",
-    detail: "Led the Programming Club website rebuild, improving page-load performance by 40% for 1,000+ students.",
+    metric: "40%",
+    title: "Programming Club Website",
+    detail: "Led the rebuild — faster page loads for 1,000+ students.",
   },
   {
-    title: "Ranneti Annual Fest Registration Portal",
-    detail: "Delivered the registration portal, processing 10,000+ registrations with zero downtime over 3 days.",
+    metric: "10K+",
+    title: "Ranneti Registration Portal",
+    detail: "Processed 10,000+ registrations with zero downtime over 3 days.",
   },
   {
-    title: "Event Web Development Lead",
-    detail: "Led web development teams for major college festivals including Ranneti and Exodia.",
+    metric: "Lead",
+    title: "Fest Web Development",
+    detail: "Led web development teams for Ranneti and Exodia festivals.",
   },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12 } },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-}
-
 export default function Experience() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.05 })
+  const [open, setOpen] = useState(0)
 
   return (
-    <section id="experience" className="relative overflow-hidden py-20 md:py-28">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
+    <section id="experience" className="relative py-24 md:py-32">
+      <div className="pointer-events-none absolute right-0 top-1/3 -z-10 h-[30rem] w-[30rem] rounded-full bg-primary/15 blur-[140px]" />
+      <div className="pointer-events-none absolute -left-20 bottom-20 -z-10 h-[24rem] w-[24rem] rounded-full bg-fuchsia-500/10 blur-[140px]" />
+
       <div className="container mx-auto px-4">
         <SectionHeading
-          eyebrow="Career Journey"
-          title="Professional Experience"
+          index="03"
+          eyebrow="Career"
+          align="left"
+          title={
+            <>
+              Where I&apos;ve{" "}
+              <span className="font-serif font-normal italic text-primary">shipped</span>
+            </>
+          }
           description="From freelance engagements to a full-time engineering role — building production systems across startups and industries."
         />
 
-        <motion.div
-          ref={ref}
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="relative mx-auto max-w-3xl"
-        >
-          <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-border to-transparent md:left-[19px]" />
+        <div className="border-b border-border">
+          {experiences.map((exp, i) => {
+            const isOpen = open === i
+            return (
+              <div key={exp.company + exp.period} className="border-t border-border">
+                <button
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                  className="group flex w-full items-start gap-4 py-6 text-left md:gap-8 md:py-9"
+                >
+                  <span className="pt-2 font-mono text-xs text-muted-foreground md:pt-4">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
 
-          {experiences.map((exp) => (
-            <motion.div key={exp.company + exp.period} variants={item} className="relative mb-6 pl-10 last:mb-0 md:pl-14">
-              <div
-                className={`absolute left-0 top-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-background md:h-10 md:w-10 ${
-                  exp.current
-                    ? "bg-gradient-to-br from-primary to-purple-600 shadow-lg shadow-primary/40"
-                    : "bg-secondary"
-                }`}
-              >
-                <span
-                  className={`h-2 w-2 rounded-full ${exp.current ? "bg-white animate-pulse" : "bg-muted-foreground"}`}
-                />
-              </div>
-
-              <MagicCard
-                className="rounded-2xl"
-                gradientColor="hsl(var(--primary) / 0.12)"
-                gradientFrom="hsl(var(--primary))"
-                gradientTo="hsl(var(--gold))"
-              >
-                <div className="relative overflow-hidden rounded-2xl p-5 md:p-6">
-                  {exp.current && (
-                    <BorderBeam size={70} duration={7} colorFrom="hsl(var(--primary))" colorTo="hsl(var(--gold))" />
-                  )}
-
-                  <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-display text-lg font-bold md:text-xl">{exp.title}</h3>
-                        {exp.current && (
-                          <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
-                            Current
-                          </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3
+                        className={cn(
+                          "font-display text-3xl font-bold tracking-tight transition-colors duration-300 sm:text-4xl md:text-6xl",
+                          isOpen ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                         )}
-                      </div>
-                      <p className="text-base font-medium text-foreground/80">{exp.company}</p>
+                      >
+                        {exp.company}
+                      </h3>
+                      {exp.current && (
+                        <span className="rounded-full bg-gradient-to-r from-primary to-fuchsia-500 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+                          Now
+                        </span>
+                      )}
                     </div>
-                    {exp.website && (
-                      <Link
-                        href={exp.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </Link>
-                    )}
-                  </div>
-
-                  <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground md:text-sm">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar className="h-3.5 w-3.5 text-primary" />
+                    <p className="mt-1.5 text-sm text-muted-foreground md:text-base">{exp.title}</p>
+                    <p className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground sm:hidden">
                       {exp.period}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5 text-primary" />
-                      {exp.location}
-                    </span>
+                    </p>
                   </div>
 
-                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
-                    {exp.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs font-medium text-foreground/75"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="hidden pt-3 text-right font-mono text-xs uppercase leading-6 tracking-wider text-muted-foreground sm:block md:pt-5">
+                    {exp.period}
+                    <br />
+                    {exp.location}
                   </div>
-                </div>
-              </MagicCard>
-            </motion.div>
-          ))}
-        </motion.div>
+
+                  <span
+                    className={cn(
+                      "mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-300 md:mt-3",
+                      isOpen
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border group-hover:border-primary group-hover:text-primary"
+                    )}
+                  >
+                    <Plus className={cn("h-4 w-4 transition-transform duration-300", isOpen && "rotate-45")} />
+                  </span>
+                </button>
+
+                <motion.div
+                  initial={false}
+                  animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                  inert={!isOpen}
+                >
+                  <div className="grid gap-6 pb-9 pl-9 md:grid-cols-[1.2fr_1fr] md:gap-12 md:pl-[4.25rem]">
+                    <p className="text-base leading-relaxed text-foreground/80 md:text-lg">{exp.description}</p>
+                    <div>
+                      <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-primary">Stack</p>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-full border border-border bg-secondary/60 px-3 py-1 font-mono text-xs text-foreground/80"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      {exp.website && (
+                        <Link
+                          href={exp.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                        >
+                          Visit {exp.company}
+                          <ArrowUpRight className="h-3.5 w-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            )
+          })}
+        </div>
 
         {/* Achievements */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto mt-14 max-w-3xl"
-        >
-          <div className="mb-6 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-gold" />
-            <h3 className="font-display text-xl font-semibold">Leadership &amp; Achievements</h3>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-20">
+          <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+            <span className="h-px w-10 bg-border" />
+            Beyond the day job
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {achievements.map((a) => (
               <div
                 key={a.title}
-                className="rounded-xl border border-border/60 bg-card/40 p-4 backdrop-blur-md transition-colors hover:border-gold/40"
+                className="group rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
               >
-                <h4 className="mb-1.5 flex items-start gap-2 text-sm font-semibold text-foreground">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-gold to-primary" />
-                  {a.title}
-                </h4>
-                <p className="pl-3.5 text-sm text-muted-foreground">{a.detail}</p>
+                <div className="font-display text-5xl font-extrabold tracking-tight text-gradient">{a.metric}</div>
+                <h4 className="mt-4 font-semibold">{a.title}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{a.detail}</p>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -1,6 +1,6 @@
 import type React from "react"
 import "./globals.css"
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google"
+import { DM_Sans, Bricolage_Grotesque, Instrument_Serif, JetBrains_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/navbar"
@@ -8,11 +8,13 @@ import ScrollProgress from "@/components/scroll-progress"
 import { cn } from "@/lib/utils"
 import Footer from "@/components/footer"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const spaceGrotesk = Space_Grotesk({
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" })
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" })
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-space-grotesk",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
 })
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -36,9 +38,10 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          inter.className,
-          inter.variable,
-          spaceGrotesk.variable,
+          dmSans.className,
+          dmSans.variable,
+          bricolage.variable,
+          instrumentSerif.variable,
           jetbrainsMono.variable
         )}
       >

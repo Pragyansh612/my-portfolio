@@ -1,287 +1,287 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, Phone, Mail, Github, Linkedin, ChevronDown, Sparkles } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ShimmerButton } from "@/components/ui/shimmer-button"
-import { MagicCard } from "@/components/ui/magic-card"
-import { BorderBeam } from "@/components/ui/border-beam"
-import { NumberTicker } from "@/components/ui/number-ticker"
+import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
+import { Marquee } from "@/components/ui/marquee"
+import { NumberTicker } from "@/components/ui/number-ticker"
+import { cn } from "@/lib/utils"
 
-const roles = ["Software Engineer", "Full-Stack Developer", "AI/ML Engineer", "Backend Architect"]
+const roles = ["Software Engineer", "Full-Stack Developer", "AI / ML Engineer", "Backend Architect"]
 
 const stats = [
-  { value: 10000, suffix: "+", label: "Users Served" },
-  { value: 99.9, suffix: "%", label: "Uptime Delivered", decimals: 1 },
-  { value: 40, suffix: "%", label: "Latency Reduced" },
-  { value: 50, suffix: "K+", label: "Embeddings Indexed" },
+  { value: 10000, suffix: "+", label: "Users served" },
+  { value: 99.9, suffix: "%", label: "Uptime delivered", decimals: 1 },
+  { value: 40, suffix: "%", label: "Latency reduced" },
+  { value: 50, suffix: "K+", label: "Embeddings indexed" },
 ]
 
-const floatingBadges = [
-  { label: "Python", className: "-top-5 left-8 md:left-12", delay: 0 },
-  { label: "Go", className: "top-1/3 -right-6 md:-right-16", delay: 0.6 },
-  { label: "Next.js", className: "top-2/3 -left-6 md:-left-20", delay: 1.2 },
-  { label: "RAG / LLMs", className: "-bottom-5 right-8 md:right-12", delay: 1.8 },
+const marqueeItems = ["Python", "Go", "TypeScript", "Next.js", "FastAPI", "PostgreSQL", "RAG", "GCP", "Docker", "React Native"]
+
+const highlights = [
+  "10,000+ users served @ 99.9% uptime",
+  "API latency cut by up to 40%",
+  "RAG pipelines over 50,000+ embeddings",
+  "Python · Go · TypeScript · Cloud",
 ]
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((i) => (i + 1) % roles.length)
-    }, 2600)
+    const interval = setInterval(() => setRoleIndex((i) => (i + 1) % roles.length), 2600)
     return () => clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    let frame = 0
+    const onMove = (e: PointerEvent) => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect()
+        el.style.setProperty("--mx", `${e.clientX - r.left}px`)
+        el.style.setProperty("--my", `${e.clientY - r.top}px`)
+      })
+    }
+    el.addEventListener("pointermove", onMove)
+    return () => {
+      cancelAnimationFrame(frame)
+      el.removeEventListener("pointermove", onMove)
+    }
+  }, [])
+
   return (
-    <section
-      id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-28 pb-16 md:pt-32"
-    >
+    <section ref={sectionRef} id="home" className="relative overflow-hidden pt-32 md:pt-36">
       <div
         aria-hidden
-        className="absolute inset-0 -z-20 h-full w-full [background-image:radial-gradient(rgba(var(--primary-rgb),0.35)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,black_20%,transparent_100%)]"
+        className="absolute inset-0 -z-10 bg-grid-lines [mask-image:radial-gradient(ellipse_80%_70%_at_50%_25%,black,transparent)]"
       />
-      <div className="pointer-events-none absolute -top-40 left-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-primary/25 blur-[120px] animate-glow-pulse" />
-      <div className="pointer-events-none absolute -bottom-32 right-0 -z-10 h-[24rem] w-[24rem] rounded-full bg-gold/15 blur-[120px] animate-glow-pulse [animation-delay:1.5s]" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 hidden md:block [background:radial-gradient(520px_circle_at_var(--mx,70%)_var(--my,30%),rgba(var(--primary-rgb),0.14),transparent_65%)]"
+      />
+      <div className="pointer-events-none absolute -left-32 -top-24 -z-10 h-[32rem] w-[32rem] rounded-full bg-primary/25 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-32 top-40 -z-10 h-[28rem] w-[28rem] rounded-full bg-fuchsia-500/15 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-10 left-1/3 -z-10 h-64 w-64 rounded-full bg-gold/10 blur-[120px]" />
 
-      <div className="container relative mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="space-y-7"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
+      <div className="container mx-auto px-4">
+        {/* Meta row */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+        >
+          <span className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-primary">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+            </span>
+            Available for work
+          </span>
+          <span className="hidden sm:inline">Portfolio &mdash; 2026</span>
+          <span className="hidden items-center gap-1.5 md:inline-flex">
+            <MapPin className="h-3 w-3" />
+            India &middot; Remote
+          </span>
+        </motion.div>
+
+        <div className="grid items-center gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-10">
+          {/* Left */}
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="section-eyebrow"
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-[clamp(3.4rem,9vw,9rem)] font-extrabold leading-[0.88] tracking-[-0.045em]"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              Open to Software Engineering roles
-            </motion.div>
+              <span className="block">Pragyansh</span>
+              <span className="block font-serif font-normal italic tracking-[-0.02em]">
+                <span className="bg-gradient-to-r from-primary via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                  Saxena
+                </span>
+                <span className="text-gold">.</span>
+              </span>
+            </motion.h1>
 
-            <div className="space-y-2">
-              <motion.h1
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xl font-medium md:text-2xl"
+            >
+              <span className="h-px w-10 bg-primary" />
+              <span className="text-muted-foreground">I&apos;m a</span>
+              <motion.span
+                key={roles[roleIndex]}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="font-display font-bold underline decoration-gold decoration-[3px] underline-offset-[6px]"
               >
-                Hi, I&apos;m{" "}
-                <span className="text-gradient">Pragyansh Saxena</span>
-              </motion.h1>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35 }}
-                className="flex h-9 items-center text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground/85"
-              >
-                <span className="mr-2 text-muted-foreground">/</span>
-                <span className="relative inline-grid">
-                  <AnimatePresence mode="popLayout" initial={false}>
-                    <motion.span
-                      key={roles[roleIndex]}
-                      initial={{ opacity: 0, y: 14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -14 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="text-gradient-gold col-start-1 row-start-1"
-                    >
-                      {roles[roleIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
-              </motion.div>
-            </div>
+                {roles[roleIndex]}
+              </motion.span>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.45 }}
-              className="max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground"
+              transition={{ delay: 0.4 }}
+              className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              2+ years building production web, mobile, backend, and AI-powered systems.
-              Delivered systems serving 10,000+ users at 99.9% uptime, cut API latency by up
-              to 40%, and shipped RAG pipelines over 50,000+ embeddings using Python, Go,
-              TypeScript, Next.js, FastAPI, and PostgreSQL.
+              2+ years building production web, mobile, backend, and AI-powered systems across
+              startups and freelance engagements &mdash; with a strong background in backend
+              architecture, distributed systems, and cloud infrastructure.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground"
-            >
-              <Link href="mailto:saxenapragyansh@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Mail className="h-4 w-4 text-primary" />
-                saxenapragyansh@gmail.com
-              </Link>
-              <Link href="tel:+917999610227" className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Phone className="h-4 w-4 text-primary" />
-                +91 7999610227
-              </Link>
-              <Link
-                href="https://linkedin.com/in/pragyansh-saxena-3b94492b8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-primary transition-colors"
-              >
-                <Linkedin className="h-4 w-4 text-primary" />
-                LinkedIn
-              </Link>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55 }}
-              className="flex flex-col sm:flex-row gap-3 pt-1"
+              transition={{ delay: 0.5 }}
+              className="mt-9 flex flex-wrap items-center gap-3"
             >
-              <Link href="#contact">
-                <ShimmerButton
-                  background="linear-gradient(110deg, hsl(var(--primary)), #a855f7)"
-                  shimmerColor="#ffffff"
-                  className="px-6 py-3 text-sm font-semibold"
-                >
-                  Hire Me
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </ShimmerButton>
+              <Link
+                href="#contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-violet-500 px-7 py-4 font-semibold text-primary-foreground shadow-[0_0_40px_-10px_hsl(var(--primary)/0.8)] transition-all duration-300 hover:shadow-[0_0_60px_-8px_hsl(var(--primary)/0.9)]"
+              >
+                Hire me
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-border/70 bg-secondary/30 backdrop-blur-md hover:bg-secondary/60 hover:border-primary/40 transition-all duration-300"
+              <Link
+                href="#projects"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 font-semibold transition-colors duration-300 hover:border-primary hover:text-primary"
               >
-                <Link href="#projects">View My Work</Link>
-              </Button>
-              <Button asChild variant="ghost" size="lg" className="hover:bg-primary/10 transition-all duration-300">
-                <Link href="https://github.com/Pragyansh612" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </Link>
-              </Button>
+                View my work
+              </Link>
+              <div className="ml-1 flex items-center gap-2">
+                {[
+                  { href: "https://github.com/Pragyansh612", icon: Github, label: "GitHub" },
+                  { href: "https://linkedin.com/in/pragyansh-saxena-3b94492b8", icon: Linkedin, label: "LinkedIn" },
+                  { href: "mailto:saxenapragyansh@gmail.com", icon: Mail, label: "Email" },
+                  { href: "tel:+917999610227", icon: Phone, label: "Phone" },
+                ].map(({ href, icon: Icon, label }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </Link>
+                ))}
+              </div>
             </motion.div>
+          </div>
 
-            {/* Stats row */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4"
-            >
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl border border-border/60 bg-card/40 backdrop-blur-md px-3 py-3 text-center sm:text-left"
-                >
-                  <div className="font-display text-xl md:text-2xl font-bold text-gradient">
-                    <NumberTicker
-                      value={stat.value}
-                      decimalPlaces={stat.decimals ?? 0}
-                      className="text-gradient font-display"
-                    />
-                    {stat.suffix}
-                  </div>
-                  <div className="mt-0.5 text-[11px] md:text-xs text-muted-foreground leading-tight">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right visual */}
+          {/* Right: terminal + badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mx-auto w-full max-w-md"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            {floatingBadges.map((badge) => (
-              <motion.div
-                key={badge.label}
-                className={`pointer-events-none absolute z-10 hidden sm:block ${badge.className}`}
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: badge.delay }}
-              >
-                <span className="inline-flex items-center rounded-full border border-primary/25 bg-background/80 px-3 py-1.5 text-xs font-mono font-medium text-primary shadow-lg shadow-primary/10 backdrop-blur-md">
-                  {badge.label}
-                </span>
-              </motion.div>
-            ))}
+            <Link
+              href="#contact"
+              aria-label="Open to roles, contact me"
+              className="absolute -right-3 -top-14 z-20 hidden h-28 w-28 items-center justify-center sm:flex md:-right-6"
+            >
+              <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full animate-[spin_18s_linear_infinite]">
+                <defs>
+                  <path id="badge-circle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" />
+                </defs>
+                <text className="fill-foreground font-mono text-[10.5px] uppercase tracking-[0.22em]">
+                  <textPath href="#badge-circle">Open to roles • Let&apos;s build • </textPath>
+                </text>
+              </svg>
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-fuchsia-500 text-primary-foreground">
+                <ArrowUpRight className="h-5 w-5" />
+              </span>
+            </Link>
 
-            <div className="relative z-20 rounded-3xl">
-              <MagicCard
-                className="rounded-3xl p-[1px]"
-                gradientColor="hsl(var(--primary) / 0.25)"
-                gradientFrom="hsl(var(--primary))"
-                gradientTo="hsl(var(--gold))"
-              >
-                <div className="relative overflow-hidden rounded-3xl p-6 lg:p-8">
-                  <BorderBeam size={60} duration={8} colorFrom="hsl(var(--primary))" colorTo="hsl(var(--gold))" />
-                  <div className="mb-6 flex items-center gap-4">
-                    <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-violet-500 to-purple-600 font-display text-2xl font-bold text-white shadow-lg shadow-primary/30">
-                      PS
-                      <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-background bg-emerald-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-semibold">About Me</h3>
-                      <p className="text-xs text-muted-foreground">Remote &middot; Available now</p>
-                    </div>
-                  </div>
-
-                  <p className="text-sm md:text-[15px] leading-relaxed text-muted-foreground mb-6">
-                    Software Engineer with 2+ years building production web, mobile, backend,
-                    and AI-powered systems across startups and freelance engagements. Strong
-                    background in backend architecture, distributed systems, and cloud
-                    infrastructure.
+            <div className="overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl shadow-black/40">
+              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+                <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+                <span className="ml-3 font-mono text-[11px] text-muted-foreground">pragyansh@portfolio ~ zsh</span>
+              </div>
+              <div className="space-y-1 p-5 font-mono text-[13px] leading-7 md:p-6">
+                <p>
+                  <span className="text-primary">$</span> whoami
+                </p>
+                <p className="text-muted-foreground">software engineer @ instafarms</p>
+                <p className="pt-2">
+                  <span className="text-primary">$</span> cat highlights.md
+                </p>
+                {highlights.map((h) => (
+                  <p key={h} className="flex gap-2 text-foreground/85">
+                    <span className="text-primary">✓</span>
+                    {h}
                   </p>
-
-                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
-                    Key Highlights
-                  </h4>
-                  <ul className="space-y-2.5 text-sm text-muted-foreground">
-                    {[
-                      "Delivered systems serving 10,000+ users with 99.9% uptime",
-                      "Reduced API latency by up to 40% with CI/CD automation",
-                      "Built RAG pipelines over 50,000+ embeddings",
-                      "Proficient across Python, Go, TypeScript & cloud infra",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-primary to-gold" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </MagicCard>
+                ))}
+                <p className="pt-2">
+                  <span className="text-primary">$</span>
+                  <span className="ml-2 inline-block h-4 w-2 translate-y-0.5 animate-blink bg-primary" />
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
 
+        {/* Stats */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="mt-16 hidden justify-center md:flex"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="mt-20 grid grid-cols-2 border-y border-border md:grid-cols-4"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-1 text-muted-foreground"
-          >
-            <span className="text-[11px] uppercase tracking-[0.2em]">Scroll</span>
-            <ChevronDown className="h-4 w-4" />
-          </motion.div>
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={cn(
+                "px-5 py-7 md:px-8 md:py-10",
+                i % 2 === 1 && "border-l",
+                i >= 2 && "border-t md:border-t-0",
+                i > 0 && "md:border-l"
+              )}
+            >
+              <div className="font-display text-4xl font-bold tracking-tight md:text-6xl">
+                <NumberTicker
+                  value={stat.value}
+                  decimalPlaces={stat.decimals ?? 0}
+                  className="font-display tracking-tight text-foreground"
+                />
+                <span className="text-primary">{stat.suffix}</span>
+              </div>
+              <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
+      </div>
+
+      {/* Marquee band */}
+      <div className="relative mt-20 overflow-hidden py-10 md:py-14">
+        <div className="-rotate-2 scale-110 bg-gradient-to-r from-primary via-violet-500 to-fuchsia-500 py-4 text-primary-foreground shadow-[0_0_80px_-10px_hsl(var(--primary)/0.6)]">
+          <Marquee className="[--duration:32s] [--gap:2.5rem]" repeat={4}>
+            {marqueeItems.map((item) => (
+              <span
+                key={item}
+                className="flex items-center gap-10 font-display text-2xl font-extrabold uppercase tracking-tight md:text-4xl"
+              >
+                {item}
+                <span className="text-lg text-gold">✦</span>
+              </span>
+            ))}
+          </Marquee>
+        </div>
       </div>
     </section>
   )

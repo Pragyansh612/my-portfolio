@@ -1,27 +1,16 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import {
-  Code,
-  Database,
-  Globe,
-  Brain,
-  Server,
-  Cloud,
-  CheckCircle2,
-} from "lucide-react"
-import { Marquee } from "@/components/ui/marquee"
-import { MagicCard } from "@/components/ui/magic-card"
-import { NumberTicker } from "@/components/ui/number-ticker"
+import { ArrowUpRight, Cloud, CheckCircle2, Code, Database, Globe, Brain, Server } from "lucide-react"
 import SectionHeading from "@/components/section-heading"
+import { cn } from "@/lib/utils"
 
 const skillCategories = [
   {
     title: "Languages",
-    icon: <Code className="w-5 h-5" />,
-    accent: "from-blue-500 to-cyan-400",
+    slug: "languages",
+    icon: <Code className="h-4 w-4" />,
     skills: [
       { name: "Python", level: 92 },
       { name: "Go", level: 80 },
@@ -32,9 +21,9 @@ const skillCategories = [
     ],
   },
   {
-    title: "Frontend Development",
-    icon: <Globe className="w-5 h-5" />,
-    accent: "from-emerald-500 to-green-400",
+    title: "Frontend",
+    slug: "frontend",
+    icon: <Globe className="h-4 w-4" />,
     skills: [
       { name: "React.js", level: 92 },
       { name: "Next.js", level: 90 },
@@ -45,57 +34,57 @@ const skillCategories = [
   },
   {
     title: "Backend & APIs",
-    icon: <Server className="w-5 h-5" />,
-    accent: "from-violet-500 to-purple-400",
+    slug: "backend",
+    icon: <Server className="h-4 w-4" />,
     skills: [
       { name: "FastAPI", level: 90 },
       { name: "Django", level: 78 },
-      { name: "Node.js / Express.js", level: 82 },
+      { name: "Node.js / Express", level: 82 },
       { name: "REST APIs", level: 90 },
       { name: "Microservices", level: 82 },
     ],
   },
   {
     title: "Databases",
-    icon: <Database className="w-5 h-5" />,
-    accent: "from-orange-500 to-amber-400",
+    slug: "databases",
+    icon: <Database className="h-4 w-4" />,
     skills: [
       { name: "PostgreSQL", level: 88 },
       { name: "MongoDB", level: 85 },
       { name: "Redis", level: 78 },
       { name: "Supabase", level: 85 },
-      { name: "Firebase Firestore", level: 85 },
+      { name: "Firestore", level: 85 },
     ],
   },
   {
-    title: "AI/ML & Data Science",
-    icon: <Brain className="w-5 h-5" />,
-    accent: "from-pink-500 to-rose-400",
+    title: "AI / ML",
+    slug: "ai-ml",
+    icon: <Brain className="h-4 w-4" />,
     skills: [
       { name: "LLMs & RAG", level: 90 },
       { name: "LangChain", level: 85 },
       { name: "Scikit-learn", level: 85 },
       { name: "PyTorch", level: 78 },
-      { name: "Vector Databases", level: 82 },
+      { name: "Vector DBs", level: 82 },
       { name: "Prompt Engineering", level: 88 },
     ],
   },
   {
     title: "Cloud & DevOps",
-    icon: <Cloud className="w-5 h-5" />,
-    accent: "from-indigo-500 to-blue-400",
+    slug: "cloud",
+    icon: <Cloud className="h-4 w-4" />,
     skills: [
       { name: "AWS", level: 80 },
       { name: "GCP", level: 82 },
       { name: "Docker", level: 85 },
       { name: "Linux / Nginx", level: 85 },
-      { name: "GitHub Actions / CI/CD", level: 85 },
+      { name: "GitHub Actions", level: 85 },
     ],
   },
   {
-    title: "Testing & Engineering",
-    icon: <CheckCircle2 className="w-5 h-5" />,
-    accent: "from-teal-500 to-cyan-400",
+    title: "Engineering",
+    slug: "engineering",
+    icon: <CheckCircle2 className="h-4 w-4" />,
     skills: [
       { name: "Pytest / Jest", level: 82 },
       { name: "Test Automation", level: 80 },
@@ -105,148 +94,142 @@ const skillCategories = [
   },
 ]
 
-const marqueeTech = Array.from(
-  new Set(skillCategories.flatMap((c) => c.skills.map((s) => s.name)))
-)
-
-const stats = [
-  { label: "Technologies", value: 30, suffix: "+" },
-  { label: "Frameworks", value: 15, suffix: "+" },
-  { label: "AI/ML Tools", value: 10, suffix: "+" },
-  { label: "Cloud Services", value: 8, suffix: "+" },
-]
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
+const list = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.045 } },
 }
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+const row = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
 }
 
-const skillBar = {
-  hidden: { width: 0 },
-  show: (level: number) => ({
-    width: `${level}%`,
-    transition: { duration: 1.2, delay: 0.2, ease: "easeOut" },
-  }),
+function Dots({ level }: { level: number }) {
+  const filled = Math.max(1, Math.round(level / 20))
+  return (
+    <span className="flex items-center gap-1" aria-label={`${filled} out of 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span
+          key={i}
+          className={cn("h-2 w-2 rounded-full", i < filled ? "bg-primary" : "bg-border")}
+        />
+      ))}
+    </span>
+  )
 }
 
 export default function Skills() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const [active, setActive] = useState(0)
+  const cat = skillCategories[active]
 
   return (
-    <section id="skills" className="relative overflow-hidden py-20 md:py-28">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.1),transparent_60%)]" />
-
+    <section id="skills" className="relative py-24 md:py-32">
       <div className="container mx-auto px-4">
         <SectionHeading
-          eyebrow="What I Work With"
-          title="Technical Skills"
-          description="Comprehensive expertise across the stack — from systems and distributed backends to AI pipelines and modern frontends."
+          index="02"
+          eyebrow="Toolkit"
+          align="left"
+          title={
+            <>
+              The stack I{" "}
+              <span className="font-serif font-normal italic text-primary">build with</span>
+            </>
+          }
+          description="Hover a category to explore the tools I reach for — from systems languages and distributed backends to AI pipelines and modern frontends."
         />
-      </div>
 
-      <div className="relative mb-14 w-full">
-        <Marquee pauseOnHover className="[--duration:35s]">
-          {marqueeTech.map((tech) => (
-            <span
-              key={tech}
-              className="mx-1.5 inline-flex items-center rounded-full border border-border/60 bg-card/50 px-4 py-2 font-mono text-sm text-muted-foreground backdrop-blur-sm"
-            >
-              {tech}
-            </span>
-          ))}
-        </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent" />
-      </div>
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+          <div role="tablist" aria-label="Skill categories" className="flex flex-col">
+            {skillCategories.map((c, i) => {
+              const isActive = active === i
+              return (
+                <button
+                  key={c.slug}
+                  role="tab"
+                  aria-selected={isActive}
+                  onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  onClick={() => setActive(i)}
+                  className={cn(
+                    "group relative flex items-center gap-4 border-t border-border py-5 pl-4 text-left transition-colors duration-300 last:border-b md:gap-6 md:py-6",
+                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="skill-bar"
+                      className="absolute left-0 top-0 h-full w-[3px] bg-primary"
+                      transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                    />
+                  )}
+                  <span className={cn("font-mono text-xs", isActive && "text-primary")}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-display text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
+                    {c.title}
+                  </span>
+                  <span className="ml-auto font-mono text-xs">{c.skills.length}</span>
+                  <ArrowUpRight
+                    className={cn(
+                      "h-5 w-5 shrink-0 transition-all duration-300",
+                      isActive ? "translate-x-0 text-primary opacity-100" : "-translate-x-2 opacity-0"
+                    )}
+                  />
+                </button>
+              )
+            })}
+          </div>
 
-      <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5"
-        >
-          {skillCategories.map((category) => (
-            <motion.div key={category.title} variants={item}>
-              <MagicCard
-                className="h-full rounded-2xl"
-                gradientColor="hsl(var(--primary) / 0.15)"
-                gradientFrom="hsl(var(--primary))"
-                gradientTo="hsl(var(--gold))"
+          <div className="self-start lg:sticky lg:top-28">
+            <div className="rounded-3xl bg-gradient-to-br from-primary/60 via-border to-gold/40 p-px shadow-[0_0_60px_-20px_hsl(var(--primary)/0.5)]">
+            <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-card p-6 md:p-9 lg:min-h-[28rem]">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -bottom-10 -right-4 select-none font-display text-[12rem] font-extrabold leading-none text-foreground/[0.04]"
               >
-                <div className="h-full p-5 lg:p-6">
-                  <div className="mb-5 flex items-center gap-3">
-                    <div
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${category.accent} text-white shadow-lg`}
-                    >
-                      {category.icon}
-                    </div>
-                    <h3 className="font-display text-base lg:text-lg font-semibold">
-                      {category.title}
-                    </h3>
-                  </div>
+                {String(active + 1).padStart(2, "0")}
+              </span>
 
-                  <div className="space-y-3.5">
-                    {category.skills.map((skill) => (
-                      <div key={skill.name} className="space-y-1.5">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-foreground/90">
-                            {skill.name}
-                          </span>
-                          <span className="font-mono text-[11px] text-muted-foreground">
-                            {skill.level}%
-                          </span>
-                        </div>
-                        <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted/40">
-                          <motion.div
-                            custom={skill.level}
-                            variants={skillBar}
-                            initial="hidden"
-                            animate={isInView ? "show" : "hidden"}
-                            className={`h-full rounded-full bg-gradient-to-r ${category.accent}`}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </MagicCard>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-6 grid grid-cols-2 gap-4 md:mt-8 md:grid-cols-4 md:gap-5"
-        >
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-xl border border-border/60 bg-card/40 p-4 text-center backdrop-blur-md transition-colors duration-300 hover:border-primary/30 lg:p-6"
-            >
-              <div className="font-display text-2xl font-bold text-gradient lg:text-3xl">
-                <NumberTicker value={stat.value} className="text-gradient font-display" />
-                {stat.suffix}
+              <div className="mb-6 flex items-center justify-between font-mono text-xs uppercase tracking-[0.18em]">
+                <span className="flex items-center gap-2 text-primary">
+                  {cat.icon}
+                  {"// "}
+                  {cat.slug}
+                </span>
+                <span className="text-muted-foreground">{cat.skills.length} tools</span>
               </div>
-              <div className="mt-1 text-xs text-muted-foreground lg:text-sm">{stat.label}</div>
+
+              <motion.ul
+                key={cat.slug}
+                variants={list}
+                initial="hidden"
+                animate="show"
+                className="relative grid gap-x-10 sm:grid-cols-2"
+              >
+                {cat.skills.map((s) => (
+                  <motion.li
+                    key={s.name}
+                    variants={row}
+                    className="flex items-center justify-between gap-3 border-b border-border/70 py-3.5"
+                  >
+                    <span className="font-medium">{s.name}</span>
+                    <Dots level={s.level} />
+                  </motion.li>
+                ))}
+              </motion.ul>
+
+              <p className="relative mt-6 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                <span className="flex gap-1">
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                  <span className="h-2 w-2 rounded-full bg-border" />
+                </span>
+                Proficiency &middot; daily driver &rarr; familiar
+              </p>
             </div>
-          ))}
-        </motion.div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

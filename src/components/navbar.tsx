@@ -56,10 +56,10 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between px-4 md:px-5 py-3">
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-purple-600 font-display text-sm font-bold text-white shadow-lg shadow-primary/30 transition-transform duration-300 group-hover:scale-105">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-display text-sm font-extrabold text-primary-foreground transition-transform duration-300 group-hover:scale-105">
               PS
             </span>
-            <span className="font-display text-lg font-semibold tracking-tight">
+            <span className="font-display text-lg font-bold tracking-tight">
               Pragyansh
             </span>
           </Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
                   {active && (
                     <motion.span
                       layoutId="navbar-pill"
-                      className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-primary to-purple-600 shadow-md shadow-primary/30"
+                      className="absolute inset-0 -z-10 rounded-full bg-primary"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
@@ -99,7 +99,7 @@ export default function Navbar() {
             </button>
             <Link
               href="#contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-purple-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-primary/25 transition-all duration-300 hover:shadow-lg hover:shadow-primary/40"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_-4px_hsl(var(--primary)/0.6)]"
             >
               Let&apos;s Talk
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -151,7 +151,7 @@ export default function Navbar() {
                 ))}
                 <Link
                   href="#contact"
-                  className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-primary to-purple-600 px-4 py-2.5 text-base font-medium text-white"
+                  className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-semibold text-primary-foreground"
                 >
                   Let&apos;s Talk
                   <ArrowUpRight className="h-4 w-4" />
