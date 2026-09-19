@@ -1,21 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import {
-  Code,
-  Database,
-  Globe,
-  Brain,
-  Server,
-  Cloud,
-  CheckCircle2,
-} from "lucide-react"
-import { MagicCard } from "@/components/ui/magic-card"
+import { Code, Database, Globe, Brain, Server, Cloud, CheckCircle2 } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
-import { NumberTicker } from "@/components/ui/number-ticker"
 import SectionHeading from "@/components/section-heading"
+import Reveal from "@/components/reveal"
+import PageCTA from "@/components/page-cta"
 
 const skillCategories = [
   {
@@ -116,141 +106,86 @@ const skillCategories = [
   },
 ]
 
-const marqueeTech = Array.from(
-  new Set(skillCategories.flatMap((c) => c.skills.map((s) => s.name)))
-)
-
-const stats = [
-  { label: "Technologies", value: 30, suffix: "+" },
-  { label: "Frameworks", value: 15, suffix: "+" },
-  { label: "AI/ML Tools", value: 10, suffix: "+" },
-  { label: "Cloud Services", value: 8, suffix: "+" },
-]
-
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.06 } },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-}
-
-const skillBar = {
-  hidden: { width: 0 },
-  show: (level: number) => ({
-    width: `${level}%`,
-    transition: { duration: 1, delay: 0.15, ease: "easeOut" },
-  }),
-}
+const marqueeTech = Array.from(new Set(skillCategories.flatMap((c) => c.skills.map((s) => s.name))))
 
 export default function SkillsPage() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.05 })
-
   return (
-    <div className="relative min-h-screen overflow-hidden pb-20 pt-32 md:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.12),transparent_60%)]" />
+    <div className="relative overflow-x-clip pt-32 md:pt-40">
+      <div className="pointer-events-none absolute -left-32 top-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-primary/20 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-32 top-96 -z-10 h-[26rem] w-[26rem] rounded-full bg-fuchsia-500/10 blur-[140px]" />
+
       <div className="container mx-auto px-4">
         <SectionHeading
-          eyebrow="What I Work With"
-          title="Technical Skills"
-          description="My comprehensive expertise spans modern technologies, enabling me to build intelligent, scalable solutions from concept to deployment."
+          index="/ 01"
+          eyebrow="Toolkit"
+          align="left"
+          title={
+            <>
+              Everything I{" "}
+              <span className="font-serif font-normal italic text-primary">work with</span>
+            </>
+          }
+          description="Seven areas, honestly rated — from systems languages and distributed backends to AI pipelines, cloud infrastructure, and the engineering practices that keep it all reliable."
         />
       </div>
 
-      <div className="relative mb-12 w-full">
-        <Marquee pauseOnHover className="[--duration:35s]">
-          {marqueeTech.map((tech) => (
-            <span
-              key={tech}
-              className="mx-1.5 inline-flex items-center rounded-full border border-border/60 bg-card/50 px-4 py-2 font-mono text-sm text-muted-foreground backdrop-blur-sm"
-            >
-              {tech}
-            </span>
-          ))}
-        </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent" />
+      <div className="relative overflow-hidden py-10 md:py-14">
+        <div className="-rotate-1 scale-105 bg-gradient-to-r from-primary via-violet-500 to-fuchsia-500 py-3.5 text-primary-foreground">
+          <Marquee className="[--duration:45s] [--gap:2rem]" repeat={4}>
+            {marqueeTech.map((t) => (
+              <span key={t} className="flex items-center gap-8 font-display text-xl font-extrabold uppercase tracking-tight md:text-2xl">
+                {t}
+                <span className="text-base text-gold">✦</span>
+              </span>
+            ))}
+          </Marquee>
+        </div>
       </div>
 
-      <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5"
-        >
-          {skillCategories.map((category) => (
-            <motion.div key={category.title} variants={item}>
-              <MagicCard
-                className="h-full rounded-2xl"
-                gradientColor="hsl(var(--primary) / 0.12)"
-                gradientFrom="hsl(var(--primary))"
-                gradientTo="hsl(var(--gold))"
-              >
-                <div className="p-5 lg:p-6">
-                  <div className="mb-5 flex items-center gap-3">
-                    <div
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${category.accent} text-white shadow-lg`}
-                    >
-                      {category.icon}
-                    </div>
-                    <h3 className="font-display text-lg font-semibold lg:text-xl">{category.title}</h3>
-                  </div>
-
-                  <div className="space-y-4">
-                    {category.skills.map((skill) => (
-                      <div key={skill.name} className="space-y-1.5">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-foreground md:text-base">{skill.name}</span>
-                          <span className="rounded-full bg-primary/10 px-2 py-0.5 font-mono text-xs font-semibold text-primary">
-                            {skill.level}%
-                          </span>
-                        </div>
-                        <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted/40">
-                          <motion.div
-                            custom={skill.level}
-                            variants={skillBar}
-                            initial="hidden"
-                            animate={isInView ? "show" : "hidden"}
-                            className={`h-full rounded-full bg-gradient-to-r ${category.accent}`}
-                          />
-                        </div>
-                        <p className="text-xs leading-relaxed text-muted-foreground line-clamp-2">
-                          {skill.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+      <div className="container mx-auto px-4 pt-10">
+        {skillCategories.map((c, i) => {
+          const avg = Math.round(c.skills.reduce((n, s) => n + s.level, 0) / c.skills.length)
+          return (
+            <Reveal key={c.title} className="grid gap-8 border-t border-border py-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16 md:py-16">
+              <div className="self-start lg:sticky lg:top-28">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="font-mono text-xs text-primary">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-fuchsia-500 text-primary-foreground">
+                    {c.icon}
+                  </span>
                 </div>
-              </MagicCard>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 grid grid-cols-2 gap-4 md:mt-8 md:grid-cols-4 md:gap-5"
-        >
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-xl border border-border/60 bg-card/40 p-4 text-center backdrop-blur-md transition-colors duration-300 hover:border-primary/30 lg:p-6"
-            >
-              <div className="font-display text-2xl font-bold text-gradient lg:text-3xl">
-                <NumberTicker value={stat.value} className="text-gradient font-display" />
-                {stat.suffix}
+                <h2 className="font-display text-4xl font-bold leading-none tracking-tight md:text-5xl">{c.title}</h2>
+                <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  {c.skills.length} tools &middot; avg {avg}%
+                </p>
               </div>
-              <div className="mt-1 text-xs text-muted-foreground lg:text-sm">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
+
+              <ul className="divide-y divide-border/70">
+                {c.skills.map((s) => (
+                  <li key={s.name} className="py-5 first:pt-0">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="font-display text-xl font-semibold tracking-tight md:text-2xl">{s.name}</span>
+                      <span className="font-mono text-xs text-primary">{s.level}%</span>
+                    </div>
+                    <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-border">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${s.level}%` }}
+                        viewport={{ once: true, amount: 0.8 }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="h-full rounded-full bg-gradient-to-r from-primary to-gold"
+                      />
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          )
+        })}
       </div>
+
+      <PageCTA />
     </div>
   )
 }

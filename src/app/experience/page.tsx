@@ -1,13 +1,13 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Calendar, MapPin, Briefcase, ExternalLink, Trophy } from "lucide-react"
+import { motion, useScroll } from "framer-motion"
+import { ArrowUpRight, MapPin } from "lucide-react"
 import Link from "next/link"
-import { MagicCard } from "@/components/ui/magic-card"
-import { BorderBeam } from "@/components/ui/border-beam"
 import SectionHeading from "@/components/section-heading"
+import Reveal from "@/components/reveal"
+import PageCTA from "@/components/page-cta"
+import { cn } from "@/lib/utils"
 
 const experiences = [
   {
@@ -125,189 +125,139 @@ const experiences = [
 ]
 
 const achievements = [
-  {
-    title: "2nd Place, KrackHack Hackathon (IIT Mandi)",
-    detail: "Built and delivered a working AI prototype within 24 hours among 50+ participating teams.",
-  },
-  {
-    title: "Programming Club Website Lead",
-    detail: "Led the Programming Club website rebuild, improving page-load performance by 40% for 1,000+ students.",
-  },
-  {
-    title: "Ranneti Annual Fest Registration Portal",
-    detail: "Delivered the registration portal, processing 10,000+ registrations with zero downtime over 3 days.",
-  },
-  {
-    title: "Event Web Development Lead",
-    detail: "Led web development teams for major college festivals including Ranneti and Exodia.",
-  },
+  { metric: "#2", title: "KrackHack Hackathon", detail: "Built a working AI prototype in 24 hours among 50+ teams at IIT Mandi." },
+  { metric: "40%", title: "Programming Club Website", detail: "Led the rebuild — faster page loads for 1,000+ students." },
+  { metric: "10K+", title: "Ranneti Registration Portal", detail: "Processed 10,000+ registrations with zero downtime over 3 days." },
+  { metric: "Lead", title: "Fest Web Development", detail: "Led web development teams for Ranneti and Exodia festivals." },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-}
-
 export default function ExperiencePage() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.05 })
+  const listRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 0.6", "end 0.6"] })
 
   return (
-    <div className="relative min-h-screen overflow-hidden pb-20 pt-32 md:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
+    <div className="relative overflow-x-clip pt-32 md:pt-40">
+      <div className="pointer-events-none absolute -right-32 top-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-primary/20 blur-[140px]" />
+      <div className="pointer-events-none absolute -left-32 top-[40rem] -z-10 h-[26rem] w-[26rem] rounded-full bg-fuchsia-500/10 blur-[140px]" />
+
       <div className="container mx-auto px-4">
         <SectionHeading
-          eyebrow="Career Journey"
-          title="Professional Experience"
-          description="My journey across innovative startups — building scalable web applications, AI integrations, and production infrastructure."
+          index="/ 02"
+          eyebrow="Career"
+          align="left"
+          title={
+            <>
+              Where I&apos;ve{" "}
+              <span className="font-serif font-normal italic text-primary">shipped</span>
+            </>
+          }
+          description="Freelance engagements, internships and a full-time engineering role — building scalable web applications, AI integrations and production infrastructure across startups."
         />
 
-        <motion.div
-          ref={ref}
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="relative mx-auto max-w-3xl"
-        >
-          <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-border to-transparent md:left-[19px]" />
+        <div ref={listRef} className="relative">
+          <div className="absolute bottom-0 left-[7px] top-2 w-px bg-border md:left-[9px]" />
+          <motion.div
+            style={{ scaleY: scrollYProgress }}
+            className="absolute bottom-0 left-[7px] top-2 w-px origin-top bg-gradient-to-b from-primary via-fuchsia-500 to-gold md:left-[9px]"
+          />
 
           {experiences.map((exp) => (
-            <motion.div key={exp.company + exp.period} variants={item} className="relative mb-6 pl-10 last:mb-0 md:pl-14">
-              <div
-                className={`absolute left-0 top-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-background md:h-10 md:w-10 ${
-                  exp.current ? "bg-gradient-to-br from-primary to-purple-600 shadow-lg shadow-primary/40" : "bg-secondary"
-                }`}
-              >
-                <span className={`h-2 w-2 rounded-full ${exp.current ? "bg-white animate-pulse" : "bg-muted-foreground"}`} />
-              </div>
+            <Reveal key={exp.company + exp.period} className="relative pb-16 pl-9 md:pb-24 md:pl-16">
+              <span
+                className={cn(
+                  "absolute left-0 top-2 h-4 w-4 rounded-full border-2 border-background md:h-5 md:w-5",
+                  exp.current ? "bg-gradient-to-br from-primary to-fuchsia-500 shadow-[0_0_20px_hsl(var(--primary)/0.8)]" : "bg-muted-foreground"
+                )}
+              />
 
-              <MagicCard
-                className="rounded-2xl"
-                gradientColor="hsl(var(--primary) / 0.12)"
-                gradientFrom="hsl(var(--primary))"
-                gradientTo="hsl(var(--gold))"
-              >
-                <div className="relative overflow-hidden rounded-2xl p-5 md:p-6">
-                  {exp.current && (
-                    <BorderBeam size={70} duration={7} colorFrom="hsl(var(--primary))" colorTo="hsl(var(--gold))" />
-                  )}
-
-                  <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h2 className="font-display text-lg font-bold md:text-xl">{exp.title}</h2>
-                        {exp.current && (
-                          <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
-                            Current
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-base font-medium text-foreground/80">{exp.company}</p>
-                    </div>
-                    {exp.website && (
-                      <Link
-                        href={exp.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </Link>
+              <div className="grid gap-8 lg:grid-cols-[0.42fr_0.58fr] lg:gap-14">
+                <div className="self-start lg:sticky lg:top-28">
+                  <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-primary">{exp.period}</p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h2 className="font-display text-4xl font-bold leading-none tracking-tight md:text-5xl">{exp.company}</h2>
+                    {exp.current && (
+                      <span className="rounded-full bg-gradient-to-r from-primary to-fuchsia-500 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+                        Now
+                      </span>
                     )}
                   </div>
+                  <p className="mt-3 text-base text-muted-foreground">{exp.title}</p>
+                  <p className="mt-2 flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    <MapPin className="h-3 w-3" />
+                    {exp.location}
+                  </p>
+                  {exp.website && (
+                    <Link
+                      href={exp.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                    >
+                      Visit {exp.company}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
+                </div>
 
-                  <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground md:text-sm">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar className="h-3.5 w-3.5 text-primary" />
-                      {exp.period}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5 text-primary" />
-                      {exp.location}
-                    </span>
-                  </div>
+                <div>
+                  <p className="text-lg leading-relaxed text-foreground/85">{exp.description}</p>
 
-                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground md:text-[15px]">{exp.description}</p>
-
-                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                  <div className="mt-8 grid gap-8 md:grid-cols-2">
                     <div>
-                      <h3 className="mb-2 flex items-center text-sm font-semibold text-primary">
-                        <Briefcase className="mr-2 h-4 w-4" />
-                        Key Responsibilities
-                      </h3>
-                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                      <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-primary">What I did</h3>
+                      <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
                         {exp.responsibilities.map((r) => (
-                          <div key={r} className="flex items-start">
-                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
+                          <li key={r} className="flex gap-2.5">
+                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
                             {r}
-                          </div>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                     <div>
-                      <h3 className="mb-2 flex items-center text-sm font-semibold text-gold">
-                        <Trophy className="mr-2 h-4 w-4" />
-                        Key Achievements
-                      </h3>
-                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                      <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-gold">Impact</h3>
+                      <ul className="space-y-2.5 text-sm leading-relaxed text-foreground/85">
                         {exp.achievements.map((a) => (
-                          <div key={a} className="flex items-start">
-                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-gold/70" />
+                          <li key={a} className="flex gap-2.5">
+                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
                             {a}
-                          </div>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </div>
 
-                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border/50 pt-4">
-                    {exp.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs font-medium text-foreground/75"
-                      >
-                        {tech}
+                  <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
+                    {exp.techStack.map((t) => (
+                      <span key={t} className="rounded-full border border-border bg-secondary/60 px-3 py-1 font-mono text-xs text-foreground/80">
+                        {t}
                       </span>
                     ))}
                   </div>
                 </div>
-              </MagicCard>
-            </motion.div>
+              </div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Leadership Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto mt-14 max-w-3xl"
-        >
-          <div className="mb-6 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-gold" />
-            <h3 className="font-display text-xl font-semibold">Leadership &amp; Achievements</h3>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Reveal className="mt-8">
+          <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+            <span className="h-px w-10 bg-border" />
+            Beyond the day job
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {achievements.map((a) => (
-              <div
-                key={a.title}
-                className="rounded-xl border border-border/60 bg-card/40 p-4 backdrop-blur-md transition-colors hover:border-gold/40"
-              >
-                <h4 className="mb-1.5 flex items-start gap-2 text-sm font-semibold text-foreground">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-gold to-primary" />
-                  {a.title}
-                </h4>
-                <p className="pl-3.5 text-sm text-muted-foreground">{a.detail}</p>
+              <div key={a.title} className="rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                <div className="font-display text-5xl font-extrabold tracking-tight text-gradient">{a.metric}</div>
+                <h4 className="mt-4 font-semibold">{a.title}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{a.detail}</p>
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
       </div>
+
+      <PageCTA />
     </div>
   )
 }

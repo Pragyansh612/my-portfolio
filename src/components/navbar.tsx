@@ -98,7 +98,7 @@ export default function Navbar() {
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
             <Link
-              href="#contact"
+              href={pathname === "/" ? "#contact" : "/contact"}
               className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_-4px_hsl(var(--primary)/0.6)]"
             >
               Let&apos;s Talk
@@ -150,7 +150,7 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="#contact"
+                  href={pathname === "/" ? "#contact" : "/contact"}
                   className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-semibold text-primary-foreground"
                 >
                   Let&apos;s Talk

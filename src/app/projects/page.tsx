@@ -1,14 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { ExternalLink, Github, Users, Calendar, Code, Globe, Brain, Zap, Database, Trophy, Target, Network, LineChart } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { MagicCard } from "@/components/ui/magic-card"
-import { ShimmerButton } from "@/components/ui/shimmer-button"
-import SectionHeading from "@/components/section-heading"
+import { useState } from "react"
+import { ExternalLink, Github, Network, Globe, Brain, LineChart, Zap, Code, Database } from "lucide-react"
 import Link from "next/link"
+import SectionHeading from "@/components/section-heading"
+import Reveal from "@/components/reveal"
+import PageCTA from "@/components/page-cta"
+import { cn } from "@/lib/utils"
 
 const projects = [
   {
@@ -197,161 +195,149 @@ const projects = [
   },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12 } },
-}
+const filters = [
+  { key: "all", label: "All" },
+  { key: "systems", label: "Systems & AI" },
+  { key: "web", label: "Web platforms" },
+] as const
 
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
+const systemsCategories = ["Distributed Systems", "AI/ML Tool", "AI Platform", "Machine Learning"]
 
 export default function ProjectsPage() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.05 })
+  const [filter, setFilter] = useState<(typeof filters)[number]["key"]>("all")
+
+  const visible = projects.filter((p) => {
+    if (filter === "all") return true
+    const isSystems = systemsCategories.includes(p.category)
+    return filter === "systems" ? isSystems : !isSystems
+  })
 
   return (
-    <div className="relative min-h-screen overflow-hidden pb-20 pt-32 md:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
+    <div className="relative overflow-x-clip pt-32 md:pt-40">
+      <div className="pointer-events-none absolute -left-32 top-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-primary/20 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-32 top-[45rem] -z-10 h-[26rem] w-[26rem] rounded-full bg-fuchsia-500/10 blur-[140px]" />
+
       <div className="container mx-auto px-4">
         <SectionHeading
+          index="/ 03"
           eyebrow="Selected Work"
-          title="Featured Projects"
-          description="A showcase of systems engineering, AI-powered products, and full-stack platforms — with the challenges, decisions, and impact behind each one."
+          align="left"
+          title={
+            <>
+              Things I&apos;ve <span className="font-serif font-normal italic text-primary">built</span>
+            </>
+          }
+          description="Systems engineering, AI-powered products and full-stack platforms — with the challenges, decisions and impact behind each one."
         />
 
-        <motion.div ref={ref} variants={container} initial="hidden" animate={isInView ? "show" : "hidden"} className="space-y-6">
-          {projects.map((project) => (
-            <motion.div key={project.title} variants={item}>
-              <MagicCard
-                className="rounded-2xl"
-                gradientColor="hsl(var(--primary) / 0.12)"
-                gradientFrom="hsl(var(--primary))"
-                gradientTo="hsl(var(--gold))"
-              >
-                <div className="p-5 md:p-7">
-                  {/* Header */}
-                  <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
-                    <div className="flex flex-1 items-start gap-3.5">
-                      <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg shadow-primary/25">
-                        {project.icon}
-                      </div>
-                      <div>
-                        <h2 className="font-display text-xl font-bold md:text-2xl">{project.title}</h2>
-                        <span className="mt-1.5 inline-block rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      {project.githubLink && (
-                        <Button asChild variant="outline" size="sm" className="border-border/60 hover:border-primary/40 hover:bg-primary/10">
-                          <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                            <Github className="mr-1.5 h-3.5 w-3.5" />
-                            Code
-                          </Link>
-                        </Button>
-                      )}
-                      {project.liveLink && (
-                        <Button asChild size="sm" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
-                          <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
-                            Live Demo
-                          </Link>
-                        </Button>
-                      )}
-                    </div>
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={cn(
+                "rounded-full border px-5 py-2 font-mono text-xs uppercase tracking-[0.15em] transition-all duration-300",
+                filter === f.key
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+              )}
+            >
+              {f.label}
+            </button>
+          ))}
+          <span className="ml-2 font-mono text-xs text-muted-foreground">{visible.length} projects</span>
+        </div>
+
+        <div>
+          {visible.map((p, i) => (
+            <Reveal key={p.title} className="group grid gap-8 border-t border-border py-12 lg:grid-cols-[0.4fr_0.6fr] lg:gap-14 md:py-16">
+              <div className="self-start lg:sticky lg:top-28">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="font-mono text-xs text-primary">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-fuchsia-500 text-primary-foreground">
+                    {p.icon}
+                  </span>
+                </div>
+                <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-gold">{p.category}</p>
+                <h2 className="font-display text-3xl font-bold leading-tight tracking-tight transition-colors duration-300 group-hover:text-primary md:text-4xl">
+                  {p.title}
+                </h2>
+                <p className="mt-3 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  {p.role} &middot; {p.date}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {p.githubLink && (
+                    <Link
+                      href={p.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                    >
+                      <Github className="h-3.5 w-3.5" />
+                      Code
+                    </Link>
+                  )}
+                  {p.liveLink && (
+                    <Link
+                      href={p.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-violet-500 px-4 py-2 text-sm font-semibold text-primary-foreground"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Live demo
+                    </Link>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-lg leading-relaxed text-foreground/85">{p.description}</p>
+
+                <div className="mt-8 grid gap-8 md:grid-cols-2">
+                  <div>
+                    <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Key features</h3>
+                    <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+                      {p.features.map((f) => (
+                        <li key={f} className="flex gap-2.5">
+                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  {/* Meta Info */}
-                  <div className="mb-4 flex flex-wrap gap-4 text-sm text-muted-foreground md:ml-[3.6rem]">
-                    <div className="flex items-center">
-                      <Users className="mr-1.5 h-4 w-4 text-primary" />
-                      <span className="font-medium">{project.role}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar className="mr-1.5 h-4 w-4 text-primary" />
-                      {project.date}
-                    </div>
-                  </div>
-
-                  <p className="mb-5 leading-relaxed text-foreground/85 md:ml-[3.6rem]">{project.description}</p>
-
-                  <div className="grid grid-cols-1 gap-5 md:ml-[3.6rem] md:grid-cols-3">
-                    <div>
-                      <h3 className="mb-2 flex items-center text-sm font-semibold text-primary">
-                        <Target className="mr-2 h-4 w-4" />
-                        Key Features
-                      </h3>
-                      <div className="space-y-1.5 text-sm text-muted-foreground">
-                        {project.features.slice(0, 3).map((f) => (
-                          <div key={f} className="flex items-start">
-                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
-                            {f}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="mb-2 flex items-center text-sm font-semibold text-gold">
-                        <Code className="mr-2 h-4 w-4" />
-                        Technical Challenges
-                      </h3>
-                      <div className="space-y-1.5 text-sm text-muted-foreground">
-                        {project.challenges.slice(0, 2).map((c) => (
-                          <div key={c} className="flex items-start">
-                            <div className="mr-2 mt-2 h-1 w-1 shrink-0 rounded-full bg-gold/60" />
-                            {c}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="mb-2 flex items-center text-sm font-semibold text-emerald-400">
-                        <Trophy className="mr-2 h-4 w-4" />
-                        Impact &amp; Results
-                      </h3>
-                      <p className="text-sm text-muted-foreground">{project.impact}</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border/50 pt-4 md:ml-[3.6rem]">
-                    {project.tags.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs font-medium text-foreground/75"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div>
+                    <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-gold">Technical challenges</h3>
+                    <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+                      {p.challenges.map((c) => (
+                        <li key={c} className="flex gap-2.5">
+                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
+                          {c}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              </MagicCard>
-            </motion.div>
-          ))}
-        </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 text-center"
-        >
-          <p className="mb-5 text-muted-foreground">Interested in collaborating on innovative projects?</p>
-          <Link href="#contact">
-            <ShimmerButton
-              background="linear-gradient(110deg, hsl(var(--primary)), #a855f7)"
-              className="mx-auto px-6 py-3 text-sm font-semibold"
-            >
-              Start a Conversation
-            </ShimmerButton>
-          </Link>
-        </motion.div>
+                <div className="mt-8 rounded-2xl border border-primary/25 bg-primary/5 p-5">
+                  <h3 className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Impact</h3>
+                  <p className="text-sm leading-relaxed text-foreground/85">{p.impact}</p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="rounded-full border border-border bg-secondary/60 px-3 py-1 font-mono text-xs text-foreground/80">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
+
+      <PageCTA />
     </div>
   )
 }
