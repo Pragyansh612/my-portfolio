@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Moon, Sun, Menu, X, ArrowUpRight } from "lucide-react"
+import { Moon, Sun, Menu, X, ArrowUpRight, FileText } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -98,6 +98,15 @@ export default function Navbar() {
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
             <Link
+              href="/Pragyansh_Saxena_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-secondary/40 px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-300 hover:border-primary/50 hover:text-primary"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              Resume
+            </Link>
+            <Link
               href={pathname === "/" ? "#contact" : "/contact"}
               className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_-4px_hsl(var(--primary)/0.6)]"
             >
@@ -150,8 +159,17 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <Link
+                  href="/Pragyansh_Saxena_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-border/60 bg-secondary/40 px-4 py-2.5 text-base font-medium text-foreground/80"
+                >
+                  <FileText className="h-4 w-4" />
+                  Resume
+                </Link>
+                <Link
                   href={pathname === "/" ? "#contact" : "/contact"}
-                  className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-semibold text-primary-foreground"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-semibold text-primary-foreground"
                 >
                   Let&apos;s Talk
                   <ArrowUpRight className="h-4 w-4" />

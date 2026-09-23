@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { ArrowUpRight, FileText, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 import { Marquee } from "@/components/ui/marquee"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import { cn } from "@/lib/utils"
 
-const roles = ["Software Engineer", "Full-Stack Developer", "AI / ML Engineer", "Backend Architect"]
+const roles = ["Software Engineer", "Full-Stack Developer", "AI / ML Researcher", "Backend Architect"]
 
 const stats = [
   { value: 10000, suffix: "+", label: "Users served" },
@@ -21,9 +21,9 @@ const marqueeItems = ["Python", "Go", "TypeScript", "Next.js", "FastAPI", "Postg
 
 const highlights = [
   "10,000+ users served @ 99.9% uptime",
-  "API latency cut by up to 40%",
+  "1st place — CS671 Deep Learning Hackathon",
   "RAG pipelines over 50,000+ embeddings",
-  "Python · Go · TypeScript · Cloud",
+  "SOTA cross-domain generalization (ASD research)",
 ]
 
 export default function Hero() {
@@ -136,9 +136,10 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              2+ years building production web, mobile, backend, and AI-powered systems across
-              startups and freelance engagements &mdash; with a strong background in backend
-              architecture, distributed systems, and cloud infrastructure.
+              2+ years building production web, mobile, backend, and AI/ML systems across
+              startups, research, and freelance engagements &mdash; including deep learning
+              research that achieved state-of-the-art cross-domain generalization on speaker
+              detection benchmarks.
             </motion.p>
 
             <motion.div
@@ -159,6 +160,15 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 font-semibold transition-colors duration-300 hover:border-primary hover:text-primary"
               >
                 View my work
+              </Link>
+              <Link
+                href="/Pragyansh_Saxena_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 font-semibold text-muted-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
+              >
+                <FileText className="h-4 w-4" />
+                Resume
               </Link>
               <div className="ml-1 flex items-center gap-2">
                 {[

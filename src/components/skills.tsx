@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowUpRight, Cloud, CheckCircle2, Code, Database, Globe, Brain, Server } from "lucide-react"
+import { ArrowUpRight, Cloud, CheckCircle2, Code, Database, Globe, Brain, Server, Smartphone } from "lucide-react"
 import SectionHeading from "@/components/section-heading"
 import { cn } from "@/lib/utils"
 
@@ -27,9 +27,19 @@ const skillCategories = [
     skills: [
       { name: "React.js", level: 92 },
       { name: "Next.js", level: 90 },
-      { name: "React Native", level: 82 },
       { name: "Tailwind CSS", level: 92 },
       { name: "Redux / Zustand", level: 80 },
+    ],
+  },
+  {
+    title: "Mobile",
+    slug: "mobile",
+    icon: <Smartphone className="h-4 w-4" />,
+    skills: [
+      { name: "React Native", level: 82 },
+      { name: "Dart", level: 65 },
+      { name: "Cross-Platform Dev", level: 80 },
+      { name: "REST API Integration", level: 88 },
     ],
   },
   {
@@ -61,10 +71,13 @@ const skillCategories = [
     slug: "ai-ml",
     icon: <Brain className="h-4 w-4" />,
     skills: [
+      { name: "PyTorch", level: 85 },
+      { name: "Computer Vision", level: 84 },
+      { name: "Deep Learning", level: 85 },
+      { name: "Transformers", level: 80 },
       { name: "LLMs & RAG", level: 90 },
       { name: "LangChain", level: 85 },
       { name: "Scikit-learn", level: 85 },
-      { name: "PyTorch", level: 78 },
       { name: "Vector DBs", level: 82 },
       { name: "Prompt Engineering", level: 88 },
     ],
@@ -135,7 +148,7 @@ export default function Skills() {
               <span className="font-serif font-normal italic text-primary">build with</span>
             </>
           }
-          description="Hover a category to explore the tools I reach for — from systems languages and distributed backends to AI pipelines and modern frontends."
+          description="Hover a category to explore the tools I reach for — from systems languages and distributed backends to deep learning research, mobile apps, and modern frontends."
         />
 
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">

@@ -11,18 +11,18 @@ const experiences = [
   {
     title: "Software Engineer",
     company: "Instafarms",
-    period: "Jun 2025 – Present",
+    period: "Jun 2024 – Apr 2026",
     location: "Remote",
     current: true,
     description:
-      "Shipped 3 production web and mobile apps and deployed GCP-hosted RAG pipelines over 50,000+ embeddings. Managed Linux VMs with Docker/Nginx at 99.9% uptime and optimized PostgreSQL for a 50% faster dashboard.",
+      "Shipped 3 production web and mobile apps with React Native and real-time sync for 500+ daily active users, and deployed GCP-hosted RAG pipelines over 50,000+ embeddings. Managed Linux VMs with Docker/Nginx at 99.9% uptime and optimized PostgreSQL for a 50% faster dashboard.",
     techStack: ["Next.js", "React Native", "TypeScript", "GCP", "PostgreSQL", "Docker", "Nginx", "GitHub Actions"],
     website: null,
   },
   {
     title: "Full Stack Developer Intern",
     company: "Dynish",
-    period: "Mar 2025 – Jun 2025",
+    period: "Mar 2024 – Jun 2024",
     location: "Remote",
     current: false,
     description:
@@ -78,6 +78,11 @@ const experiences = [
 
 const achievements = [
   {
+    metric: "1st",
+    title: "CS671 Deep Learning Hackathon",
+    detail: "Won 1st place for the ASD Generalization Study — now headed for publication.",
+  },
+  {
     metric: "#2",
     title: "KrackHack Hackathon",
     detail: "Built a working AI prototype in 24 hours among 50+ teams at IIT Mandi.",
@@ -91,11 +96,6 @@ const achievements = [
     metric: "10K+",
     title: "Ranneti Registration Portal",
     detail: "Processed 10,000+ registrations with zero downtime over 3 days.",
-  },
-  {
-    metric: "Lead",
-    title: "Fest Web Development",
-    detail: "Led web development teams for Ranneti and Exodia festivals.",
   },
 ]
 

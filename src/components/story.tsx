@@ -9,11 +9,14 @@ const words: { w: string; accent?: boolean }[] = [
   { w: "build" },
   { w: "backend-heavy", accent: true },
   { w: "products" },
+  { w: "and" },
+  { w: "research" },
+  { w: "systems" },
   { w: "that" },
-  { w: "stay" },
-  { w: "fast", accent: true },
-  { w: "at" },
-  { w: "scale" },
+  { w: "hold" },
+  { w: "up", accent: true },
+  { w: "under" },
+  { w: "pressure" },
   { w: "—" },
   { w: "from" },
   { w: "RAG", accent: true },
@@ -22,6 +25,10 @@ const words: { w: string; accent?: boolean }[] = [
   { w: "distributed" },
   { w: "schedulers" },
   { w: "to" },
+  { w: "deep", accent: true },
+  { w: "learning" },
+  { w: "models" },
+  { w: "and" },
   { w: "the" },
   { w: "interfaces", accent: true },
   { w: "people" },
@@ -31,8 +38,8 @@ const words: { w: string; accent?: boolean }[] = [
 
 const facts = [
   { k: "2+", v: "years shipping production software" },
-  { k: "6", v: "teams & clients built for" },
-  { k: "8", v: "projects taken from idea to deploy" },
+  { k: "1st", v: "place, IIT Mandi CS671 DL Hackathon" },
+  { k: "9", v: "projects taken from idea to deploy" },
 ]
 
 function Word({

@@ -13,13 +13,14 @@ const experiences = [
   {
     title: "Software Engineer",
     company: "Instafarms",
-    period: "Jun 2025 – Present",
+    period: "Jun 2024 – Apr 2026",
     location: "Remote",
     current: true,
     description:
       "Architecting and shipping production web and mobile applications, GCP-hosted RAG pipelines, and cloud infrastructure serving hundreds of daily active users.",
     responsibilities: [
       "Architected and shipped 3 production web and mobile applications using Next.js, React Native, and TypeScript",
+      "Built and deployed cross-platform mobile apps with React Native, integrating REST APIs and real-time data sync for 500+ daily active users",
       "Designed and deployed horizontally scalable RAG pipelines on GCP with semantic vector search over 50,000+ embeddings",
       "Provisioned and managed 5 Linux VMs with Docker and Nginx, building GitHub Actions CI/CD with automated test gates",
       "Optimized PostgreSQL schemas, composite indexes, and SQL queries using telemetry-driven performance monitoring",
@@ -36,7 +37,7 @@ const experiences = [
   {
     title: "Full Stack Developer Intern",
     company: "Dynish",
-    period: "Mar 2025 – Jun 2025",
+    period: "Mar 2024 – Jun 2024",
     location: "Remote",
     current: false,
     description:
@@ -125,10 +126,10 @@ const experiences = [
 ]
 
 const achievements = [
+  { metric: "1st", title: "CS671 Deep Learning Hackathon", detail: "Won 1st place for the ASD Generalization Study — now headed for publication." },
   { metric: "#2", title: "KrackHack Hackathon", detail: "Built a working AI prototype in 24 hours among 50+ teams at IIT Mandi." },
   { metric: "40%", title: "Programming Club Website", detail: "Led the rebuild — faster page loads for 1,000+ students." },
   { metric: "10K+", title: "Ranneti Registration Portal", detail: "Processed 10,000+ registrations with zero downtime over 3 days." },
-  { metric: "Lead", title: "Fest Web Development", detail: "Led web development teams for Ranneti and Exodia festivals." },
 ]
 
 export default function ExperiencePage() {

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, Brain, Code, Database, ExternalLink, Github, Globe, LineChart, Network, Zap } from "lucide-react"
+import { ArrowUpRight, Brain, Code, Database, ExternalLink, Github, Globe, LineChart, Network, Sparkles, Zap } from "lucide-react"
 import Link from "next/link"
 import SectionHeading from "@/components/section-heading"
 import { cn } from "@/lib/utils"
@@ -30,6 +30,20 @@ const projects: Project[] = [
     features: ["Network-aware node selection", "Heartbeats & orphan-task recovery", "FIFO / RR / least-loaded / network-aware"],
   },
   {
+    title: "ASD Generalization Study",
+    category: "Deep Learning Research",
+    description:
+      "Research identifying multi-face inter-speaker context as the dominant driver of cross-dataset overfitting in Active Speaker Detection — validated across 13+ model variants on AVA-ActiveSpeaker and Columbia.",
+    icon: <Brain className="h-6 w-6" />,
+    tags: ["PyTorch", "Computer Vision", "Transformers", "Audio-Visual"],
+    githubLink: "https://github.com/Pragyansh612/ASD_Group10",
+    features: [
+      "Cross-domain drop cut from -27.87pp to -0.69pp",
+      "94.11% AVA mAP · 70.96% Columbia F1 (FCAI)",
+      "1st place, IIT Mandi CS671 DL Hackathon",
+    ],
+  },
+  {
     title: "WebSync",
     category: "AI · Monitoring",
     description:
@@ -45,7 +59,7 @@ const projects: Project[] = [
     category: "AI Platform",
     description:
       "One-click AI website generator that cut deployment from 4+ hours to under 10 minutes, powering 300+ published sites in its first 30 days.",
-    icon: <Brain className="h-6 w-6" />,
+    icon: <Sparkles className="h-6 w-6" />,
     tags: ["Next.js", "Node.js", "Firebase", "Tailwind"],
     liveLink: "https://genwebai.vercel.app/",
     githubLink: "https://github.com/Pragyansh612/GenWeb",
@@ -242,7 +256,7 @@ export default function Projects() {
               Things I&apos;ve <span className="font-serif font-normal italic text-primary">built</span>
             </>
           }
-          description="Scroll to travel through the projects — systems engineering, AI-powered products, and full-stack platforms built end to end."
+          description="Scroll to travel through the projects — systems engineering, deep learning research, and full-stack platforms built end to end."
         />
       </div>
 

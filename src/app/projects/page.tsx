@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ExternalLink, Github, Network, Globe, Brain, LineChart, Zap, Code, Database } from "lucide-react"
+import { ExternalLink, Github, Network, Globe, Brain, LineChart, Zap, Code, Database, Sparkles } from "lucide-react"
 import Link from "next/link"
 import SectionHeading from "@/components/section-heading"
 import Reveal from "@/components/reveal"
@@ -33,6 +33,29 @@ const projects = [
     category: "Distributed Systems"
   },
   {
+    title: "ASD Generalization Study — Cross-Domain Active Speaker Detection (Research)",
+    description: "A research project diagnosing why Active Speaker Detection models overfit across datasets, and fixing it — led with a team, validated across 13+ controlled model variants on two benchmark datasets, and now headed for publication.",
+    icon: <Brain className="w-6 h-6" />,
+    tags: ["PyTorch", "Computer Vision", "Transformers", "Audio-Visual Learning"],
+    liveLink: "",
+    githubLink: "https://github.com/Pragyansh612/ASD_Group10",
+    features: [
+      "Identified multi-face inter-speaker context as the dominant driver of cross-dataset overfitting",
+      "Designed a Transformer-based temporal modeling fix cutting cross-domain drop from -27.87pp to -0.69pp",
+      "Built FCAI, an adaptive face-count-routing inference system",
+      "Achieved 94.11% AVA mAP and 70.96% Columbia F1 simultaneously"
+    ],
+    challenges: [
+      "Diagnosing why models trained on AVA-ActiveSpeaker collapsed on the Columbia benchmark despite strong in-domain accuracy",
+      "Designing a temporal fix that closed the domain gap without regressing in-domain performance",
+      "Building an inference system that adapts cleanly to a variable number of faces per frame"
+    ],
+    impact: "Won 1st place at the IIT Mandi CS671 Deep Learning Hackathon; findings are being prepared for a research paper with faculty mentor Dr. Jyoti Nigam (Prof. Aditya Nigam).",
+    role: "Research Lead",
+    date: "2025",
+    category: "Deep Learning Research"
+  },
+  {
     title: "WebSync",
     description: "AI-powered uptime monitoring platform providing automated LLM-based anomaly detection, real-time alerting, and event storage to reduce downtime and speed up incident response.",
     icon: <Globe className="w-6 h-6" />,
@@ -58,7 +81,7 @@ const projects = [
   {
     title: "GenWeb",
     description: "One-click AI website generation platform that automates hosting and component generation, cutting deployment time from 4+ hours to under 10 minutes.",
-    icon: <Brain className="w-6 h-6" />,
+    icon: <Sparkles className="w-6 h-6" />,
     tags: ["Next.js", "Node.js", "Firebase", "Tailwind CSS"],
     liveLink: "https://genwebai.vercel.app/",
     githubLink: "https://github.com/Pragyansh612/GenWeb",
@@ -201,7 +224,7 @@ const filters = [
   { key: "web", label: "Web platforms" },
 ] as const
 
-const systemsCategories = ["Distributed Systems", "AI/ML Tool", "AI Platform", "Machine Learning"]
+const systemsCategories = ["Distributed Systems", "AI/ML Tool", "AI Platform", "Machine Learning", "Deep Learning Research"]
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<(typeof filters)[number]["key"]>("all")
@@ -227,7 +250,7 @@ export default function ProjectsPage() {
               Things I&apos;ve <span className="font-serif font-normal italic text-primary">built</span>
             </>
           }
-          description="Systems engineering, AI-powered products and full-stack platforms — with the challenges, decisions and impact behind each one."
+          description="Systems engineering, deep learning research and full-stack platforms — with the challenges, decisions and impact behind each one."
         />
 
         <div className="mb-4 flex flex-wrap items-center gap-2">

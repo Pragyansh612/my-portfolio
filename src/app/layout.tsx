@@ -22,10 +22,36 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 })
 
+const title = "Pragyansh Saxena | Software Engineer"
+const description =
+  "Software Engineer with 2+ years building production web, mobile, backend, and AI/ML systems — including deep learning research with state-of-the-art results on speaker-detection benchmarks."
+
 export const metadata = {
-  title: "Pragyansh Saxena | Software Engineer",
-  description:
-    "Portfolio of Pragyansh Saxena, a Software Engineer building production web, mobile, backend, and AI-powered systems.",
+  metadataBase: new URL("https://pragyansh.vercel.app"),
+  title,
+  description,
+  keywords: [
+    "Pragyansh Saxena",
+    "Software Engineer",
+    "Full Stack Developer",
+    "AI/ML Engineer",
+    "Deep Learning",
+    "React Native",
+    "Next.js",
+    "FastAPI",
+  ],
+  openGraph: {
+    title,
+    description,
+    url: "https://pragyansh.vercel.app",
+    siteName: "Pragyansh Saxena",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 }
 
 export default function RootLayout({

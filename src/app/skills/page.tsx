@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Database, Globe, Brain, Server, Cloud, CheckCircle2 } from "lucide-react"
+import { Code, Database, Globe, Brain, Server, Cloud, CheckCircle2, Smartphone } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
 import SectionHeading from "@/components/section-heading"
 import Reveal from "@/components/reveal"
@@ -31,10 +31,20 @@ const skillCategories = [
     skills: [
       { name: "React.js", level: 92, description: "Expertise in hooks, context API, state management, and scalable component architectures" },
       { name: "Next.js", level: 90, description: "Proficient in SSR, SSG, API routes, and building performant full-stack applications" },
-      { name: "React Native", level: 82, description: "Cross-platform mobile app development with native performance optimization" },
       { name: "Tailwind CSS", level: 92, description: "Rapid UI development with utility-first approach and custom design system creation" },
       { name: "Redux / Zustand", level: 80, description: "Predictable state management for medium-to-large single-page applications" },
       { name: "HTML/CSS", level: 95, description: "Mastery in semantic HTML, modern CSS features, animations, and responsive design" },
+    ],
+  },
+  {
+    title: "Mobile",
+    icon: <Smartphone className="w-4 h-4" />,
+    accent: "from-teal-400 to-emerald-500",
+    skills: [
+      { name: "React Native", level: 82, description: "Cross-platform mobile app development with native performance optimization and real-time data sync" },
+      { name: "Dart", level: 65, description: "Cross-platform mobile development experience via Flutter" },
+      { name: "Cross-Platform App Development", level: 80, description: "Shipping a single codebase across iOS and Android with native-feeling UX" },
+      { name: "REST API Integration", level: 88, description: "Wiring mobile clients to backend services with resilient, well-typed API layers" },
     ],
   },
   {
@@ -69,12 +79,16 @@ const skillCategories = [
     icon: <Brain className="w-4 h-4" />,
     accent: "from-pink-500 to-rose-400",
     skills: [
+      { name: "PyTorch", level: 85, description: "Research-grade model development, training pipelines, and ablation studies for computer vision and audio-visual learning" },
+      { name: "Computer Vision", level: 84, description: "Active speaker detection, cross-dataset generalization, and video-based model evaluation" },
+      { name: "Deep Learning", level: 85, description: "Designing, training, and diagnosing neural architectures for real research problems" },
+      { name: "Transformers", level: 80, description: "Transformer-based temporal modeling for sequence and multi-modal tasks" },
       { name: "LLMs & Prompt Engineering", level: 90, description: "Designing reliable prompts and integrating LLMs into production applications" },
       { name: "RAG Systems", level: 88, description: "Retrieval-Augmented Generation with semantic vector search over 50,000+ embeddings" },
       { name: "LangChain", level: 85, description: "Building LLM applications, RAG pipelines, and intelligent document processing" },
       { name: "Vector Databases", level: 82, description: "Embedding storage and semantic search for context-aware AI applications" },
       { name: "Scikit-learn / XGBoost", level: 85, description: "Classical ML algorithms, feature engineering, and model evaluation techniques" },
-      { name: "PyTorch / TensorFlow", level: 76, description: "Deep learning model development, training, and neural network architectures" },
+      { name: "TensorFlow", level: 74, description: "Model development and deployment for production ML pipelines" },
       { name: "Hugging Face", level: 80, description: "Fine-tuning and deploying transformer models for NLP tasks" },
       { name: "OpenCV", level: 72, description: "Image processing and computer vision pipelines" },
     ],
@@ -125,7 +139,7 @@ export default function SkillsPage() {
               <span className="font-serif font-normal italic text-primary">work with</span>
             </>
           }
-          description="Seven areas, honestly rated — from systems languages and distributed backends to AI pipelines, cloud infrastructure, and the engineering practices that keep it all reliable."
+          description="Eight areas, honestly rated — from systems languages and distributed backends to deep learning research, mobile apps, cloud infrastructure, and the engineering practices that keep it all reliable."
         />
       </div>
 
