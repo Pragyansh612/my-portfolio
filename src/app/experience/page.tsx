@@ -58,71 +58,6 @@ const experiences = [
     techStack: ["React.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "AWS", "Firebase", "Python", "FastAPI"],
     website: "https://dynish.app/",
   },
-  {
-    title: "SDE Intern – Backend, Freelance",
-    company: "Nextfront Technologies",
-    period: "Jul 2025 – Sep 2025",
-    location: "Remote",
-    current: false,
-    description:
-      "Designed asynchronous FastAPI microservices and integrated LLM-powered automation pipelines for internal services.",
-    responsibilities: [
-      "Designed asynchronous FastAPI microservices to eliminate blocking I/O under concurrent workloads",
-      "Optimized PostgreSQL data-access patterns for internal services",
-      "Integrated LLM-powered automation pipelines using Python, FastAPI, Docker, and REST APIs",
-    ],
-    achievements: ["Improved backend throughput and reduced response latency across internal services"],
-    techStack: ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs"],
-    website: null,
-  },
-  {
-    title: "SDE, Freelance",
-    company: "Finuance",
-    period: "Dec 2024 – Feb 2025",
-    location: "Remote",
-    current: false,
-    description:
-      "Refactored backend architecture and optimized query execution paths for a real-time financial analytics platform.",
-    responsibilities: [
-      "Refactored backend architecture using Django, Next.js, PostgreSQL, and Docker",
-      "Optimized SQL query execution paths for real-time financial analytics workloads",
-    ],
-    achievements: ["Reduced API latency by 40% for real-time financial analytics"],
-    techStack: ["Django", "Next.js", "PostgreSQL", "Docker"],
-    website: null,
-  },
-  {
-    title: "Full Stack Developer, Freelance",
-    company: "Asynq",
-    period: "Sep 2024 – Nov 2024",
-    location: "Remote",
-    current: false,
-    description:
-      "Designed role-based access control and scalable analytics dashboards for secure, multi-role access.",
-    responsibilities: [
-      "Designed role-based access control (RBAC) using Next.js, Node.js, Django, MongoDB, and AWS",
-      "Built scalable analytics dashboards to improve system observability",
-    ],
-    achievements: ["Enabled secure multi-role access and improved system observability"],
-    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "AWS"],
-    website: "https://www.asynq.ai/",
-  },
-  {
-    title: "Developer, Freelance",
-    company: "Artly",
-    period: "Aug 2024 – Nov 2024",
-    location: "Remote",
-    current: false,
-    description:
-      "Built reusable UI components and optimized client-side rendering for an art-focused platform.",
-    responsibilities: [
-      "Built reusable UI components using Next.js, MongoDB, and Tailwind CSS",
-      "Optimized client-side rendering for better page performance",
-    ],
-    achievements: ["Improved page performance and UI consistency across the platform"],
-    techStack: ["Next.js", "MongoDB", "Tailwind CSS"],
-    website: "https://www.artly.co.in/",
-  },
 ]
 
 const achievements = [
@@ -152,7 +87,7 @@ export default function ExperiencePage() {
               <span className="font-serif font-normal italic text-primary">shipped</span>
             </>
           }
-          description="Freelance engagements, internships and a full-time engineering role — building scalable web applications, AI integrations and production infrastructure across startups."
+          description="From internship to a full-time engineering role — building scalable web applications, AI integrations and production infrastructure."
         />
 
         <div ref={listRef} className="relative">

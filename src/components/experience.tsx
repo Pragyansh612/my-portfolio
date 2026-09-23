@@ -30,50 +30,6 @@ const experiences = [
     techStack: ["React.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "AWS", "Firebase", "Python", "FastAPI"],
     website: "https://dynish.app/",
   },
-  {
-    title: "SDE Intern – Backend, Freelance",
-    company: "Nextfront Technologies",
-    period: "Jul 2025 – Sep 2025",
-    location: "Remote",
-    current: false,
-    description:
-      "Designed asynchronous FastAPI microservices to eliminate blocking I/O under concurrent workloads, and integrated LLM-powered automation pipelines with optimized PostgreSQL data access.",
-    techStack: ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs"],
-    website: null,
-  },
-  {
-    title: "SDE, Freelance",
-    company: "Finuance",
-    period: "Dec 2024 – Feb 2025",
-    location: "Remote",
-    current: false,
-    description:
-      "Refactored backend architecture and optimized SQL query execution paths, reducing API latency by 40% for real-time financial analytics.",
-    techStack: ["Django", "Next.js", "PostgreSQL", "Docker"],
-    website: null,
-  },
-  {
-    title: "Full Stack Developer, Freelance",
-    company: "Asynq",
-    period: "Sep 2024 – Nov 2024",
-    location: "Remote",
-    current: false,
-    description:
-      "Designed role-based access control and scalable analytics dashboards, enabling secure multi-role access and improved system observability.",
-    techStack: ["Next.js", "Node.js", "Django", "MongoDB", "AWS"],
-    website: "https://www.asynq.ai/",
-  },
-  {
-    title: "Developer, Freelance",
-    company: "Artly",
-    period: "Aug 2024 – Nov 2024",
-    location: "Remote",
-    current: false,
-    description:
-      "Built reusable UI components and optimized client-side rendering, improving page performance and UI consistency.",
-    techStack: ["Next.js", "MongoDB", "Tailwind CSS"],
-    website: "https://www.artly.co.in/",
-  },
 ]
 
 const achievements = [

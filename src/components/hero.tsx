@@ -6,6 +6,7 @@ import { ArrowUpRight, FileText, Github, Linkedin, Mail, MapPin, Phone } from "l
 import Link from "next/link"
 import { Marquee } from "@/components/ui/marquee"
 import { NumberTicker } from "@/components/ui/number-ticker"
+import TerminalCard from "@/components/terminal-card"
 import { cn } from "@/lib/utils"
 
 const roles = ["Software Engineer", "Full-Stack Developer", "AI / ML Researcher", "Backend Architect"]
@@ -18,13 +19,6 @@ const stats = [
 ]
 
 const marqueeItems = ["Python", "Go", "TypeScript", "Next.js", "FastAPI", "PostgreSQL", "RAG", "GCP", "Docker", "React Native"]
-
-const highlights = [
-  "10,000+ users served @ 99.9% uptime",
-  "1st place — CS671 Deep Learning Hackathon",
-  "RAG pipelines over 50,000+ embeddings",
-  "SOTA cross-domain generalization (ASD research)",
-]
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
@@ -86,7 +80,6 @@ export default function Hero() {
             </span>
             Available for work
           </span>
-          <span className="hidden sm:inline">Portfolio &mdash; 2026</span>
           <span className="hidden items-center gap-1.5 md:inline-flex">
             <MapPin className="h-3 w-3" />
             India &middot; Remote
@@ -217,33 +210,7 @@ export default function Hero() {
               </span>
             </Link>
 
-            <div className="overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl shadow-black/40">
-              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-                <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-                <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-                <span className="ml-3 font-mono text-[11px] text-muted-foreground">pragyansh@portfolio ~ zsh</span>
-              </div>
-              <div className="space-y-1 p-5 font-mono text-[13px] leading-7 md:p-6">
-                <p>
-                  <span className="text-primary">$</span> whoami
-                </p>
-                <p className="text-muted-foreground">software engineer @ instafarms</p>
-                <p className="pt-2">
-                  <span className="text-primary">$</span> cat highlights.md
-                </p>
-                {highlights.map((h) => (
-                  <p key={h} className="flex gap-2 text-foreground/85">
-                    <span className="text-primary">✓</span>
-                    {h}
-                  </p>
-                ))}
-                <p className="pt-2">
-                  <span className="text-primary">$</span>
-                  <span className="ml-2 inline-block h-4 w-2 translate-y-0.5 animate-blink bg-primary" />
-                </p>
-              </div>
-            </div>
+            <TerminalCard />
           </motion.div>
         </motion.div>
 

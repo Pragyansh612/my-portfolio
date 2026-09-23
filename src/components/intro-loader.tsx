@@ -52,8 +52,7 @@ export default function IntroLoader() {
       transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[100] flex flex-col justify-between bg-background p-6 md:p-10"
     >
-      <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-        <span>Portfolio &mdash; 2026</span>
+      <div className="flex items-center justify-end font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
         <span>Software Engineer</span>
       </div>
 
